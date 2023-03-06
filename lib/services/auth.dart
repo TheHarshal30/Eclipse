@@ -46,6 +46,20 @@ class GoogleSignInProvider extends ChangeNotifier {
             'october' : FieldValue.arrayUnion([]),
             'november' : FieldValue.arrayUnion([]),
             'december' : FieldValue.arrayUnion([]),
+          'janex' : 0,
+          'febx' :0,
+          'marx' :0,
+          'aprx' :0,
+          'junex': 0,
+          'julyx': 0,
+          'mayx' :0,
+          'augustx' : 0,
+          'octx':  0,
+          'septx' :0,
+          'novx' : 0,
+          'decx'  :0,
+            'totalex' : 0,
+            'date' : DateTime.now(),
             //@TODO add date.now later
           });
         }else{

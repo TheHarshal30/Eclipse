@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
-
+import 'dart:async';
 import 'dart:math';
+import 'welcome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eclipsis/Screens/Expenselist.dart';
 import 'package:eclipsis/supabasehandler.dart';
@@ -10,8 +11,7 @@ import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../bar graphs/expenseSummary.dart';
-
-// @TODO genrate mai jan.add
+import 'package:eclipsis/main.dart';// @TODO genrate mai jan.add
 class ExpensePage extends StatefulWidget {
   const ExpensePage({super.key});
   @override
@@ -20,6 +20,7 @@ class ExpensePage extends StatefulWidget {
 
 class ExpensePageState extends State<ExpensePage> {
   SupaBaseHandler supaBaseHandler = SupaBaseHandler();
+  bool gen1 = true;
   List<dynamic> jan = [];
   List<dynamic> feb = [];
   List<dynamic> mar = [];
@@ -45,16 +46,15 @@ class ExpensePageState extends State<ExpensePage> {
   double octx = 0;
   double novx = 0;
   double decx = 0;
-  // @TODO get last date from firebase after
   double k = 0;
   double expens = 0;
   double income = 0;
-  // DateTime d = DateTime.parse('2023-02-26 00:00:00Z');
-  RegExp regExp = new RegExp(
+  RegExp regExp = RegExp(
     "(?=.*[Aa]ccount.*|.*[Aa]/[Cc].*|.*[Aa][Cc][Cc][Tt].*|.*[Cc][Aa][Rr][Dd].*)(?=.*[Cc]redit.*|.*[Dd]ebit.*)(?=.*[Ii][Nn][Rr].*|.*[Rr][Ss].*)",
     caseSensitive: false,
     multiLine: false,
   );
+                    //@TODO 2/7/2023 move firebase-add from the message cal to generators
   final SmsQuery _query = SmsQuery();
   List<SmsMessage> _messages = [];
   List<double> p = [];
@@ -347,20 +347,60 @@ class ExpensePageState extends State<ExpensePage> {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   @override
   void initState() {
+    super.initState();
+    new Future.delayed(Duration.zero, () {
+      showDialog(
+      barrierDismissible: false
+      ,context: context,
+          builder: (context) {
+            Future.delayed(Duration(seconds: 30), () {
+              Navigator.of(context).pop(true);
+            });
+            return AlertDialog(
+              // title: Center(child:Text('Enter Code')),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                backgroundColor: Colors.grey[100],
+                elevation: 0.0,
+                content: StreamBuilder<int>(
+                    builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                      print(snapshot.data.toString());
+                      return Container(
+                        height: 150,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 10, left: 10, right: 10, bottom: 15),
+                                child: Text(
+                                  'Please wait while we are calculating expenses....',
+                                  style: TextStyle(
+                                      color: Colors.green[800],
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                )),
+                            Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 10, left: 10, right: 10, bottom: 15),
+                                child: Text(
+                                  'This will take only 30 seconds',
+                                  style: TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12),
+                                )),
+                              ],
+                            ), //new column child
+                        );
+                    }),
+            );
+    });});
+
     income = 0;
+
     supaBaseHandler.readData();
     getsmsvmbk();
     getsmsvm2bk();
@@ -371,7 +411,6 @@ class ExpensePageState extends State<ExpensePage> {
     getsmsaxbk();
     getsmsjmbk();
     getsmsjgbk();
-
     getsmsvm();
     getsmsvm2();
     getsmsad();
@@ -381,9 +420,8 @@ class ExpensePageState extends State<ExpensePage> {
     getsmsax();
     getsmsjm();
     getsmsjg();
-
-    initialize();
     super.initState();
+    initialize();
   }
 
   void initialize() async {
@@ -392,22 +430,45 @@ class ExpensePageState extends State<ExpensePage> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     setState(() {
+       janex = 0;
+       febx = 0;
+      marx = 0;
+       mayx = 0;
+       aprx = 0;
+       junex = 0;
+       julyx = 0;
+       augustx = 0;
+       septx = 0;
+       octx = 0;
+       novx = 0;
+       decx = 0;
+      jan = [];
+      feb = [];
+      mar = [];
+      apr = [];
+      may = [];
+      june = [];
+      july = [];
+      august = [];
+      september = [];
+      october = [];
+      november = [];
+      december = [];
       // jan = snap.data()?['january'];
-      feb = snap['february'];
-      mar = snap['march'];
-      apr = snap['april'];
-      may = snap['may'];
-      june = snap['june'];
-      july = snap['july'];
-      august = snap['august'];
-      september = snap['september'];
-      october = snap['october'];
-      september = snap['september'];
-      november = snap['november'];
-      december = snap['december'];
-      expens = snap['totalex'];
+      // feb = snap['february'];
+      // mar = snap['march'];
+      // apr = snap['april'];
+      // may = snap['may'];
+      // june = snap['june'];
+      // july = snap['july'];
+      // august = snap['august'];
+      // september = snap['september'];
+      // october = snap['october'];
+      // september = snap['september'];
+      // november = snap['november'];
+      // december = snap['december'];
+      // expens = snap['totalex'];
     });
-
   }
 
   var selected = 0;
@@ -421,7 +482,6 @@ class ExpensePageState extends State<ExpensePage> {
         title:Text("Eclipse Tracking", style: GoogleFonts.ubuntu(color:Colors.black)),
         centerTitle: true,
         backgroundColor: Colors.white,
-
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -514,32 +574,6 @@ class ExpensePageState extends State<ExpensePage> {
                         ),
                       ),
                     ),
-                    // Card(
-                    //   shape: RoundedRectangleBorder(
-                    //       borderRadius: BorderRadius.circular(15)),
-                    //   elevation: 2,
-                    //   child: Container(
-                    //     decoration: BoxDecoration(color: Colors.grey.shade100),
-                    //     height: MediaQuery.of(context).size.height / 15,
-                    //     width: MediaQuery.of(context).size.width / 2.5,
-                    //     child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         crossAxisAlignment: CrossAxisAlignment.center,
-                    //         children: [
-                    //           Padding(
-                    //             padding: const EdgeInsets.only(left: 15.0),
-                    //             child:
-                    //                  Text("Add Expense",
-                    //                     style: GoogleFonts.ubuntu(
-                    //                         fontWeight: FontWeight.bold))
-                    //           ),
-                    //           Image(
-                    //               image: AssetImage("assets/images/g.png"),
-                    //               height:
-                    //                   MediaQuery.of(context).size.height / 20)
-                    //         ]),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -552,10 +586,147 @@ class ExpensePageState extends State<ExpensePage> {
                         elevation: 2,
                         child: GestureDetector(
                           onTap: () {
-                            print("jan${jan}");
-                            supaBaseHandler.updateData(FirebaseAuth.instance.currentUser!.uid.toString(),jan);
+                            if(gen1==true){
+                              gen1 = false;
+                            Future.delayed(Duration.zero, () {
+                              showDialog(
+                                  barrierDismissible: false
+                                  ,context: context,
+                                  builder: (context) {
+                                    Future.delayed(Duration(seconds: 15), () {
+                                      Navigator.of(context).pop(true);
+                                    });
+                                    return AlertDialog(
+                                      // title: Center(child:Text('Enter Code')),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                                      backgroundColor: Colors.grey[100],
+                                      elevation: 0.0,
+                                      content: StreamBuilder<int>(
+                                          builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                                            print(snapshot.data.toString());
+                                            return Container(
+                                              height: 150,
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Padding(
+                                                      padding: const EdgeInsets.only(
+                                                          top: 10, left: 10, right: 10, bottom: 15),
+                                                      child: Text(
+                                                        'Please wait while we are calculating expenses....',
+                                                        style: TextStyle(
+                                                            color: Colors.green[800],
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 16),
+                                                      )),
+                                                  Padding(
+                                                      padding: const EdgeInsets.only(
+                                                          top: 10, left: 10, right: 10, bottom: 15),
+                                                      child: Text(
+                                                        'This will take only 15 seconds',
+                                                        style: TextStyle(
+                                                            color: Colors.grey,
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 12),
+                                                      )),
+                                                ],
+                                              ), //new column child
+                                            );
+                                          }),
+                                    );
+                                  });});
+                            print("jan${jan.length}");
                             print(_messages.length);
                             setState(() {
+                                FirebaseFirestore.instance
+                                    .collection("Users")
+                                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                                    .set({
+                                  'january': jan
+                                }, SetOptions(merge: true));
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'february':feb
+                                  }, SetOptions(merge: true));
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'march': mar
+                                  }, SetOptions(merge: true));
+
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'april': apr
+                                  }, SetOptions(merge: true));
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'may': may
+                                  }, SetOptions(merge: true));
+
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'june': june
+                                  }, SetOptions(merge: true));
+
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'july': july
+                                  }, SetOptions(merge: true));
+
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'august': august
+                                  }, SetOptions(merge: true));
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'september': september
+                                  }, SetOptions(merge: true));
+
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'october': october
+                                  }, SetOptions(merge: true));
+
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'november': november
+                                  }, SetOptions(merge: true));
+
+                                  FirebaseFirestore.instance
+                                      .collection("Users")
+                                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                                      .set({
+                                    'december': december
+                                  }, SetOptions(merge: true));
                               janex = 0;
                               febx = 0;
                               marx = 0;
@@ -568,6 +739,7 @@ class ExpensePageState extends State<ExpensePage> {
                               septx = 0;
                               novx = 0;
                               decx = 0;
+                              expens = 0;
                               for (int i = 0; i < jan.length; i++) {
                                 if (double.parse(jan[i].toString())
                                     .isNegative) {
@@ -575,9 +747,6 @@ class ExpensePageState extends State<ExpensePage> {
                                       expens + double.parse(jan[i].toString());
                                   janex =
                                       janex + double.parse(jan[i].toString());
-                                } else {
-                                  income =
-                                      income + double.parse(jan[i].toString());
                                 }
                               }
                               print(janex);
@@ -591,16 +760,13 @@ class ExpensePageState extends State<ExpensePage> {
                                   expens =
                                       expens + double.parse(feb[i].toString());
                                   febx = febx + double.parse(feb[i].toString());
-                                } else {
-                                  income =
-                                      income + double.parse(feb[i].toString());
                                 }
                               }
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set(
-                                      {'febx': -febx}, SetOptions(merge: true));
+                                  .update(
+                                      {'febx': -febx});
 
                               for (int i = 0; i < mar.length; i++) {
                                 if (double.parse(mar[i].toString())
@@ -608,17 +774,14 @@ class ExpensePageState extends State<ExpensePage> {
                                   expens =
                                       expens + double.parse(mar[i].toString());
                                   marx = marx + double.parse(mar[i].toString());
-                                } else {
-                                  income =
-                                      income + double.parse(mar[i].toString());
                                 }
                               }
 
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set(
-                                      {'marx': -marx}, SetOptions(merge: true));
+                                  .update(
+                                      {'marx': -marx});
 
                               for (int i = 0; i < apr.length; i++) {
                                 if (double.parse(apr[i].toString())
@@ -626,16 +789,13 @@ class ExpensePageState extends State<ExpensePage> {
                                   expens =
                                       expens + double.parse(apr[i].toString());
                                   aprx = aprx + double.parse(apr[i].toString());
-                                } else {
-                                  income =
-                                      income + double.parse(apr[i].toString());
                                 }
                               }
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set(
-                                      {'aprx': -aprx}, SetOptions(merge: true));
+                                  .update(
+                                      {'aprx': -aprx});
 
                               for (int i = 0; i < june.length; i++) {
                                 if (double.parse(june[i].toString())
@@ -644,16 +804,12 @@ class ExpensePageState extends State<ExpensePage> {
                                       expens + double.parse(june[i].toString());
                                   junex =
                                       junex + double.parse(june[i].toString());
-                                } else {
-                                  income =
-                                      income + double.parse(june[i].toString());
                                 }
                               }
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set({'junex': -junex},
-                                      SetOptions(merge: true));
+                                  .update({'junex': -junex},);
 
                               for (int i = 0; i < july.length; i++) {
                                 if (double.parse(july[i].toString())
@@ -662,16 +818,12 @@ class ExpensePageState extends State<ExpensePage> {
                                       expens + double.parse(july[i].toString());
                                   julyx =
                                       julyx + double.parse(july[i].toString());
-                                } else {
-                                  income =
-                                      income + double.parse(july[i].toString());
                                 }
                               }
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set({'julyx': -julyx},
-                                      SetOptions(merge: true));
+                                  .update({'julyx': -julyx});
 
                               for (int i = 0; i < may.length; i++) {
                                 if (double.parse(may[i].toString())
@@ -679,17 +831,14 @@ class ExpensePageState extends State<ExpensePage> {
                                   expens =
                                       expens + double.parse(may[i].toString());
                                   mayx = mayx + double.parse(may[i].toString());
-                                } else {
-                                  income =
-                                      income + double.parse(may[i].toString());
                                 }
                               }
 
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set(
-                                      {'mayx': -mayx}, SetOptions(merge: true));
+                                  .update(
+                                      {'mayx': -mayx});
 
                               for (int i = 0; i < august.length; i++) {
                                 if (double.parse(august[i].toString())
@@ -698,16 +847,12 @@ class ExpensePageState extends State<ExpensePage> {
                                       double.parse(august[i].toString());
                                   augustx = augustx +
                                       double.parse(august[i].toString());
-                                } else {
-                                  income = income +
-                                      double.parse(august[i].toString());
                                 }
                               }
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set({'augustx': -augustx},
-                                      SetOptions(merge: true));
+                                  .update({'augustx': -augustx});
 
                               for (int i = 0; i < september.length; i++) {
                                 if (double.parse(september[i].toString())
@@ -716,17 +861,13 @@ class ExpensePageState extends State<ExpensePage> {
                                       double.parse(september[i].toString());
                                   septx = septx +
                                       double.parse(september[i].toString());
-                                } else {
-                                  income = income +
-                                      double.parse(september[i].toString());
                                 }
                               }
 
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set({'septx': -septx},
-                                      SetOptions(merge: true));
+                                  .update({'septx': -septx});
 
                               for (int i = 0; i < october.length; i++) {
                                 if (double.parse(october[i].toString())
@@ -735,17 +876,14 @@ class ExpensePageState extends State<ExpensePage> {
                                       double.parse(october[i].toString());
                                   octx = octx +
                                       double.parse(october[i].toString());
-                                } else {
-                                  income = income +
-                                      double.parse(october[i].toString());
                                 }
                               }
 
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set(
-                                      {'octx': -octx}, SetOptions(merge: true));
+                                  .update(
+                                      {'octx': -octx});
 
                               for (int i = 0; i < november.length; i++) {
                                 if (double.parse(november[i].toString())
@@ -754,16 +892,13 @@ class ExpensePageState extends State<ExpensePage> {
                                       double.parse(november[i].toString());
                                   novx = novx +
                                       double.parse(november[i].toString());
-                                } else {
-                                  income = income +
-                                      double.parse(november[i].toString());
                                 }
                               }
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set(
-                                      {'novx': -novx}, SetOptions(merge: true));
+                                  .update(
+                                      {'novx': -novx});
 
                               for (int i = 0; i < december.length; i++) {
                                 if (double.parse(december[i].toString())
@@ -772,45 +907,53 @@ class ExpensePageState extends State<ExpensePage> {
                                       double.parse(december[i].toString());
                                   decx = decx +
                                       double.parse(december[i].toString());
-                                } else {
-                                  income = income +
-                                      double.parse(december[i].toString());
                                 }
                               }
 
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set(
-                                      {'decx': -decx}, SetOptions(merge: true));
+                                  .update(
+                                      {'decx': -decx});
                               income = income.roundToDouble();
                               expens = -expens.roundToDouble();
-                              initialize();
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .set({'totalex': expens},
-                                      SetOptions(merge: true));
+                                  .update({'totalex': expens}
+                                      );
                               selected = 1;
                               Future.delayed(const Duration(seconds: 1), () {
                                 setState(() {
                                   selected = 2;
                                 });
                               });
-                              // jan = [];
-                              // feb = [];
-                              // mar = [];
-                              // apr = [];
-                              // may = [];
-                              // june = [];
-                              // july = [];
-                              // august = [];
-                              // september = [];
-                              // october = [];
-                              // november = [];
-                              // december = [];
+                              janex = 0;
+                              febx = 0;
+                              marx = 0;
+                              aprx = 0;
+                              junex = 0;
+                              julyx = 0;
+                              mayx = 0;
+                              augustx = 0;
+                              octx = 0;
+                              septx = 0;
+                              novx = 0;
+                              decx = 0;
+                                jan = [];
+                                feb = [];
+                                mar = [];
+                                apr = [];
+                                may = [];
+                                june = [];
+                                july = [];
+                                august = [];
+                                september = [];
+                                october = [];
+                                november = [];
+                                december = [];
                             });
-                          },
+                          }},
                           child: Container(
                             decoration: BoxDecoration(
                                 color: Colors.lightGreen.shade100),
@@ -840,7 +983,7 @@ class ExpensePageState extends State<ExpensePage> {
                           fontSize: 16, fontWeight: FontWeight.w700),
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height / 1.8,
+                      height: MediaQuery.of(context).size.height / 1.9,
                       child: ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                           itemCount: _messages.length,
@@ -1007,101 +1150,52 @@ class ExpensePageState extends State<ExpensePage> {
                                   }
                                 }
                               }
-                              if (message.date?.month == DateTime.january) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'january': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+
+                              if (message.date?.month == DateTime.january &&!kk) {
+                                jan.add(rek);
+                                print("adding jan");
                               }
-                              if (message.date?.month == DateTime.february) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'february': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.february &&!kk) {
+                                feb.add(rek);
                               }
-                              if (message.date?.month == DateTime.march) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'march': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.march &&!kk) {
+                                mar.add(rek);
                               }
-                              if (message.date?.month == DateTime.april) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'april': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.april&&!kk  ) {
+                                apr.add(rek);
                               }
-                              if (message.date?.month == DateTime.may) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'may': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.may   &&!kk ) {
+                                may.add(rek);
+
                               }
-                              if (message.date?.month == DateTime.june) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'june': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.june  &&!kk ) {
+                                june.add(rek);
+
                               }
-                              if (message.date?.month == DateTime.july) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'july': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.july  &&!kk) {
+                                july.add(rek);
                               }
-                              if (message.date?.month == DateTime.august) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'august': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.august  &&!kk ) {
+                                august.add(rek);
+
                               }
-                              if (message.date?.month == DateTime.september) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'september': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.september   &&!kk) {
+                                september.add(rek);
+
                               }
-                              if (message.date?.month == DateTime.october) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'october': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.october  &&!kk ) {
+                                october.add(rek);
+
                               }
-                              if (message.date?.month == DateTime.november) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'november': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.november &&!kk ) {
+                                november.add(rek);
+
                               }
-                              if (message.date?.month == DateTime.december) {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'december': FieldValue.arrayUnion([rek])
-                                }, SetOptions(merge: true));
+                              if (message.date?.month == DateTime.december  &&!kk) {
+                                december.add(rek);
+                              }
+                              if(i==_messages.length-1){
+                                kk=true;
                               }
                               return
                                 (i < 5) && p.length>5
@@ -1242,3 +1336,6 @@ double getex(
   var sum1 = feb.reduce((value, element) => value + element < 0 ? element : 0);
   return sum + sum1;
 }
+
+
+

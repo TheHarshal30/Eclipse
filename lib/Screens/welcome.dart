@@ -11,7 +11,7 @@ import '../main.dart';
 import '../services/auth.dart';
 import 'homepage.dart';
 
-
+bool kk = false;
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 

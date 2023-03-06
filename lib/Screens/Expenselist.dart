@@ -15,8 +15,9 @@ class _ExpenselistState extends State<Expenselist> {
   int chek =0;
   @override
   void initState() {
-    initialize(0);
     super.initState();
+    initialize(0);
+
   }
 
   void initialize(int n) async {
@@ -25,7 +26,7 @@ class _ExpenselistState extends State<Expenselist> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     setState(() {
-      expenthis = snap.data()?['${ka[n]}'];
+      expenthis = snap.data()!['${ka[n]}'];
       chek =1;
     });
   }

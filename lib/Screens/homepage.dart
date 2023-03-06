@@ -7,6 +7,7 @@ import 'package:eclipsis/pf/chap1.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../components/homeboxes.dart';
 import 'expenses.dart';
@@ -26,10 +27,23 @@ class _HomePageState extends State<HomePage> {
   String name = '';
   @override
   void initState() {
+getperms();
     initialize();
     super.initState();
   }
 
+  void getperms()async{
+    var status = await Permission.sms.status;
+    await Permission.sms.request();
+    if (status.isDenied) {
+     await Permission.sms.request();
+    }
+
+// You can can also directly ask the permission about its status.
+    if (await Permission.location.isRestricted) {
+      // The OS restricts access, for example because of parental controls.
+    }
+  }
   void initialize() async {
     DocumentSnapshot snap = await FirebaseFirestore.instance
         .collection('Users')
@@ -43,6 +57,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       key: scaffoldKey,
       endDrawer: Container(
         width: MediaQuery.of(context).size.width / 1.5,
@@ -169,6 +184,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         actions: [
           IconButton(

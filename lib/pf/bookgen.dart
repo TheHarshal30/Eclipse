@@ -135,8 +135,12 @@ class BookGen extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+                              if(nextpg==HomePage()){Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(builder: (context) => HomePage()),
+                                      (Route<dynamic> route) => false);}
+                              if(nextpg!=HomePage()){
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => nextpg));
+                                  builder: (context) => nextpg));}
                             },
                             child: Container(
                               padding: EdgeInsets.all(12),
