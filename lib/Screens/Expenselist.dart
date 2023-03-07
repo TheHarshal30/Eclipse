@@ -12,6 +12,8 @@ class Expenselist extends StatefulWidget {
 class _ExpenselistState extends State<Expenselist> {
   List<dynamic> expenthis = [];
   List<String> ka = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+  List<String> kk = ['janx','febx','marx','aprx','mayx','junex','julyx','augustx','septx','octx','novx','decx'];
+  double extotal = 0.0;
   int chek =0;
   @override
   void initState() {
@@ -26,7 +28,8 @@ class _ExpenselistState extends State<Expenselist> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     setState(() {
-      expenthis = snap.data()!['${ka[n]}'];
+      expenthis = snap.data()![ka[n]];
+      extotal = snap.data()![kk[n]];
       chek =1;
     });
   }
@@ -35,9 +38,9 @@ class _ExpenselistState extends State<Expenselist> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(color: Colors.black,),
+        leading: const BackButton(color: Colors.black,),
         centerTitle: true,
-        title: Text("Monthly Expense",style: TextStyle(
+        title: const Text("Monthly Expense",style: TextStyle(
           color: Colors.black
         ),),
         backgroundColor: Colors.white,
@@ -61,13 +64,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 0)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -83,7 +86,7 @@ class _ExpenselistState extends State<Expenselist> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -92,13 +95,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 1)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -114,7 +117,7 @@ class _ExpenselistState extends State<Expenselist> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -123,13 +126,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 2)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -145,7 +148,7 @@ class _ExpenselistState extends State<Expenselist> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -154,13 +157,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 3)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -185,13 +188,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 4)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -216,13 +219,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 5)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -248,13 +251,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 6)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -280,13 +283,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 7)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -312,13 +315,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 8)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -344,13 +347,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 9)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -378,13 +381,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 10)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -413,13 +416,13 @@ class _ExpenselistState extends State<Expenselist> {
                     });
                   },
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: (selec == 11)
-                          ? Border(
+                          ? const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.blue))
-                          : Border(
+                          : const Border(
                           bottom: BorderSide(
                               width: 0.5, color: Colors.white)),
                     ),
@@ -439,12 +442,32 @@ class _ExpenselistState extends State<Expenselist> {
           ),
         ),
       ),
-          expenthis.length!=0?Container(
-            height: MediaQuery.of(context).size.height*0.8,
+       extotal!=0? Padding(
+         padding: const EdgeInsets.only(left: 20.0),
+         child: Container(
+           alignment: Alignment.centerLeft,
+           child: Text(
+              "${ka[selec]}'s Expense ",
+              style: GoogleFonts.ubuntu(fontSize: 15),
+            ),
+         ),
+       ):SizedBox(height: 0,),
+        extotal!=0?Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Container(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "${extotal}",
+              style: GoogleFonts.ubuntu(
+                  fontSize: 35, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ):SizedBox(height: 0,),expenthis.isEmpty&&chek==0?const Center(child: CircularProgressIndicator(),):SizedBox(height: 0,),
+          expenthis.isNotEmpty?SizedBox(
+            height: MediaQuery.of(context).size.height*0.7,
             child: ListView.builder(
                 itemCount: expenthis.length,
                 itemBuilder: (context, i) {
-                  print('${expenthis.length}');
                   var p = expenthis[i];
                     return
                         Card(
@@ -459,7 +482,7 @@ class _ExpenselistState extends State<Expenselist> {
                         width:
                         MediaQuery.of(context).size.width /
                             1.10,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           /*border: Border.all(width: 1.5, color: Colors.black),*/
                           color: Colors.transparent,
                         ),
@@ -475,7 +498,7 @@ class _ExpenselistState extends State<Expenselist> {
                                   padding:
                                   const EdgeInsets.all(8.0),
                                   child: Container(
-                                    padding: EdgeInsets.all(8),
+                                    padding: const EdgeInsets.all(8),
                                     decoration: BoxDecoration(
                                       color:
                                       Colors.orange.shade50,
@@ -485,7 +508,7 @@ class _ExpenselistState extends State<Expenselist> {
                                       //  border: Border.all(color: Colors.black, width: 1)
                                     ),
                                     child: Image(
-                                        image: AssetImage(
+                                        image: const AssetImage(
                                             "assets/images/learn2.png"),
                                         height: MediaQuery.of(
                                             context)
@@ -495,9 +518,9 @@ class _ExpenselistState extends State<Expenselist> {
                                   ),
                                 ),
 
-                                Padding(
+                                const Padding(
                                   padding:
-                                  const EdgeInsets
+                                  EdgeInsets
                                       .all(8.0),
                                   child: Text(
                                       'Merchant'),
@@ -530,7 +553,7 @@ class _ExpenselistState extends State<Expenselist> {
                     );
                   }
     ),
-          ):expenthis.length==0&&chek==0?Center(child: CircularProgressIndicator(),):Padding(
+          ):expenthis.isEmpty&&chek==0?const Center(child: CircularProgressIndicator(),):Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(child: Text("Nothing to show here",style: GoogleFonts.ubuntu(
                 fontWeight: FontWeight.bold)),),

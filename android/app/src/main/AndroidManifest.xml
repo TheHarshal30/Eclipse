@@ -80,7 +80,7 @@
     <!-- Permissions options for the `alarm` group -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
    <application
-        android:label="eclipsis"
+        android:label="Eclipse"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

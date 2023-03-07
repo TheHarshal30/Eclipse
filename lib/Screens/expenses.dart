@@ -59,6 +59,252 @@ class ExpensePageState extends State<ExpensePage> {
   List<SmsMessage> _messages = [];
   List<double> p = [];
 
+
+  void getsmsjgsbp() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BP-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+  void getsmsjgscp() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'CP-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsjgsqp() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'QP-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+  void getsmsjgsbw() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BW-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+  void getsmsjgbx() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BX-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsjgsbz() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BZ-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsjgsbv() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BV-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsjgs() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'JG-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsbrs() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BR-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsjms() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'JM-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsaxs() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'AX-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsJDs() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'JD-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsBPs() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BP-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+
+  void getsmsvks() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'VK-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+
+  void getsmsads() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'AD-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsvms() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'VM-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+  void getsmsvm2s() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'VD-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+
+
+
+
+
+
+
+
+
   void getsmsjg() async {
     var permission = await Permission.sms.status;
     if (permission.isGranted) {
@@ -366,7 +612,6 @@ class ExpensePageState extends State<ExpensePage> {
                 elevation: 0.0,
                 content: StreamBuilder<int>(
                     builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                      print(snapshot.data.toString());
                       return Container(
                         height: 150,
                         child: Column(
@@ -402,6 +647,11 @@ class ExpensePageState extends State<ExpensePage> {
     income = 0;
 
     supaBaseHandler.readData();
+
+
+
+
+
     getsmsvmbk();
     getsmsvm2bk();
     getsmsadbk();
@@ -411,6 +661,8 @@ class ExpensePageState extends State<ExpensePage> {
     getsmsaxbk();
     getsmsjmbk();
     getsmsjgbk();
+
+
     getsmsvm();
     getsmsvm2();
     getsmsad();
@@ -420,6 +672,22 @@ class ExpensePageState extends State<ExpensePage> {
     getsmsax();
     getsmsjm();
     getsmsjg();
+
+
+    getsmsjgsbp();
+    getsmsjgbk();
+    getsmsjgbx();
+    getsmsjgscp();
+    getsmsjgsqp();
+    getsmsvms();
+    getsmsvm2s();
+    getsmsads();
+    getsmsJDs();
+    getsmsBPs();
+    getsmsvks();
+    getsmsaxs();
+    getsmsjms();
+    getsmsjgs();
     super.initState();
     initialize();
   }
@@ -604,7 +872,6 @@ class ExpensePageState extends State<ExpensePage> {
                                       elevation: 0.0,
                                       content: StreamBuilder<int>(
                                           builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                                            print(snapshot.data.toString());
                                             return Container(
                                               height: 150,
                                               child: Column(
@@ -636,8 +903,6 @@ class ExpensePageState extends State<ExpensePage> {
                                           }),
                                     );
                                   });});
-                            print("jan${jan.length}");
-                            print(_messages.length);
                             setState(() {
                                 FirebaseFirestore.instance
                                     .collection("Users")
@@ -749,7 +1014,6 @@ class ExpensePageState extends State<ExpensePage> {
                                       janex + double.parse(jan[i].toString());
                                 }
                               }
-                              print(janex);
                               FirebaseFirestore.instance
                                   .collection("Users")
                                   .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -1077,7 +1341,6 @@ class ExpensePageState extends State<ExpensePage> {
                                         //  final chars = rek.toString().split('');
                                         // rek = double.parse(chars.reversed.join());
                                         rek *= 1;
-                                        print(rek);
                                         p.add(rek);
 
                                         break;
@@ -1088,7 +1351,6 @@ class ExpensePageState extends State<ExpensePage> {
                                         // final chars = rek.toString().split('');
                                         // rek = double.parse(chars.reversed.join());
                                         rek *= -1;
-                                        print(rek);
                                         p.add(rek);
                                         break;
                                       }
@@ -1151,9 +1413,99 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               }
 
+
+      if(message.sender?.indexOf('SBIUPI')!=-1){
+        // print(message.body.toString());
+        if (message.body.toString().indexOf('credited') != -1) {
+          for (int j = message.body.toString().indexOf('Rs') + 2;
+          j < message.body.toString().length;
+          j++) {
+            if (isNumeric(message.body.toString()[j])) {
+              if (pp) {
+                rek = rek * 10 + double.parse(message.body.toString()[j]);
+              } else {
+                dd = dd + 1;
+                double temp = double.parse(message.body![j]);
+                int ne = dd;
+                while (ne > 1) {
+                  ne--;
+                  temp = temp / 10;
+                }
+                rek = rek + temp;
+              }
+            } else if (message.body.toString()[j] == '.') {
+              // if(message.body.toString()[j-1]=='s'){
+              //   continue;
+              // }else{
+              pp = false;
+              // }
+            } else {
+              if (message.body.toString().indexOf('credited') != -1) {
+                // rek*=10;
+                //  final chars = rek.toString().split('');
+                // rek = double.parse(chars.reversed.join());
+                rek *= 1;
+                p.add(rek);
+
+                break;
+              } else if (message.body.toString().indexOf('debited') != -1) {
+                // rek*=10;
+                // final chars = rek.toString().split('');
+                // rek = double.parse(chars.reversed.join());
+                rek *= -1;
+                p.add(rek);
+                break;
+              }
+            }
+          }
+        } else {
+          for (int j = message.body.toString().indexOf('Rs') + 2;
+          j < message.body.toString().length;
+          j++) {
+            if (isNumeric(message.body.toString()[j])) {
+              if (pp) {
+                rek = rek * 10 + double.parse(message.body.toString()[j]);
+              } else {
+                dd = dd + 1;
+                double temp = double.parse(message.body![j]);
+                int ne = dd;
+                while (ne > 1) {
+                  ne--;
+                  temp = temp / 10;
+                }
+                rek = rek + temp;
+              }
+            } else if (message.body.toString()[j] == '.') {
+              // if(message.body.toString()[j-1]=='s'){
+              //   continue;
+              // }else{
+              pp = false;
+              // }
+            } else {
+              if (message.body.toString().indexOf('credited') != -1) {
+                // rek*=10;
+                //  final chars = rek.toString().split('');
+                // rek = double.parse(chars.reversed.join());
+                rek *= 1;
+                p.add(rek);
+
+                break;
+              } else if (message.body.toString().indexOf('debited') != -1) {
+                // rek*=10;
+                // final chars = rek.toString().split('');
+                // rek = double.parse(chars.reversed.join());
+                rek *= -1;
+                p.add(rek);
+                break;
+              }
+            }
+          }
+        }
+      }
+
+
                               if (message.date?.month == DateTime.january &&!kk) {
                                 jan.add(rek);
-                                print("adding jan");
                               }
                               if (message.date?.month == DateTime.february &&!kk) {
                                 feb.add(rek);
@@ -1312,7 +1664,6 @@ bool isNumeric(String s) {
 }
 
 int getjenx(List<dynamic> jn) {
-  print("axa ${jn}");
   var sum = 0;
   sum = jn.reduce((value, element) => value + element < 0 ? element : 0);
   return sum;

@@ -210,8 +210,15 @@ getperms();
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                name.length<9?
                 Text(
                   "Hello, " + name,
+                  style: GoogleFonts.ubuntu(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black),
+                ): Text(
+                  "Hello, " + name.substring(0,9)+"..",
                   style: GoogleFonts.ubuntu(
                       fontSize: 25,
                       fontWeight: FontWeight.w600,
