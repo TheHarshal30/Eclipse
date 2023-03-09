@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 import 'dart:async';
 import 'dart:math';
+import 'package:eclipsis/Screens/homepage.dart';
+
 import 'welcome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eclipsis/Screens/Expenselist.dart';
@@ -13,12 +15,14 @@ import 'package:permission_handler/permission_handler.dart';
 import '../bar graphs/expenseSummary.dart';
 import 'package:eclipsis/main.dart';// @TODO genrate mai jan.add
 class ExpensePage extends StatefulWidget {
-  const ExpensePage({super.key});
+  int bank;
+  ExpensePage({super.key,required this.bank});
   @override
   State<ExpensePage> createState() => ExpensePageState();
 }
 
 class ExpensePageState extends State<ExpensePage> {
+  bool temppp = false;
   SupaBaseHandler supaBaseHandler = SupaBaseHandler();
   bool gen1 = true;
   List<dynamic> jan = [];
@@ -298,6 +302,33 @@ class ExpensePageState extends State<ExpensePage> {
 
 
 
+  void getsmsvm2svk() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'VK-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsvm2sba() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BA-SBIUPI',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
 
 
 
@@ -649,45 +680,92 @@ class ExpensePageState extends State<ExpensePage> {
     supaBaseHandler.readData();
 
 
+    print(widget.bank);
 
 
+    if(widget.bank==0){
+      getsmsvmbk();
+      getsmsvm2bk();
+      getsmsadbk();
+      getsmsJDbk();
+      getsmsBPbk();
+      getsmsvkbk();
+      getsmsaxbk();
+      getsmsjmbk();
+      getsmsjgbk();
+      getsmsvm2svk();
 
-    getsmsvmbk();
-    getsmsvm2bk();
-    getsmsadbk();
-    getsmsJDbk();
-    getsmsBPbk();
-    getsmsvkbk();
-    getsmsaxbk();
-    getsmsjmbk();
-    getsmsjgbk();
+      getsmsvm();
+      getsmsvm2();
+      getsmsad();
+      getsmsJD();
+      getsmsBP();
+      getsmsvk();
+      getsmsax();
+      getsmsjm();
+      getsmsjg();
 
 
-    getsmsvm();
-    getsmsvm2();
-    getsmsad();
-    getsmsJD();
-    getsmsBP();
-    getsmsvk();
-    getsmsax();
-    getsmsjm();
-    getsmsjg();
+      getsmsvm2sba();
+      getsmsJDs();
+      getsmsjgsbp();
+      getsmsjgbk();
+      getsmsjgbx();
+      getsmsjgscp();
+      getsmsjgsqp();
+      getsmsvms();
+      getsmsvm2s();
+      getsmsads();
+      getsmsBPs();
+      getsmsvks();
+      getsmsaxs();
+      getsmsjms();
+      getsmsjgs();
+    }
 
+if(widget.bank==3 ) {
+  getsmsvmbk();
+  getsmsvm2bk();
+  getsmsadbk();
+  getsmsJDbk();
+  getsmsBPbk();
+  getsmsvkbk();
+  getsmsaxbk();
+  getsmsjmbk();
+  getsmsjgbk();
+  getsmsvm2svk();
+}
+//
+//
+    if(widget.bank==1) {
+      getsmsvm();
+      getsmsvm2();
+      getsmsad();
+      getsmsJD();
+      getsmsBP();
+      getsmsvk();
+      getsmsax();
+      getsmsjm();
+      getsmsjg();
+    }
 
-    getsmsjgsbp();
-    getsmsjgbk();
-    getsmsjgbx();
-    getsmsjgscp();
-    getsmsjgsqp();
-    getsmsvms();
-    getsmsvm2s();
-    getsmsads();
-    getsmsJDs();
-    getsmsBPs();
-    getsmsvks();
-    getsmsaxs();
-    getsmsjms();
-    getsmsjgs();
+    if(widget.bank==2) {
+      getsmsvm2sba();
+      getsmsJDs();
+      getsmsjgsbp();
+      getsmsjgbk();
+      getsmsjgbx();
+      getsmsjgscp();
+      getsmsjgsqp();
+      getsmsvms();
+      getsmsvm2s();
+      getsmsads();
+      getsmsBPs();
+      getsmsvks();
+      getsmsaxs();
+      getsmsjms();
+      getsmsjgs();
+    }
     super.initState();
     initialize();
   }
@@ -791,7 +869,7 @@ class ExpensePageState extends State<ExpensePage> {
                           scrollDirection: Axis.horizontal,
                           child: Container(
                               width: 800,
-                              child: ExpenseSummary(
+                              child: ExpenseSummary(janx: janex,febx: febx,marx: marx,aprx: aprx,mayx: mayx,junex: junex,julyx: julyx,augustx: augustx, septx: septx,octx: octx,novx: novx,decx: decx,total: expens,
                                 barColor: Color.fromRGBO(37, 47, 72, 1),
                               )),
                         ),
@@ -820,7 +898,7 @@ class ExpensePageState extends State<ExpensePage> {
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Expenselist()),
+                              MaterialPageRoute(builder: (context) => Expenselist(janx: janex,febx: febx,marx: marx,aprx: aprx,mayx: mayx,junex: junex,julyx: julyx,augustx: augustx, septx: septx,octx: octx,novx: novx,decx: decx,jan: jan,feb: feb,mar: mar,apr: apr,may: may,june: june,july: july,august: august,september: september,october: october,november: november,december: december,)),
                             );
                           },
                           child: Row(
@@ -830,7 +908,7 @@ class ExpensePageState extends State<ExpensePage> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 15.0),
                                   child:
-                                       Text("Expense List",
+                                       Text("Monthly Expense",
                                           style: GoogleFonts.ubuntu(
                                               fontWeight: FontWeight.bold))
                                 ),
@@ -904,94 +982,94 @@ class ExpensePageState extends State<ExpensePage> {
                                     );
                                   });});
                             setState(() {
-                                FirebaseFirestore.instance
-                                    .collection("Users")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'january': jan
-                                }, SetOptions(merge: true));
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'february':feb
-                                  }, SetOptions(merge: true));
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'march': mar
-                                  }, SetOptions(merge: true));
-
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'april': apr
-                                  }, SetOptions(merge: true));
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'may': may
-                                  }, SetOptions(merge: true));
-
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'june': june
-                                  }, SetOptions(merge: true));
-
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'july': july
-                                  }, SetOptions(merge: true));
-
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'august': august
-                                  }, SetOptions(merge: true));
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'september': september
-                                  }, SetOptions(merge: true));
-
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'october': october
-                                  }, SetOptions(merge: true));
-
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'november': november
-                                  }, SetOptions(merge: true));
-
-                                  FirebaseFirestore.instance
-                                      .collection("Users")
-                                      .doc(FirebaseAuth.instance.currentUser!.uid)
-                                      .set({
-                                    'december': december
-                                  }, SetOptions(merge: true));
+                                // FirebaseFirestore.instance
+                                //     .collection("Users")
+                                //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //     .set({
+                                //   'january': jan
+                                // }, SetOptions(merge: true));
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'february':feb
+                                //   }, SetOptions(merge: true));
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'march': mar
+                                //   }, SetOptions(merge: true));
+                                //
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'april': apr
+                                //   }, SetOptions(merge: true));
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'may': may
+                                //   }, SetOptions(merge: true));
+                                //
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'june': june
+                                //   }, SetOptions(merge: true));
+                                //
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'july': july
+                                //   }, SetOptions(merge: true));
+                                //
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'august': august
+                                //   }, SetOptions(merge: true));
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'september': september
+                                //   }, SetOptions(merge: true));
+                                //
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'october': october
+                                //   }, SetOptions(merge: true));
+                                //
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'november': november
+                                //   }, SetOptions(merge: true));
+                                //
+                                //   FirebaseFirestore.instance
+                                //       .collection("Users")
+                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
+                                //       .set({
+                                //     'december': december
+                                //   }, SetOptions(merge: true));
                               janex = 0;
                               febx = 0;
                               marx = 0;
@@ -1014,10 +1092,10 @@ class ExpensePageState extends State<ExpensePage> {
                                       janex + double.parse(jan[i].toString());
                                 }
                               }
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update({'janx': -janex});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update({'janx': -janex});
                               for (int i = 0; i < feb.length; i++) {
                                 if (double.parse(feb[i].toString())
                                     .isNegative) {
@@ -1026,11 +1104,11 @@ class ExpensePageState extends State<ExpensePage> {
                                   febx = febx + double.parse(feb[i].toString());
                                 }
                               }
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update(
-                                      {'febx': -febx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update(
+                              //         {'febx': -febx});
 
                               for (int i = 0; i < mar.length; i++) {
                                 if (double.parse(mar[i].toString())
@@ -1041,11 +1119,11 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               }
 
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update(
-                                      {'marx': -marx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update(
+                              //         {'marx': -marx});
 
                               for (int i = 0; i < apr.length; i++) {
                                 if (double.parse(apr[i].toString())
@@ -1055,11 +1133,11 @@ class ExpensePageState extends State<ExpensePage> {
                                   aprx = aprx + double.parse(apr[i].toString());
                                 }
                               }
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update(
-                                      {'aprx': -aprx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update(
+                              //         {'aprx': -aprx});
 
                               for (int i = 0; i < june.length; i++) {
                                 if (double.parse(june[i].toString())
@@ -1070,10 +1148,10 @@ class ExpensePageState extends State<ExpensePage> {
                                       junex + double.parse(june[i].toString());
                                 }
                               }
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update({'junex': -junex},);
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update({'junex': -junex},);
 
                               for (int i = 0; i < july.length; i++) {
                                 if (double.parse(july[i].toString())
@@ -1084,10 +1162,10 @@ class ExpensePageState extends State<ExpensePage> {
                                       julyx + double.parse(july[i].toString());
                                 }
                               }
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update({'julyx': -julyx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update({'julyx': -julyx});
 
                               for (int i = 0; i < may.length; i++) {
                                 if (double.parse(may[i].toString())
@@ -1098,11 +1176,11 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               }
 
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update(
-                                      {'mayx': -mayx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update(
+                              //         {'mayx': -mayx});
 
                               for (int i = 0; i < august.length; i++) {
                                 if (double.parse(august[i].toString())
@@ -1113,10 +1191,10 @@ class ExpensePageState extends State<ExpensePage> {
                                       double.parse(august[i].toString());
                                 }
                               }
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update({'augustx': -augustx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update({'augustx': -augustx});
 
                               for (int i = 0; i < september.length; i++) {
                                 if (double.parse(september[i].toString())
@@ -1128,10 +1206,10 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               }
 
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update({'septx': -septx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update({'septx': -septx});
 
                               for (int i = 0; i < october.length; i++) {
                                 if (double.parse(october[i].toString())
@@ -1143,11 +1221,11 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               }
 
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update(
-                                      {'octx': -octx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update(
+                              //         {'octx': -octx});
 
                               for (int i = 0; i < november.length; i++) {
                                 if (double.parse(november[i].toString())
@@ -1158,11 +1236,11 @@ class ExpensePageState extends State<ExpensePage> {
                                       double.parse(november[i].toString());
                                 }
                               }
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update(
-                                      {'novx': -novx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update(
+                              //         {'novx': -novx});
 
                               for (int i = 0; i < december.length; i++) {
                                 if (double.parse(december[i].toString())
@@ -1174,48 +1252,48 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               }
 
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update(
-                                      {'decx': -decx});
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update(
+                              //         {'decx': -decx});
                               income = income.roundToDouble();
                               expens = -expens.roundToDouble();
-                              FirebaseFirestore.instance
-                                  .collection("Users")
-                                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                                  .update({'totalex': expens}
-                                      );
+                              // FirebaseFirestore.instance
+                              //     .collection("Users")
+                              //     .doc(FirebaseAuth.instance.currentUser!.uid)
+                              //     .update({'totalex': expens}
+                              //         );
                               selected = 1;
                               Future.delayed(const Duration(seconds: 1), () {
                                 setState(() {
                                   selected = 2;
                                 });
                               });
-                              janex = 0;
-                              febx = 0;
-                              marx = 0;
-                              aprx = 0;
-                              junex = 0;
-                              julyx = 0;
-                              mayx = 0;
-                              augustx = 0;
-                              octx = 0;
-                              septx = 0;
-                              novx = 0;
-                              decx = 0;
-                                jan = [];
-                                feb = [];
-                                mar = [];
-                                apr = [];
-                                may = [];
-                                june = [];
-                                july = [];
-                                august = [];
-                                september = [];
-                                october = [];
-                                november = [];
-                                december = [];
+                              // janex = 0;
+                              // febx = 0;
+                              // marx = 0;
+                              // aprx = 0;
+                              // junex = 0;
+                              // julyx = 0;
+                              // mayx = 0;
+                              // augustx = 0;
+                              // octx = 0;
+                              // septx = 0;
+                              // novx = 0;
+                              // decx = 0;
+                              //   jan = [];
+                              //   feb = [];
+                              //   mar = [];
+                              //   apr = [];
+                              //   may = [];
+                              //   june = [];
+                              //   july = [];
+                              //   august = [];
+                              //   september = [];
+                              //   october = [];
+                              //   november = [];
+                              //   december = [];
                             });
                           }},
                           child: Container(
@@ -1342,7 +1420,7 @@ class ExpensePageState extends State<ExpensePage> {
                                         // rek = double.parse(chars.reversed.join());
                                         rek *= 1;
                                         p.add(rek);
-
+                                        print(rek);
                                         break;
                                       } else
                                       if (_messages[i].body.toString().indexOf(
@@ -1352,6 +1430,7 @@ class ExpensePageState extends State<ExpensePage> {
                                         // rek = double.parse(chars.reversed.join());
                                         rek *= -1;
                                         p.add(rek);
+                                        print(rek);
                                         break;
                                       }
                                     }
@@ -1550,7 +1629,7 @@ class ExpensePageState extends State<ExpensePage> {
                                 kk=true;
                               }
                               return
-                                (i < 5) && p.length>5
+                                (i < 4) && p.length>4
                                   ? Card(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
@@ -1601,10 +1680,10 @@ class ExpensePageState extends State<ExpensePage> {
 
                                                     Padding(
                                                         padding:
-                                                            const EdgeInsets
+                                                             EdgeInsets
                                                                 .all(8.0),
-                                                        child: Text(
-                                                            'Merchant'),
+                                                        child: p[i]<0?Text(
+                                                            'Debited'):Text("Credited"),
                                                       )
                                               ],
                                             ),
@@ -1637,7 +1716,8 @@ class ExpensePageState extends State<ExpensePage> {
                                       height: 0,
                                     );
                             }
-                            return Divider(
+                            return
+                            Divider(
                               height: 0,
                             );
                           }),

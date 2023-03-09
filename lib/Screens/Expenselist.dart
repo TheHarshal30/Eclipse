@@ -1,9 +1,35 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class Expenselist extends StatefulWidget {
-  const Expenselist({Key? key}) : super(key: key);
+  List<dynamic> jan;
+  List<dynamic> feb;
+  List<dynamic> mar ;
+  List<dynamic> apr;
+  List<dynamic> may;
+  List<dynamic> june;
+  List<dynamic> july ;
+  List<dynamic> august ;
+  List<dynamic> september;
+  List<dynamic> october ;
+  List<dynamic> november ;
+  List<dynamic> december ;
+  double janx ;
+  double febx ;
+  double marx ;
+  double mayx ;
+  double aprx ;
+  double junex ;
+  double julyx ;
+  double augustx ;
+  double septx ;
+  double octx ;
+  double novx ;
+  double decx ;
+   Expenselist({Key? key,required this.december,required this.november,required this.october,required this.september,required this.august,required this.july,required this.june,required this.may,required this.apr,required this.mar,required this.feb,required this.jan, required this.janx,required this.febx,required this.marx,required this.mayx,required this.aprx,required this.junex,required this.julyx ,required this.augustx,
+     required this.septx,required this.octx,required this.novx,required this.decx}) : super(key: key);
 
   @override
   State<Expenselist> createState() => _ExpenselistState();
@@ -15,10 +41,17 @@ class _ExpenselistState extends State<Expenselist> {
   List<String> kk = ['janx','febx','marx','aprx','mayx','junex','julyx','augustx','septx','octx','novx','decx'];
   double extotal = 0.0;
   int chek =0;
+  int len =0;
   @override
   void initState() {
     super.initState();
     initialize(0);
+    expenthis = widget.jan;
+    chek=1;
+    setState(() {
+      chek=0;
+    });
+
 
   }
 
@@ -28,9 +61,12 @@ class _ExpenselistState extends State<Expenselist> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     setState(() {
-      expenthis = snap.data()![ka[n]];
-      extotal = snap.data()![kk[n]];
+      // expenthis = snap.data()![ka[n]];
+      // extotal = snap.data()![kk[n]];
+      expenthis = widget.jan;
+      extotal=widget.janx;
       chek =1;
+      len = (widget.jan.length/3.toInt()) as int;
     });
   }
   int selec = 0;
@@ -46,8 +82,7 @@ class _ExpenselistState extends State<Expenselist> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Container(
-      child: Column(children: [
+      body: Column(children: [
         SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(
@@ -60,7 +95,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 0;
-                      initialize(0);
+                      expenthis = widget.jan;
+                      extotal = widget.janx;
                     });
                   },
                   child: Container(
@@ -91,7 +127,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 1;
-                      initialize(1);
+                      expenthis = widget.feb;
+                      extotal = widget.febx;
                     });
                   },
                   child: Container(
@@ -122,7 +159,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 2;
-                      initialize(2);
+                      expenthis = widget.mar;
+                      extotal = widget.marx;
                     });
                   },
                   child: Container(
@@ -153,7 +191,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 3;
-                      initialize(3);
+                      expenthis = widget.apr;
+                      extotal = widget.aprx;
                     });
                   },
                   child: Container(
@@ -184,7 +223,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 4;
-                      initialize(4);
+                      expenthis = widget.may;
+                      extotal = widget.mayx;
                     });
                   },
                   child: Container(
@@ -215,7 +255,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 5;
-                      initialize(5);
+                      expenthis = widget.june;
+                      extotal = widget.junex;
                     });
                   },
                   child: Container(
@@ -247,7 +288,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 6;
-                      initialize(6);
+                      expenthis = widget.july;
+                      extotal = widget.julyx;
                     });
                   },
                   child: Container(
@@ -279,7 +321,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 7;
-                      initialize(7);
+                      expenthis = widget.august;
+                      extotal = widget.augustx;
                     });
                   },
                   child: Container(
@@ -311,7 +354,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 8;
-                      initialize(8);
+                      expenthis = widget.september;
+                      extotal = widget.septx;
                     });
                   },
                   child: Container(
@@ -343,7 +387,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 9;
-                      initialize(9);
+                      expenthis = widget.october;
+                      extotal = widget.octx;
                     });
                   },
                   child: Container(
@@ -375,9 +420,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 10;
-                      initialize(
-                          10
-                      );
+                      expenthis = widget.november;
+                      extotal = widget.novx;
                     });
                   },
                   child: Container(
@@ -410,9 +454,8 @@ class _ExpenselistState extends State<Expenselist> {
                   onTap: () {
                     setState(() {
                       selec = 11;
-                      initialize(
-                          11
-                      );
+                      expenthis = widget.december;
+                      extotal = widget.decx;
                     });
                   },
                   child: Container(
@@ -442,7 +485,7 @@ class _ExpenselistState extends State<Expenselist> {
           ),
         ),
       ),
-       extotal!=0? Padding(
+       selec!=0? Padding(
          padding: const EdgeInsets.only(left: 20.0),
          child: Container(
            alignment: Alignment.centerLeft,
@@ -451,22 +494,42 @@ class _ExpenselistState extends State<Expenselist> {
               style: GoogleFonts.ubuntu(fontSize: 15),
             ),
          ),
-       ):SizedBox(height: 0,),
-        extotal!=0?Padding(
+       ):Padding(
+         padding: const EdgeInsets.only(left: 20.0),
+         child: Container(
+           alignment: Alignment.centerLeft,
+           child: Text(
+             "${ka[selec]}'s Expense ",
+             style: GoogleFonts.ubuntu(fontSize: 15),
+           ),
+         ),
+       ),
+        selec!=0?Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Container(
             alignment: Alignment.centerLeft,
             child: Text(
-              "${extotal}",
+              extotal!=0.0?
+              "${-1*extotal.toDouble()}":"${extotal.toDouble()}",
               style: GoogleFonts.ubuntu(
                   fontSize: 35, fontWeight: FontWeight.bold),
             ),
           ),
-        ):SizedBox(height: 0,),expenthis.isEmpty&&chek==0?const Center(child: CircularProgressIndicator(),):SizedBox(height: 0,),
+        ):Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Container(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "${-1*widget.janx.toDouble()}",
+              style: GoogleFonts.ubuntu(
+                  fontSize: 35, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
           expenthis.isNotEmpty?SizedBox(
             height: MediaQuery.of(context).size.height*0.7,
             child: ListView.builder(
-                itemCount: expenthis.length,
+                itemCount: (expenthis.length/3).toInt(),
                 itemBuilder: (context, i) {
                   var p = expenthis[i];
                     return
@@ -518,12 +581,12 @@ class _ExpenselistState extends State<Expenselist> {
                                   ),
                                 ),
 
-                                const Padding(
+                                 Padding(
                                   padding:
                                   EdgeInsets
                                       .all(8.0),
-                                  child: Text(
-                                      'Merchant'),
+                                  child: p<0?Text(
+                                      'Debited'):Text("Credited"),
                                 )
                               ],
                             ),
@@ -559,7 +622,6 @@ class _ExpenselistState extends State<Expenselist> {
                 fontWeight: FontWeight.bold)),),
           ),
         ],
-      ),
-    ));
+      ));
   }
 }

@@ -12,7 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../components/homeboxes.dart';
 import 'expenses.dart';
 import 'invest2.dart';
-
+int bank = 0;
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override
@@ -29,6 +29,235 @@ class _HomePageState extends State<HomePage> {
   void initState() {
 getperms();
     initialize();
+    bank==0?
+new Future.delayed(Duration.zero, () {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: Container(
+            height: MediaQuery.of(context).size.height/2,
+            child: AlertDialog(
+              // title: Center(child:Text('Enter Code')),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              backgroundColor: Colors.grey[100],
+              elevation: 0.0,
+              content: StreamBuilder<int>(
+                  builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                    return Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Select your bank"),
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(15)),
+                            elevation: 1,
+                            child: GestureDetector(
+                              onTap:(){
+                                  bank =1;
+                                Navigator.of(context).pop(context);
+                              },
+                              child: Container(
+                                height:
+                                MediaQuery.of(context).size.height /
+                                    10,
+                                width:
+                                MediaQuery.of(context).size.width /
+                                    1.10,
+                                decoration: const BoxDecoration(
+                                  /*border: Border.all(width: 1.5, color: Colors.black),*/
+                                  color: Colors.transparent,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            padding: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color:
+                                              Colors.orange.shade50,
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  15),
+                                              //  border: Border.all(color: Colors.black, width: 1)
+                                            ),
+                                            child: Image(
+                                                image: const AssetImage(
+                                                    "assets/images/BOB.jpg"),
+                                                height: MediaQuery.of(
+                                                    context)
+                                                    .size
+                                                    .height /
+                                                    20),
+                                          ),
+                                        ),
+                                        const Padding(
+                                          padding:
+                                          EdgeInsets
+                                              .all(8.0),
+                                          child: Text(
+                                              'Bank of baroda'),
+                                        )
+                                      ],
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(15)),
+                            elevation: 1,
+                            child: GestureDetector(
+                              onTap : (){
+                                  bank =2;
+                                Navigator.of(context).pop(context);
+
+                              },
+                              child: Container(
+                                height:
+                                MediaQuery.of(context).size.height /
+                                    10,
+                                width:
+                                MediaQuery.of(context).size.width /
+                                    1.10,
+                                decoration: const BoxDecoration(
+                                  /*border: Border.all(width: 1.5, color: Colors.black),*/
+                                  color: Colors.transparent,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            padding: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color:
+                                              Colors.orange.shade50,
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  15),
+                                              //  border: Border.all(color: Colors.black, width: 1)
+                                            ),
+                                            child: Image(
+                                                image: const AssetImage(
+                                                    "assets/images/SBI.png"),
+                                                height: MediaQuery.of(
+                                                    context)
+                                                    .size
+                                                    .height /
+                                                    20),
+                                          ),
+                                        ),
+                                        const Padding(
+                                          padding:
+                                          EdgeInsets
+                                              .all(8.0),
+                                          child: Text(
+                                              'SBI'),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(15)),
+                            elevation: 1,
+                            child: GestureDetector(
+                              onTap:(){
+                                  bank=3;
+                                Navigator.of(context).pop(context);
+                              },
+                              child: Container(
+                                height:
+                                MediaQuery.of(context).size.height /
+                                    10,
+                                width:
+                                MediaQuery.of(context).size.width /
+                                    1.10,
+                                decoration: const BoxDecoration(
+                                  /*border: Border.all(width: 1.5, color: Colors.black),*/
+                                  color: Colors.transparent,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            padding: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color:
+                                              Colors.orange.shade50,
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  15),
+                                              //  border: Border.all(color: Colors.black, width: 1)
+                                            ),
+                                            child: Image(
+                                                image: const AssetImage(
+                                                    "assets/images/HDFC.png"),
+                                                height: MediaQuery.of(
+                                                    context)
+                                                    .size
+                                                    .height /
+                                                    20),
+                                          ),
+                                        ),
+                                        const Padding(
+                                          padding:
+                                          EdgeInsets
+                                              .all(8.0),
+                                          child: Text(
+                                              'HDFC'),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            ),
+          ),
+        );
+      });}):bank=0;
     super.initState();
   }
 
@@ -333,7 +562,7 @@ getperms();
                     child: GestureDetector(
                       onTap: (() {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ExpensePage()));
+                            builder: (context) => ExpensePage(bank: bank,)));
                       }),
                       child: Boxes(
                           boxTitle: "Expenses",
