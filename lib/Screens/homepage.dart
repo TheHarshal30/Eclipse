@@ -36,7 +36,7 @@ new Future.delayed(Duration.zero, () {
       builder: (context) {
         return Center(
           child: Container(
-            height: MediaQuery.of(context).size.height/2,
+            height: MediaQuery.of(context).size.height/1.5,
             child: AlertDialog(
               // title: Center(child:Text('Enter Code')),
               shape: RoundedRectangleBorder(
@@ -250,6 +250,72 @@ new Future.delayed(Duration.zero, () {
                               ),
                             ),
                           ),
+                          Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(15)),
+                            elevation: 1,
+                            child: GestureDetector(
+                              onTap : (){
+                                bank =4;
+                                Navigator.of(context).pop(context);
+                              },
+                              child: Container(
+                                height:
+                                MediaQuery.of(context).size.height /
+                                    10,
+                                width:
+                                MediaQuery.of(context).size.width /
+                                    1.10,
+                                decoration: const BoxDecoration(
+                                  /*border: Border.all(width: 1.5, color: Colors.black),*/
+                                  color: Colors.transparent,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            padding: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color:
+                                              Colors.orange.shade50,
+                                              borderRadius:
+                                              BorderRadius.circular(
+                                                  15),
+                                              //  border: Border.all(color: Colors.black, width: 1)
+                                            ),
+                                            child: Image(
+                                                image: const AssetImage(
+                                                    "assets/images/boi.png"),
+                                                height: MediaQuery.of(
+                                                    context)
+                                                    .size
+                                                    .height /
+                                                    20),
+                                          ),
+                                        ),
+                                        const Padding(
+                                          padding:
+                                          EdgeInsets
+                                              .all(8.0),
+                                          child: Text(
+                                              'Bank of India'),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     );
@@ -439,15 +505,16 @@ new Future.delayed(Duration.zero, () {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                name.length<9?
+                name.length<8?
                 Text(
                   "Hello, " + name,
                   style: GoogleFonts.ubuntu(
                       fontSize: 25,
                       fontWeight: FontWeight.w600,
                       color: Colors.black),
+                  overflow: TextOverflow.ellipsis,
                 ): Text(
-                  "Hello, " + name.substring(0,9)+"..",
+                  "Hello, " + name.substring(0,8)+"..",
                   style: GoogleFonts.ubuntu(
                       fontSize: 25,
                       fontWeight: FontWeight.w600,
