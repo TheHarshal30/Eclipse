@@ -623,6 +623,273 @@ class ExpensePageState extends State<ExpensePage> {
   }
 
 
+  void getsmsjgsbpboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BP-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+  void getsmsjgscpboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'CP-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsjgsqpboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'QP-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+  void getsmsjgsboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BW-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+  void getsmsjgboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BX-v',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsjsboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BZ-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmjgsboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BV-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getmsjgboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'JG-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsbrboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BR-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsjmboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'JM-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsaxboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'AX-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsJDboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'JD-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BP-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+
+  void getsmsvksboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'VK-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+
+  void getsmsadsboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'AD-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsvmsboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'VM-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+  void getsmsvm2sboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'VD-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+
+
+  void getsmsvmboi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'VK-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+  void getsmsvm2boi() async {
+    var permission = await Permission.sms.status;
+    if (permission.isGranted) {
+      final messages = await _query.querySms(
+        kinds: [SmsQueryKind.inbox],
+        address: 'BA-BOIIND',
+      );
+      debugPrint('sms inbox messages: ${messages.length}');
+      setState(() => _messages.addAll(messages));
+    } else {
+      await Permission.sms.request();
+    }
+  }
+
+
 
   @override
   void initState() {
@@ -733,7 +1000,6 @@ if(widget.bank==3 ) {
   getsmsaxbk();
   getsmsjmbk();
   getsmsjgbk();
-  getsmsvm2svk();
 }
 //
 //
@@ -750,13 +1016,17 @@ if(widget.bank==3 ) {
     }
 
     if(widget.bank==2) {
+
       getsmsvm2sba();
       getsmsJDs();
       getsmsjgsbp();
+      getsmsbrs();
       getsmsjgbk();
       getsmsjgbx();
       getsmsjgscp();
       getsmsjgsqp();
+      getsmsjgsbw();
+      getsmsjgsbw();
       getsmsvms();
       getsmsvm2s();
       getsmsads();
@@ -764,7 +1034,30 @@ if(widget.bank==3 ) {
       getsmsvks();
       getsmsaxs();
       getsmsjms();
+      getsmsbrs();
+      getsmsjgsbv();
       getsmsjgs();
+    }
+    if(widget.bank==4){
+       getsmsjgsbpboi() ;
+       getsmsjgscpboi() ;
+       getsmsjgsqpboi() ;
+       getsmsjgsboi();
+       getsmsjgboi() ;
+       getsmsjsboi();
+       getsmjgsboi() ;
+       getmsjgboi() ;
+       getsmsbrboi() ;
+       getsmsjmboi();
+       getsmsaxboi() ;
+       getsmsJDboi();
+       getsmsboi() ;
+       getsmsvksboi() ;
+       getsmsadsboi() ;
+       getsmsvmsboi() ;
+      getsmsvm2sboi() ;
+       getsmsvmboi();
+     getsmsvm2boi() ;
     }
     super.initState();
     initialize();
@@ -939,7 +1232,7 @@ if(widget.bank==3 ) {
                                   barrierDismissible: false
                                   ,context: context,
                                   builder: (context) {
-                                    Future.delayed(Duration(seconds: 15), () {
+                                    Future.delayed(Duration(seconds: 3), () {
                                       Navigator.of(context).pop(true);
                                     });
                                     return AlertDialog(
@@ -969,7 +1262,7 @@ if(widget.bank==3 ) {
                                                       padding: const EdgeInsets.only(
                                                           top: 10, left: 10, right: 10, bottom: 15),
                                                       child: Text(
-                                                        'This will take only 15 seconds',
+                                                        'This will take only take a moment',
                                                         style: TextStyle(
                                                             color: Colors.grey,
                                                             fontWeight: FontWeight.bold,
@@ -1367,7 +1660,7 @@ if(widget.bank==3 ) {
                                     //  final chars = rek.toString().split('');
                                     // rek = double.parse(chars.reversed.join());
                                     rek *= -1;
-                                    p.add(rek);
+                                    p.add(rek.toDouble());
                                     break;
                                   } else if (message.body.toString()[j + 1] ==
                                       'C') {
@@ -1375,12 +1668,12 @@ if(widget.bank==3 ) {
                                     // final chars = rek.toString().split('');
                                     // rek = double.parse(chars.reversed.join());
                                     rek *= 1;
-                                    p.add(rek);
+                                    p.add(rek.toDouble());
                                     break;
                                   }
                                 }
                               }}
-                              if(message.sender?.indexOf('HDFCBK')!=-1) {
+                             else if(message.sender?.indexOf('HDFCBK')!=-1) {
                                 if (_messages[i].body.toString().indexOf(
                                     'credited') != -1) {
                                   for (int j = _messages[i].body.toString()
@@ -1419,7 +1712,7 @@ if(widget.bank==3 ) {
                                         //  final chars = rek.toString().split('');
                                         // rek = double.parse(chars.reversed.join());
                                         rek *= 1;
-                                        p.add(rek);
+                                        p.add(rek.toDouble());
                                         print(rek);
                                         break;
                                       } else
@@ -1429,7 +1722,7 @@ if(widget.bank==3 ) {
                                         // final chars = rek.toString().split('');
                                         // rek = double.parse(chars.reversed.join());
                                         rek *= -1;
-                                        p.add(rek);
+                                        p.add(rek.toDouble());
                                         print(rek);
                                         break;
                                       }
@@ -1473,7 +1766,7 @@ if(widget.bank==3 ) {
                                         // rek = double.parse(chars.reversed.join());
                                         rek *= 1;
                                         // print(rek);
-                                        p.add(rek);
+                                        p.add(rek.toDouble());
 
                                         break;
                                       } else
@@ -1484,16 +1777,14 @@ if(widget.bank==3 ) {
                                         // rek = double.parse(chars.reversed.join());
                                         rek *= -1;
                                         // print(rek);
-                                        p.add(rek);
+                                        p.add(rek.toDouble());
                                         break;
                                       }
                                     }
                                   }
                                 }
                               }
-
-
-      if(message.sender?.indexOf('SBIUPI')!=-1){
+     else if(message.sender?.indexOf('SBIUPI')!=-1){
         // print(message.body.toString());
         if (message.body.toString().indexOf('credited') != -1) {
           for (int j = message.body.toString().indexOf('Rs') + 2;
@@ -1524,7 +1815,7 @@ if(widget.bank==3 ) {
                 //  final chars = rek.toString().split('');
                 // rek = double.parse(chars.reversed.join());
                 rek *= 1;
-                p.add(rek);
+                p.add(rek.toDouble());
 
                 break;
               } else if (message.body.toString().indexOf('debited') != -1) {
@@ -1532,7 +1823,7 @@ if(widget.bank==3 ) {
                 // final chars = rek.toString().split('');
                 // rek = double.parse(chars.reversed.join());
                 rek *= -1;
-                p.add(rek);
+                p.add(rek.toDouble());
                 break;
               }
             }
@@ -1566,7 +1857,7 @@ if(widget.bank==3 ) {
                 //  final chars = rek.toString().split('');
                 // rek = double.parse(chars.reversed.join());
                 rek *= 1;
-                p.add(rek);
+                p.add(rek.toDouble());
 
                 break;
               } else if (message.body.toString().indexOf('debited') != -1) {
@@ -1574,7 +1865,89 @@ if(widget.bank==3 ) {
                 // final chars = rek.toString().split('');
                 // rek = double.parse(chars.reversed.join());
                 rek *= -1;
-                p.add(rek);
+                p.add(rek.toDouble());
+                break;
+              }
+            }
+          }
+        }
+      }
+      else if(message.sender?.indexOf('BOIIND') != -1){
+        if (message.body.toString().indexOf('Credited') != -1) {
+          for (int j = message.body.toString().indexOf('Rs') + 3;
+          j < message.body.toString().length;
+          j++) {
+            if (isNumeric(message.body.toString()[j])) {
+              if (pp) {
+                rek = rek * 10 + double.parse(message.body.toString()[j]);
+              } else {
+                dd = dd + 1;
+                double temp = double.parse(message.body.toString()[j]);
+                int ne = dd;
+                while (ne > 1) {
+                  ne--;
+                  temp = temp / 10;
+                }
+                rek = rek + temp;
+              }
+            } else if (message.body.toString()[j] == '.') {
+              // if(message.body.toString()[j-1]=='s'){
+              //   continue;
+              // }else{
+              pp = false;
+              // }
+            } else {
+              if (message.body.toString().indexOf('Credited') != -1) {
+                // rek*=10;
+                //  final chars = rek.toString().split('');
+                // rek = double.parse(chars.reversed.join());
+                rek *= 1;
+                // print(rek);
+                p.add(rek.toDouble());
+
+                break;
+              } else if (message.body.toString().indexOf('debited') != -1) {
+                // rek*=10;
+                // final chars = rek.toString().split('');
+                // rek = double.parse(chars.reversed.join());
+                rek *= -1;
+                // print(rek);
+                p.add(rek.toDouble());
+                break;
+              }
+            }
+          }
+        } else {
+          for (int j = message.body.toString().indexOf('Rs') + 3;
+          j < message.body.toString().length;
+          j++) {
+            if (isNumeric(message.body.toString()[j])) {
+              if (pp) {
+                rek = rek * 10 + double.parse(message.body.toString()[j]);
+              } else {
+                dd = dd + 1;
+                double temp = double.parse(message.body.toString()[j]);
+                int ne = dd;
+                while (ne > 1) {
+                  ne--;
+                  temp = temp / 10;
+                }
+                rek = rek + temp;
+              }
+            } else if (message.body.toString()[j] == '.') {
+              // if(message.body.toString()[j-1]=='s'){
+              //   continue;
+              // }else{
+              pp = false;
+              // }
+            } else {
+              if (message.body.toString().indexOf('debited') != -1) {
+                // rek*=10;
+                // final chars = rek.toString().split('');
+                // rek = double.parse(chars.reversed.join());
+                rek *= -1;
+                // print(rek);
+                p.add(rek.toDouble());
                 break;
               }
             }
