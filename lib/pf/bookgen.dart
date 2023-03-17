@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:eclipsis/Screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,21 +28,6 @@ class BookGen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => HomePage()),
-                    (Route<dynamic> route) => false);
-          },
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        title: Text("Welcome to Eclipse Learning",
-            style: GoogleFonts.ubuntu(color: Colors.black)),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -60,9 +44,9 @@ class BookGen extends StatelessWidget {
             ),
             Padding(
               padding:
-              const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+              const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
               child: Container(
-                height: MediaQuery.of(context).size.height / 1.45,
+                height: MediaQuery.of(context).size.height / 1.5,
                 child: ListView(
                   children: [
                     Padding(
@@ -113,52 +97,10 @@ class BookGen extends StatelessWidget {
                         GoogleFonts.ubuntu(fontSize: 15, wordSpacing: 2.5),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => prevpg));
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(12),
-                              decoration:
-                              BoxDecoration(color: Colors.red.shade50),
-                              child: Text(
-                                "< Prev",
-                                style: GoogleFonts.ubuntu(),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              if(nextpg==HomePage()){Navigator.of(context).pushAndRemoveUntil(
-                                  MaterialPageRoute(builder: (context) => HomePage()),
-                                      (Route<dynamic> route) => false);}
-                              if(nextpg!=HomePage()){
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => nextpg));}
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(12),
-                              decoration:
-                              BoxDecoration(color: Colors.green.shade50),
-                              child: Text(
-                                "Next >",
-                                style: GoogleFonts.ubuntu(),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    )
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

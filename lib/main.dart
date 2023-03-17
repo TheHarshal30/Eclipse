@@ -1,4 +1,5 @@
 import 'package:eclipsis/Screens/homepage.dart';
+import 'package:eclipsis/Screens/navigator.dart';
 import 'package:eclipsis/Screens/welcome.dart';
 import 'package:eclipsis/firebase_options.dart';
 import 'package:eclipsis/services/auth.dart';
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
             );
           }
           if (snapshot.hasData) {
-            return HomePage();
+            return NavPage(pageIndex: 0, bank: 0);
           } else {
             return WelcomePage();
           }

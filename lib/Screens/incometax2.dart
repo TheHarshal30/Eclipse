@@ -64,17 +64,6 @@ class _TaxPageState extends State<TaxPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            leading: BackButton(color: Colors.black),
-            elevation: 0,
-            backgroundColor: Colors.white,
-            centerTitle: true,
-            title: Text(
-              "Eclipse Taxation",
-              style: GoogleFonts.ubuntu(
-                  fontSize: 18,
-                  color: Colors.black),
-            )),
         body: SafeArea(
             child: SingleChildScrollView(
               child: Column(children: [

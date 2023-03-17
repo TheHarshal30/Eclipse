@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_interpolation_to_compose_strings, sort_child_properties_last, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_interpolation_to_compose_strings, sort_child_properties_last, avoid_unnecessary_containers, unnecessary_new
 
 import 'package:eclipsis/models/fdmodel.dart';
 import 'package:eclipsis/models/mfmodel.dart';
 import 'package:eclipsis/models/mfmodel2.dart';
+import 'package:eclipsis/models/mfmodel3.dart';
 import 'package:eclipsis/models/remote_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +19,7 @@ class _InvestMFPageState extends State<InvestMFPage> {
   FDs? fdlist;
   List<Welcome>? mflist;
   List<Welcome>? mflist2;
+  List<MFNAV>? mfnavlist;
   Welcome2? mflist3;
   var isLoaded = false;
   var isLoaded2 = false;
@@ -27,87 +29,41 @@ class _InvestMFPageState extends State<InvestMFPage> {
   @override
   void initState() {
     super.initState();
-    getData();
     getData2();
-  }
-
-  getData() async {
-    mflist = (await RemoteService.getPosts());
-
-    if (mflist != null) {
-      mflist2 = mflist?.reversed.toList();
-      setState(() {
-        isLoaded = true;
-      });
-    }
+    getData3();
   }
 
   getData2() async {
     fdlist = (await RemoteService2.getPosts());
 
     if (fdlist != null) {
+      //print("Hello");
       setState(() {
         isLoaded1 = true;
       });
     }
   }
 
+  getData3() async {
+    mfnavlist = (await RemoteService4.getPosts());
+    if (mfnavlist != null) {
+      setState(() {
+        isLoaded2 = true;
+      });
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        leading: BackButton(
-          color: Colors.black,
-        ),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text("Eclipse Investing",
-            style: GoogleFonts.ubuntu(fontSize: 18, color: Colors.black)),
-      ),
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height / 5,
-              decoration: BoxDecoration(color: Colors.lightGreen.shade50),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                            height: MediaQuery.of(context).size.height / 15,
-                            child: Image(
-                                image: AssetImage("assets/images/invest.png"))),
-                        Text(
-                          "Eclipse Investing",
-                          style: GoogleFonts.ubuntu(fontSize: 20),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 1.5,
-                      child: Text(
-                        "Eclipse investing help you find best low-risk or risk-free investments opportunities.",
-                        style: GoogleFonts.ubuntu(fontSize: 15),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
             Container(
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 20.0, right: 20, top: 20, bottom: 10),
+                          left: 20.0, right: 20, top: 0, bottom: 0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         child: Column(
@@ -124,29 +80,26 @@ class _InvestMFPageState extends State<InvestMFPage> {
                                           selec = 0;
                                         });
                                       },
-                                      child: Card(
-                                        elevation: 5,
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 20, vertical: 10),
-                                          decoration: BoxDecoration(
-                                              color: Colors.green.shade50,
-                                              borderRadius: BorderRadius.circular(5)),
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                "Fixed Deposits",
-                                                style:
-                                                GoogleFonts.ubuntu(fontSize: 16),
-                                              ),
-                                              Text(
-                                                "Risk Free Investments",
-                                                style: GoogleFonts.ubuntu(
-                                                    color: Colors.grey.shade600,
-                                                    fontSize: 8),
-                                              ),
-                                            ],
-                                          ),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20, vertical: 10),
+                                        decoration: BoxDecoration(
+                                            border: (selec == 0)
+                                                ? Border(
+                                                bottom: BorderSide(
+                                                    width: 0.5,
+                                                    color: Colors.blue))
+                                                : Border(
+                                                bottom: BorderSide(
+                                                    width: 0.5,
+                                                    color: Colors.white))),
+                                        child: Text(
+                                          "Fixed Deposits",
+                                          style: GoogleFonts.ubuntu(
+                                              fontSize: 16,
+                                              color: (selec == 0)
+                                                  ? Colors.blue
+                                                  : Colors.black),
                                         ),
                                       ),
                                     ),
@@ -157,28 +110,26 @@ class _InvestMFPageState extends State<InvestMFPage> {
                                         selec = 1;
                                       });
                                     },
-                                    child: Card(
-                                      elevation: 5,
-                                      child: Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20, vertical: 10),
-                                        decoration: BoxDecoration(
-                                            color: Colors.pink.shade50,
-                                            borderRadius: BorderRadius.circular(5)),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              "Mutual Funds",
-                                              style: GoogleFonts.ubuntu(fontSize: 16),
-                                            ),
-                                            Text(
-                                              "Low Risk High Returns",
-                                              style: GoogleFonts.ubuntu(
-                                                  color: Colors.grey.shade600,
-                                                  fontSize: 8),
-                                            ),
-                                          ],
-                                        ),
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 20, vertical: 10),
+                                      decoration: BoxDecoration(
+                                          border: (selec == 1)
+                                              ? Border(
+                                              bottom: BorderSide(
+                                                  width: 0.5,
+                                                  color: Colors.blue))
+                                              : Border(
+                                              bottom: BorderSide(
+                                                  width: 0.5,
+                                                  color: Colors.white))),
+                                      child: Text(
+                                        "Mutual Funds",
+                                        style: GoogleFonts.ubuntu(
+                                            fontSize: 16,
+                                            color: (selec == 1)
+                                                ? Colors.blue
+                                                : Colors.black),
                                       ),
                                     ),
                                   )
@@ -190,161 +141,287 @@ class _InvestMFPageState extends State<InvestMFPage> {
                       ),
                     ),
                     if (selec == 0) ...[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10.0, right: 10, bottom: 20),
-                        child: Card(
-                          elevation: 0.5,
-                          child: Container(
-                              height: MediaQuery.of(context).size.height / 1.9,
-                              child: Visibility(
-                                visible: isLoaded1,
-                                child: SingleChildScrollView(
-                                  child: ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: fdlist?.data.length,
-                                      itemBuilder: ((context, index) {
-                                        return Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(5),
-                                                border: Border.all(
-                                                    width: 0.5,
-                                                    color: Colors.grey)),
-                                            child: ListTile(
-                                              title: Text(fdlist!
-                                                  .data[index].attributes.name),
-                                              subtitle: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                                children: [
-                                                  Row(
+                      Container(
+                          height: MediaQuery.of(context).size.height / 1.37,
+                          child: Visibility(
+                            visible: isLoaded1,
+                            child: SingleChildScrollView(
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: fdlist?.data.length,
+                                  itemBuilder: ((context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        padding: EdgeInsets.only(
+                                            left: 10, right: 10, top: 5, bottom: 5),
+                                        height:
+                                        MediaQuery.of(context).size.height / 5,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            border: Border.all(
+                                                width: 0.5, color: Colors.grey)),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  padding: EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.yellow.shade50,
+                                                    borderRadius:
+                                                    BorderRadius.circular(10),
+                                                    //  border: Border.all(color: Colors.black, width: 1)
+                                                  ),
+                                                  child: Image(
+                                                      image: AssetImage(
+                                                          "assets/images/bank.png"),
+                                                      height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                          20),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 10.0),
+                                                  child: Text(
+                                                      fdlist!.data[index].attributes
+                                                          .name,
+                                                      style: GoogleFonts.ubuntu(
+                                                        fontSize: 18,
+                                                      )),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Text(
+                                                      "Interest Rate",
+                                                      style: GoogleFonts.ubuntu(
+                                                          color:
+                                                          Colors.grey.shade600,
+                                                          fontSize: 12),
+                                                    ),
+                                                    Text(
+                                                      fdlist!.data[index].attributes
+                                                          .interestRate
+                                                          .toString() +
+                                                          "%",
+                                                      style: GoogleFonts.ubuntu(
+                                                          color: Colors.green,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    Text(
+                                                      "Min Amount",
+                                                      style: GoogleFonts.ubuntu(
+                                                          color:
+                                                          Colors.grey.shade600,
+                                                          fontSize: 12),
+                                                    ),
+                                                    Text(
+                                                      "₹" +
+                                                          fdlist!.data[index]
+                                                              .attributes.minAmount
+                                                              .toString(),
+                                                      style: GoogleFonts.ubuntu(
+                                                          color: Colors.green,
+                                                          fontSize: 18),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                      Colors.lightBlue.shade50,
+                                                      borderRadius:
+                                                      BorderRadius.circular(5)),
+                                                  child: Row(
                                                     children: [
-                                                      Text(
-                                                        "Interest Rate: ",
-                                                        style: GoogleFonts.ubuntu(
-                                                            color: Colors
-                                                                .grey.shade600),
-                                                      ),
                                                       Text(
                                                         fdlist!
                                                             .data[index]
                                                             .attributes
-                                                            .interestRate
-                                                            .toString() +
-                                                            "%",
+                                                            .tenureFromInMonths
+                                                            .toString(),
                                                         style: GoogleFonts.ubuntu(
-                                                            color: Colors.green),
+                                                          fontWeight:
+                                                          FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        " Months",
+                                                        style: GoogleFonts.ubuntu(
+                                                          fontWeight:
+                                                          FontWeight.w500,
+                                                        ),
                                                       )
                                                     ],
                                                   ),
-                                                  Padding(
-                                                      padding:
-                                                      const EdgeInsets.only(
-                                                          left: 18.0),
-                                                      child: Row(
-                                                        children: [
-                                                          Text(
-                                                            "Min tenure: ",
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  })),
+                            ),
+                            replacement: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          ))
+                    ] else if (selec == 1) ...[
+                      Container(
+                          height: MediaQuery.of(context).size.height / 1.37,
+                          child: Visibility(
+                            visible: isLoaded2,
+                            child: SingleChildScrollView(
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: 40,
+                                  itemBuilder: ((context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Container(
+                                        height:
+                                        MediaQuery.of(context).size.height / 5,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            border: Border.all(
+                                                width: 0.5, color: Colors.grey)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                                children: [
+                                                  Container(
+                                                    padding: EdgeInsets.all(8),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.yellow.shade50,
+                                                      borderRadius:
+                                                      BorderRadius.circular(10),
+                                                      //  border: Border.all(color: Colors.black, width: 1)
+                                                    ),
+                                                    child: Image(
+                                                        image: AssetImage(
+                                                            "assets/images/bank.png"),
+                                                        height:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .height /
+                                                            20),
+                                                  ),
+                                                  Container(
+                                                    width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                        1.5,
+                                                    child: Text(
+                                                      mfnavlist![index].schemeName,
+                                                      style: GoogleFonts.ubuntu(
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                          FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    children: [
+                                                      Text("Net Asset Val",
+                                                          style: GoogleFonts.ubuntu(
+                                                              color: Colors
+                                                                  .grey.shade600,
+                                                              fontSize: 12)),
+                                                      Text(
+                                                          "₹" +
+                                                              mfnavlist![index]
+                                                                  .netAssetValue,
+                                                          style: GoogleFonts.ubuntu(
+                                                              color: Colors.green,
+                                                              fontSize: 16)),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Text("As on",
+                                                          style: GoogleFonts.ubuntu(
+                                                              color: Colors
+                                                                  .grey.shade600,
+                                                              fontSize: 12)),
+                                                      Text(mfnavlist![index].date,
+                                                          style: GoogleFonts.ubuntu(
+                                                              color: Colors.green,
+                                                              fontSize: 16)),
+                                                    ],
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.all(5),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors
+                                                            .lightBlue.shade50,
+                                                        borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                    child: Column(
+                                                      children: [
+                                                        Text("Scheme Code",
                                                             style:
                                                             GoogleFonts.ubuntu(
                                                                 color: Colors
                                                                     .grey
-                                                                    .shade600),
-                                                          ),
-                                                          Text(
-                                                            fdlist!
-                                                                .data[index]
-                                                                .attributes
-                                                                .tenureFromInMonths
-                                                                .toString(),
+                                                                    .shade600,
+                                                                fontSize: 10)),
+                                                        Text(
+                                                            mfnavlist![index]
+                                                                .schemeCode,
                                                             style:
                                                             GoogleFonts.ubuntu(
                                                                 color: Colors
-                                                                    .green),
-                                                          )
-                                                        ],
-                                                      ))
+                                                                    .green,
+                                                                fontSize: 14)),
+                                                      ],
+                                                    ),
+                                                  )
                                                 ],
                                               ),
-                                            ),
+                                            ],
                                           ),
-                                        );
-                                      })),
-                                ),
-                                replacement: const Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                              )),
-                        ),
-                      )
-                    ] else if (selec == 1) ...[
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
-                        child: Container(
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10, top: 0, bottom: 10),
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    // height: MediaQuery.of(context).size.height/2,
-                                    child: Column(
-                                      children: [],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20.0, right: 20),
-                                  child: Card(
-                                    elevation: 0.5,
-                                    child: Container(
-                                        height:
-                                        MediaQuery.of(context).size.height / 1.9,
-                                        child: Visibility(
-                                          visible: isLoaded,
-                                          child: SingleChildScrollView(
-                                            child: ListView.builder(
-                                                shrinkWrap: true,
-                                                physics: NeverScrollableScrollPhysics(),
-                                                scrollDirection: Axis.vertical,
-                                                itemCount: 20,
-                                                itemBuilder: ((context, index) {
-                                                  return Padding(
-                                                    padding: const EdgeInsets.all(8),
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                          BorderRadius.circular(5),
-                                                          border: Border.all(
-                                                              width: 0.5,
-                                                              color: Colors.grey)),
-                                                      child: Padding(
-                                                        padding:
-                                                        const EdgeInsets.all(8.0),
-                                                        child: ListTile(
-                                                          title: Text(mflist2![index]
-                                                              .schemeName),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                })),
-                                          ),
-                                          replacement: const Center(
-                                            child: CircularProgressIndicator(),
-                                          ),
-                                        )),
-                                  ),
-                                )
-                              ],
-                            )),
-                      ),
+                                        ),
+                                      ),
+                                    );
+                                  })),
+                            ),
+                            replacement: const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          )),
                     ],
                   ],
                 )),

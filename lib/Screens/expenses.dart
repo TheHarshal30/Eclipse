@@ -1,9 +1,5 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 import 'dart:async';
-import 'dart:math';
-import 'package:eclipsis/Screens/homepage.dart';
-
-import 'welcome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eclipsis/Screens/Expenselist.dart';
 import 'package:eclipsis/supabasehandler.dart';
@@ -1124,13 +1120,6 @@ if(widget.bank==3 ) {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      elevation: 0,
-        leading: BackButton(color:Colors.black),
-        title:Text("Eclipse Tracking", style: GoogleFonts.ubuntu(color:Colors.black)),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -1973,7 +1962,6 @@ if(widget.bank==3 ) {
                               }
                               if (message.date?.month == DateTime.march ) {
                                 mar.add(rek);
-                                print("mar + ${mar}");
                               }
                               if (message.date?.month == DateTime.april   ) {
                                 apr.add(rek);
