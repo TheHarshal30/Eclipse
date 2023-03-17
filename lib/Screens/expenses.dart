@@ -949,7 +949,30 @@ class ExpensePageState extends State<ExpensePage> {
 
     print(widget.bank);
 
-
+    janex = 0;
+    febx = 0;
+    marx = 0;
+    mayx = 0;
+    aprx = 0;
+    junex = 0;
+    julyx = 0;
+    augustx = 0;
+    septx = 0;
+    octx = 0;
+    novx = 0;
+    decx = 0;
+    jan = [];
+    feb = [];
+    mar = [];
+    apr = [];
+    may = [];
+    june = [];
+    july = [];
+    august = [];
+    september = [];
+    october = [];
+    november = [];
+    december = [];
     if(widget.bank==0){
       getsmsvmbk();
       getsmsvm2bk();
@@ -1093,20 +1116,6 @@ if(widget.bank==3 ) {
       october = [];
       november = [];
       december = [];
-      // jan = snap.data()?['january'];
-      // feb = snap['february'];
-      // mar = snap['march'];
-      // apr = snap['april'];
-      // may = snap['may'];
-      // june = snap['june'];
-      // july = snap['july'];
-      // august = snap['august'];
-      // september = snap['september'];
-      // october = snap['october'];
-      // september = snap['september'];
-      // november = snap['november'];
-      // december = snap['december'];
-      // expens = snap['totalex'];
     });
   }
 
@@ -1956,51 +1965,52 @@ if(widget.bank==3 ) {
       }
 
 
-                              if (message.date?.month == DateTime.january &&!kk) {
+                              if (message.date?.month == DateTime.january ) {
                                 jan.add(rek);
                               }
-                              if (message.date?.month == DateTime.february &&!kk) {
+                              if (message.date?.month == DateTime.february ) {
                                 feb.add(rek);
                               }
-                              if (message.date?.month == DateTime.march &&!kk) {
+                              if (message.date?.month == DateTime.march ) {
                                 mar.add(rek);
+                                print("mar + ${mar}");
                               }
-                              if (message.date?.month == DateTime.april&&!kk  ) {
+                              if (message.date?.month == DateTime.april   ) {
                                 apr.add(rek);
                               }
-                              if (message.date?.month == DateTime.may   &&!kk ) {
+                              if (message.date?.month == DateTime.may    ) {
                                 may.add(rek);
 
                               }
-                              if (message.date?.month == DateTime.june  &&!kk ) {
+                              if (message.date?.month == DateTime.june   ) {
                                 june.add(rek);
 
                               }
-                              if (message.date?.month == DateTime.july  &&!kk) {
+                              if (message.date?.month == DateTime.july ) {
                                 july.add(rek);
                               }
-                              if (message.date?.month == DateTime.august  &&!kk ) {
+                              if (message.date?.month == DateTime.august ) {
                                 august.add(rek);
 
                               }
-                              if (message.date?.month == DateTime.september   &&!kk) {
+                              if (message.date?.month == DateTime.september ) {
                                 september.add(rek);
 
                               }
-                              if (message.date?.month == DateTime.october  &&!kk ) {
+                              if (message.date?.month == DateTime.october ) {
                                 october.add(rek);
 
                               }
-                              if (message.date?.month == DateTime.november &&!kk ) {
+                              if (message.date?.month == DateTime.november  ) {
                                 november.add(rek);
 
                               }
-                              if (message.date?.month == DateTime.december  &&!kk) {
+                              if (message.date?.month == DateTime.december) {
                                 december.add(rek);
                               }
-                              if(i==_messages.length-1){
-                                kk=true;
-                              }
+                              // if(i==_messages.length-1){
+                              //   kk=true;
+                              // }
                               return
                                 (i < 4) && p.length>4
                                   ? Card(

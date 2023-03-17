@@ -55,30 +55,11 @@ class _ExpenseSummaryState extends State<ExpenseSummary> {
   }
 
   void initialize() async {
-    final snap = await FirebaseFirestore.instance
-        .collection('Users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get();
-    setState(() {
-    //   total = snap['totalex'];
-    //   janx = snap['janx'];
-    //   febx = snap['febx'];
-    //   marx = snap['marx'];
-    //   mayx = snap['mayx'];
-    //   aprx = snap['aprx'];
-    //   junex = snap['junex'];
-    //   julyx = snap['julyx'];
-    // augustx = snap['augustx'];
-    // septx = snap['septx'];
-    // octx = snap['octx'];
-    // novx = snap['novx'];
-    // decx = snap['decx'];
       Future.delayed(const Duration(seconds: 0), () {
         setState(() {
           chek =1;
         });
       });
-    });
   }
 
   @override
