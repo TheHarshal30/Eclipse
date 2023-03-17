@@ -18,6 +18,7 @@ class ExpensePage extends StatefulWidget {
 }
 
 class ExpensePageState extends State<ExpensePage> {
+  int bank =0;
   bool temppp = false;
   SupaBaseHandler supaBaseHandler = SupaBaseHandler();
   bool gen1 = true;
@@ -387,7 +388,6 @@ class ExpensePageState extends State<ExpensePage> {
       await Permission.sms.request();
     }
   }
-
   void getsmsJD() async {
     var permission = await Permission.sms.status;
     if (permission.isGranted) {
@@ -416,7 +416,6 @@ class ExpensePageState extends State<ExpensePage> {
     }
   }
 
-
   void getsmsvk() async {
     var permission = await Permission.sms.status;
     if (permission.isGranted) {
@@ -431,7 +430,6 @@ class ExpensePageState extends State<ExpensePage> {
     }
   }
 
-
   void getsmsad() async {
     var permission = await Permission.sms.status;
     if (permission.isGranted) {
@@ -445,6 +443,7 @@ class ExpensePageState extends State<ExpensePage> {
       await Permission.sms.request();
     }
   }
+
 
   void getsmsvm() async {
     var permission = await Permission.sms.status;
@@ -890,16 +889,17 @@ class ExpensePageState extends State<ExpensePage> {
   @override
   void initState() {
     super.initState();
-    new Future.delayed(Duration.zero, () {
-      showDialog(
-      barrierDismissible: false
-      ,context: context,
-          builder: (context) {
-            Future.delayed(Duration(seconds: 30), () {
-              Navigator.of(context).pop(true);
-            });
-            return AlertDialog(
-              // title: Center(child:Text('Enter Code')),
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      new Future.delayed(Duration.zero, () {
+        showDialog(
+            barrierDismissible: false
+            ,context: context,
+            builder: (context) {
+              Future.delayed(Duration(seconds: 30), () {
+                Navigator.of(context).pop(true);
+              });
+              return AlertDialog(
+                // title: Center(child:Text('Enter Code')),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20.0))),
                 backgroundColor: Colors.grey[100],
@@ -931,153 +931,501 @@ class ExpensePageState extends State<ExpensePage> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 12),
                                 )),
-                              ],
-                            ), //new column child
-                        );
+                          ],
+                        ), //new column child
+                      );
                     }),
-            );
-    });});
+              );
+            });});
+      new Future.delayed(Duration.zero, () {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return Center(
+                child: Container(
+                  height: MediaQuery.of(context).size.height/1.5,
+                  child: AlertDialog(
+                    // title: Center(child:Text('Enter Code')),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                    backgroundColor: Colors.grey[100],
+                    elevation: 0.0,
+                    content: StreamBuilder<int>(
+                        builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                          return Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Select your bank"),
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(15)),
+                                  elevation: 1,
+                                  child: GestureDetector(
+                                    onTap:(){
+                                      bank =1;
+                                      getsmsvm2();
+                                      getsmsvm();
+                                      getsmsad();
+                                      getsmsvk();getsmsBP();
+                                      getsmsJD();getsmsax();getsmsjm();getsmsbr();getsmsjg();
+                                      Navigator.of(context).pop(context);
+                                    },
+                                    child: Container(
+                                      height:
+                                      MediaQuery.of(context).size.height /
+                                          10,
+                                      width:
+                                      MediaQuery.of(context).size.width /
+                                          1.10,
+                                      decoration: const BoxDecoration(
+                                        /*border: Border.all(width: 1.5, color: Colors.black),*/
+                                        color: Colors.transparent,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                const EdgeInsets.all(8.0),
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                    Colors.orange.shade50,
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        15),
+                                                    //  border: Border.all(color: Colors.black, width: 1)
+                                                  ),
+                                                  child: Image(
+                                                      image: const AssetImage(
+                                                          "assets/images/BOB.jpg"),
+                                                      height: MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .height /
+                                                          20),
+                                                ),
+                                              ),
+                                              const Padding(
+                                                padding:
+                                                EdgeInsets
+                                                    .all(8.0),
+                                                child: Text(
+                                                    'Bank of baroda'),
+                                              )
+                                            ],
+                                          ),
 
-    income = 0;
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(15)),
+                                  elevation: 1,
+                                  child: GestureDetector(
+                                    onTap : (){
+                                      bank =2;
+                                      getsmsvm2sba();
+                                      getsmsJDs();
+                                      getsmsjgsbp();
+                                      getsmsbrs();
+                                      getsmsjgbk();
+                                      getsmsjgbx();
+                                      getsmsjgscp();
+                                      getsmsjgsqp();
+                                      getsmsjgsbw();
+                                      getsmsjgsbw();
+                                      getsmsvms();
+                                      getsmsvm2s();
+                                      getsmsads();
+                                      getsmsBPs();
+                                      getsmsvks();
+                                      getsmsaxs();
+                                      getsmsjms();
+                                      getsmsbrs();
+                                      getsmsjgsbv();
+                                      getsmsjgs();
+                                      Navigator.of(context).pop(context);
 
-    supaBaseHandler.readData();
+                                    },
+                                    child: Container(
+                                      height:
+                                      MediaQuery.of(context).size.height /
+                                          10,
+                                      width:
+                                      MediaQuery.of(context).size.width /
+                                          1.10,
+                                      decoration: const BoxDecoration(
+                                        /*border: Border.all(width: 1.5, color: Colors.black),*/
+                                        color: Colors.transparent,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                const EdgeInsets.all(8.0),
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                    Colors.orange.shade50,
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        15),
+                                                    //  border: Border.all(color: Colors.black, width: 1)
+                                                  ),
+                                                  child: Image(
+                                                      image: const AssetImage(
+                                                          "assets/images/SBI.png"),
+                                                      height: MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .height /
+                                                          20),
+                                                ),
+                                              ),
+                                              const Padding(
+                                                padding:
+                                                EdgeInsets
+                                                    .all(8.0),
+                                                child: Text(
+                                                    'SBI'),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(15)),
+                                  elevation: 1,
+                                  child: GestureDetector(
+                                    onTap:(){
+                                      bank=3;
+                                      getsmsvmbk();
+                                      getsmsvm2bk();
+                                      getsmsadbk();
+                                      getsmsJDbk();
+                                      getsmsBPbk();
+                                      getsmsvkbk();
+                                      getsmsaxbk();
+                                      getsmsjmbk();
+                                      getsmsjgbk();
+                                      Navigator.of(context).pop(context);
+                                    },
+                                    child: Container(
+                                      height:
+                                      MediaQuery.of(context).size.height /
+                                          10,
+                                      width:
+                                      MediaQuery.of(context).size.width /
+                                          1.10,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.transparent,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                const EdgeInsets.all(8.0),
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                    Colors.orange.shade50,
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        15),
+                                                  ),
+                                                  child: Image(
+                                                      image: const AssetImage(
+                                                          "assets/images/HDFC.png"),
+                                                      height: MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .height /
+                                                          20),
+                                                ),
+                                              ),
+                                              const Padding(
+                                                padding:
+                                                EdgeInsets
+                                                    .all(8.0),
+                                                child: Text(
+                                                    'HDFC'),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(15)),
+                                  elevation: 1,
+                                  child: GestureDetector(
+                                    onTap : (){
+                                      bank =4;
+                                      getsmsjgsbpboi() ;
+                                      getsmsjgscpboi() ;
+                                      getsmsjgsqpboi() ;
+                                      getsmsjgsboi();
+                                      getsmsjgboi() ;
+                                      getsmsjsboi();
+                                      getsmjgsboi() ;
+                                      getmsjgboi() ;
+                                      getsmsbrboi() ;
+                                      getsmsjmboi();
+                                      getsmsaxboi() ;
+                                      getsmsJDboi();
+                                      getsmsboi() ;
+                                      getsmsvksboi() ;
+                                      getsmsadsboi() ;
+                                      getsmsvmsboi() ;
+                                      getsmsvm2sboi() ;
+                                      getsmsvmboi();
+                                      getsmsvm2boi() ;
+                                      Navigator.of(context).pop(context);
+                                    },
+                                    child: Container(
+                                      height:
+                                      MediaQuery.of(context).size.height /
+                                          10,
+                                      width:
+                                      MediaQuery.of(context).size.width /
+                                          1.10,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.transparent,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                const EdgeInsets.all(8.0),
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                    Colors.orange.shade50,
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        15),
+                                                    //  border: Border.all(color: Colors.black, width: 1)
+                                                  ),
+                                                  child: Image(
+                                                      image: const AssetImage(
+                                                          "assets/images/boi.png"),
+                                                      height: MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .height /
+                                                          20),
+                                                ),
+                                              ),
+                                              const Padding(
+                                                padding:
+                                                EdgeInsets
+                                                    .all(8.0),
+                                                child: Text(
+                                                    'Bank of India'),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
+                  ),
+                ),
+              );
+            });});
 
 
-    print(widget.bank);
+      income = 0;
 
-    janex = 0;
-    febx = 0;
-    marx = 0;
-    mayx = 0;
-    aprx = 0;
-    junex = 0;
-    julyx = 0;
-    augustx = 0;
-    septx = 0;
-    octx = 0;
-    novx = 0;
-    decx = 0;
-    jan = [];
-    feb = [];
-    mar = [];
-    apr = [];
-    may = [];
-    june = [];
-    july = [];
-    august = [];
-    september = [];
-    october = [];
-    november = [];
-    december = [];
-    if(widget.bank==0){
-      getsmsvmbk();
-      getsmsvm2bk();
-      getsmsadbk();
-      getsmsJDbk();
-      getsmsBPbk();
-      getsmsvkbk();
-      getsmsaxbk();
-      getsmsjmbk();
-      getsmsjgbk();
-      getsmsvm2svk();
-
-      getsmsvm();
-      getsmsvm2();
-      getsmsad();
-      getsmsJD();
-      getsmsBP();
-      getsmsvk();
-      getsmsax();
-      getsmsjm();
-      getsmsjg();
+      supaBaseHandler.readData();
 
 
-      getsmsvm2sba();
-      getsmsJDs();
-      getsmsjgsbp();
-      getsmsjgbk();
-      getsmsjgbx();
-      getsmsjgscp();
-      getsmsjgsqp();
-      getsmsvms();
-      getsmsvm2s();
-      getsmsads();
-      getsmsBPs();
-      getsmsvks();
-      getsmsaxs();
-      getsmsjms();
-      getsmsjgs();
-    }
+      print(widget.bank);
 
-if(widget.bank==3 ) {
-  getsmsvmbk();
-  getsmsvm2bk();
-  getsmsadbk();
-  getsmsJDbk();
-  getsmsBPbk();
-  getsmsvkbk();
-  getsmsaxbk();
-  getsmsjmbk();
-  getsmsjgbk();
-}
+      janex = 0;
+      febx = 0;
+      marx = 0;
+      mayx = 0;
+      aprx = 0;
+      junex = 0;
+      julyx = 0;
+      augustx = 0;
+      septx = 0;
+      octx = 0;
+      novx = 0;
+      decx = 0;
+      jan = [];
+      feb = [];
+      mar = [];
+      apr = [];
+      may = [];
+      june = [];
+      july = [];
+      august = [];
+      september = [];
+      october = [];
+      november = [];
+      december = [];
+      // if(bank==0){
+      //   getsmsvmbk();
+      //   getsmsvm2bk();
+      //   getsmsadbk();
+      //   getsmsJDbk();
+      //   getsmsBPbk();
+      //   getsmsvkbk();
+      //   getsmsaxbk();
+      //   getsmsjmbk();
+      //   getsmsjgbk();
+      //   getsmsvm2svk();
+      //
+      //   getsmsvm();
+      //   getsmsvm2();
+      //   getsmsad();
+      //   getsmsJD();
+      //   getsmsBP();
+      //   getsmsvk();
+      //   getsmsax();
+      //   getsmsjm();
+      //   getsmsjg();
+      //
+      //
+      //   getsmsvm2sba();
+      //   getsmsJDs();
+      //   getsmsjgsbp();
+      //   getsmsjgbk();
+      //   getsmsjgbx();
+      //   getsmsjgscp();
+      //   getsmsjgsqp();
+      //   getsmsvms();
+      //   getsmsvm2s();
+      //   getsmsads();
+      //   getsmsBPs();
+      //   getsmsvks();
+      //   getsmsaxs();
+      //   getsmsjms();
+      //   getsmsjgs();
+      // }
+
+      // if(bank==3 ) {
+      //   getsmsvmbk();
+      //   getsmsvm2bk();
+      //   getsmsadbk();
+      //   getsmsJDbk();
+      //   getsmsBPbk();
+      //   getsmsvkbk();
+      //   getsmsaxbk();
+      //   getsmsjmbk();
+      //   getsmsjgbk();
+      // }
 //
 //
-    if(widget.bank==1) {
-      getsmsvm();
-      getsmsvm2();
-      getsmsad();
-      getsmsJD();
-      getsmsBP();
-      getsmsvk();
-      getsmsax();
-      getsmsjm();
-      getsmsjg();
-    }
+//       if(bank==1) {
+//         getsmsvm();
+//         getsmsvm2();
+//         getsmsad();
+//         getsmsJD();
+//         getsmsBP();
+//         getsmsvk();
+//         getsmsax();
+//         getsmsjm();
+//         getsmsjg();
+//       }
 
-    if(widget.bank==2) {
+      // if(bank==2) {
+      //
+      //   getsmsvm2sba();
+      //   getsmsJDs();
+      //   getsmsjgsbp();
+      //   getsmsbrs();
+      //   getsmsjgbk();
+      //   getsmsjgbx();
+      //   getsmsjgscp();
+      //   getsmsjgsqp();
+      //   getsmsjgsbw();
+      //   getsmsjgsbw();
+      //   getsmsvms();
+      //   getsmsvm2s();
+      //   getsmsads();
+      //   getsmsBPs();
+      //   getsmsvks();
+      //   getsmsaxs();
+      //   getsmsjms();
+      //   getsmsbrs();
+      //   getsmsjgsbv();
+      //   getsmsjgs();
+      // }
+      // if(bank==4){
+      //   getsmsjgsbpboi() ;
+      //   getsmsjgscpboi() ;
+      //   getsmsjgsqpboi() ;
+      //   getsmsjgsboi();
+      //   getsmsjgboi() ;
+      //   getsmsjsboi();
+      //   getsmjgsboi() ;
+      //   getmsjgboi() ;
+      //   getsmsbrboi() ;
+      //   getsmsjmboi();
+      //   getsmsaxboi() ;
+      //   getsmsJDboi();
+      //   getsmsboi() ;
+      //   getsmsvksboi() ;
+      //   getsmsadsboi() ;
+      //   getsmsvmsboi() ;
+      //   getsmsvm2sboi() ;
+      //   getsmsvmboi();
+      //   getsmsvm2boi() ;
+      // }
+    });
 
-      getsmsvm2sba();
-      getsmsJDs();
-      getsmsjgsbp();
-      getsmsbrs();
-      getsmsjgbk();
-      getsmsjgbx();
-      getsmsjgscp();
-      getsmsjgsqp();
-      getsmsjgsbw();
-      getsmsjgsbw();
-      getsmsvms();
-      getsmsvm2s();
-      getsmsads();
-      getsmsBPs();
-      getsmsvks();
-      getsmsaxs();
-      getsmsjms();
-      getsmsbrs();
-      getsmsjgsbv();
-      getsmsjgs();
-    }
-    if(widget.bank==4){
-       getsmsjgsbpboi() ;
-       getsmsjgscpboi() ;
-       getsmsjgsqpboi() ;
-       getsmsjgsboi();
-       getsmsjgboi() ;
-       getsmsjsboi();
-       getsmjgsboi() ;
-       getmsjgboi() ;
-       getsmsbrboi() ;
-       getsmsjmboi();
-       getsmsaxboi() ;
-       getsmsJDboi();
-       getsmsboi() ;
-       getsmsvksboi() ;
-       getsmsadsboi() ;
-       getsmsvmsboi() ;
-      getsmsvm2sboi() ;
-       getsmsvmboi();
-     getsmsvm2boi() ;
-    }
+
     super.initState();
     initialize();
   }

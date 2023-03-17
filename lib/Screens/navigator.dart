@@ -1,6 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
-
-
 import 'package:eclipsis/Screens/expenses.dart';
 import 'package:eclipsis/Screens/homepage.dart';
 import 'package:eclipsis/Screens/incometax2.dart';
@@ -14,14 +12,13 @@ class NavPage extends StatefulWidget {
   int pageIndex;
   int bank;
   NavPage({required this.pageIndex,required this.bank, super.key});
-
   @override
   State<NavPage> createState() => _NavPageState();
 }
 
 class _NavPageState extends State<NavPage> {
-  dynamic username = TextEditingController(text: "Tesla");
 
+  dynamic username = TextEditingController(text: "User");
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   List<Widget> widgetlists = [
@@ -31,8 +28,9 @@ class _NavPageState extends State<NavPage> {
     NewsPage(),
     TaxPage(),
   ];
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
         key: scaffoldKey,
         endDrawer: Container(

@@ -21,6 +21,7 @@ import '../components/homeboxes.dart';
 import 'expenses.dart';
 import 'invest2.dart';
 int bank = 0;
+int ha = 0;
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override
@@ -34,308 +35,13 @@ class _HomePageState extends State<HomePage> {
   FDs? fdlist;
   var isLoaded = false;
   var isLoaded1 = false;
-  dynamic username = TextEditingController(text: "Tesla");
+  dynamic username = TextEditingController(text: "User");
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   String name = '';
   @override
   void initState() {
 getperms();
     initialize();
-    bank==0?
-new Future.delayed(Duration.zero, () {
-  showDialog(
-      context: context,
-      builder: (context) {
-        return Center(
-          child: Container(
-            height: MediaQuery.of(context).size.height/1.5,
-            child: AlertDialog(
-              // title: Center(child:Text('Enter Code')),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
-              backgroundColor: Colors.grey[100],
-              elevation: 0.0,
-              content: StreamBuilder<int>(
-                  builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                    return Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Select your bank"),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(15)),
-                            elevation: 1,
-                            child: GestureDetector(
-                              onTap:(){
-                                  bank =1;
-                                Navigator.of(context).pop(context);
-                              },
-                              child: Container(
-                                height:
-                                MediaQuery.of(context).size.height /
-                                    10,
-                                width:
-                                MediaQuery.of(context).size.width /
-                                    1.10,
-                                decoration: const BoxDecoration(
-                                  /*border: Border.all(width: 1.5, color: Colors.black),*/
-                                  color: Colors.transparent,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            padding: const EdgeInsets.all(8),
-                                            decoration: BoxDecoration(
-                                              color:
-                                              Colors.orange.shade50,
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  15),
-                                              //  border: Border.all(color: Colors.black, width: 1)
-                                            ),
-                                            child: Image(
-                                                image: const AssetImage(
-                                                    "assets/images/BOB.jpg"),
-                                                height: MediaQuery.of(
-                                                    context)
-                                                    .size
-                                                    .height /
-                                                    20),
-                                          ),
-                                        ),
-                                        const Padding(
-                                          padding:
-                                          EdgeInsets
-                                              .all(8.0),
-                                          child: Text(
-                                              'Bank of baroda'),
-                                        )
-                                      ],
-                                    ),
-
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(15)),
-                            elevation: 1,
-                            child: GestureDetector(
-                              onTap : (){
-                                  bank =2;
-                                Navigator.of(context).pop(context);
-
-                              },
-                              child: Container(
-                                height:
-                                MediaQuery.of(context).size.height /
-                                    10,
-                                width:
-                                MediaQuery.of(context).size.width /
-                                    1.10,
-                                decoration: const BoxDecoration(
-                                  /*border: Border.all(width: 1.5, color: Colors.black),*/
-                                  color: Colors.transparent,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            padding: const EdgeInsets.all(8),
-                                            decoration: BoxDecoration(
-                                              color:
-                                              Colors.orange.shade50,
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  15),
-                                              //  border: Border.all(color: Colors.black, width: 1)
-                                            ),
-                                            child: Image(
-                                                image: const AssetImage(
-                                                    "assets/images/SBI.png"),
-                                                height: MediaQuery.of(
-                                                    context)
-                                                    .size
-                                                    .height /
-                                                    20),
-                                          ),
-                                        ),
-                                        const Padding(
-                                          padding:
-                                          EdgeInsets
-                                              .all(8.0),
-                                          child: Text(
-                                              'SBI'),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(15)),
-                            elevation: 1,
-                            child: GestureDetector(
-                              onTap:(){
-                                  bank=3;
-                                Navigator.of(context).pop(context);
-                              },
-                              child: Container(
-                                height:
-                                MediaQuery.of(context).size.height /
-                                    10,
-                                width:
-                                MediaQuery.of(context).size.width /
-                                    1.10,
-                                decoration: const BoxDecoration(
-                                  /*border: Border.all(width: 1.5, color: Colors.black),*/
-                                  color: Colors.transparent,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            padding: const EdgeInsets.all(8),
-                                            decoration: BoxDecoration(
-                                              color:
-                                              Colors.orange.shade50,
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  15),
-                                              //  border: Border.all(color: Colors.black, width: 1)
-                                            ),
-                                            child: Image(
-                                                image: const AssetImage(
-                                                    "assets/images/HDFC.png"),
-                                                height: MediaQuery.of(
-                                                    context)
-                                                    .size
-                                                    .height /
-                                                    20),
-                                          ),
-                                        ),
-                                        const Padding(
-                                          padding:
-                                          EdgeInsets
-                                              .all(8.0),
-                                          child: Text(
-                                              'HDFC'),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.circular(15)),
-                            elevation: 1,
-                            child: GestureDetector(
-                              onTap : (){
-                                bank =4;
-                                Navigator.of(context).pop(context);
-                              },
-                              child: Container(
-                                height:
-                                MediaQuery.of(context).size.height /
-                                    10,
-                                width:
-                                MediaQuery.of(context).size.width /
-                                    1.10,
-                                decoration: const BoxDecoration(
-                                  /*border: Border.all(width: 1.5, color: Colors.black),*/
-                                  color: Colors.transparent,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            padding: const EdgeInsets.all(8),
-                                            decoration: BoxDecoration(
-                                              color:
-                                              Colors.orange.shade50,
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  15),
-                                              //  border: Border.all(color: Colors.black, width: 1)
-                                            ),
-                                            child: Image(
-                                                image: const AssetImage(
-                                                    "assets/images/boi.png"),
-                                                height: MediaQuery.of(
-                                                    context)
-                                                    .size
-                                                    .height /
-                                                    20),
-                                          ),
-                                        ),
-                                        const Padding(
-                                          padding:
-                                          EdgeInsets
-                                              .all(8.0),
-                                          child: Text(
-                                              'Bank of India'),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-            ),
-          ),
-        );
-      });}):bank=0;
 getData2();
 getData();
 
@@ -379,7 +85,7 @@ getData();
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     setState(() {
-      name = snap['name'];
+      username = TextEditingController(text:snap['name']);
     });
   }
 
@@ -413,7 +119,7 @@ getData();
                           backgroundColor: Colors.white,
                           radius: 30,
                           backgroundImage:
-                          AssetImage("assets/images/applogo.png")),
+                          AssetImage("assets/images/logo.png")),
                       Padding(
                         padding: const EdgeInsets.only(left: 5.0),
                         child: Column(
