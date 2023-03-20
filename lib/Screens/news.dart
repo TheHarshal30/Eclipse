@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, unused_local_variable, prefer_interpolation_to_compose_strings, sized_box_for_whitespace, curly_braces_in_flow_control_structures, avoid_print, annotate_overrides
 
+import 'package:eclipsis/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,72 +16,72 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  News? market;
-  News? economy;
-  News? tech;
-  News? all;
+  // News? market;
+  // News? economy;
+  // News? tech;
+  // News? all;
 
   var selec = -1;
-  var isLoaded = false;
-  var isLoaded1 = false;
-  var isLoaded2 = false;
-  var isLoaded3 = false;
+  // var isLoaded = false;
+  // var isLoaded1 = false;
+  // var isLoaded2 = false;
+  // var isLoaded3 = false;
   @override
   void initState() {
     super.initState();
-    getData();
-    getData1();
-    getData2();
-    getData3();
+    // getData();
+    // getData1();
+    // getData2();
+    // getData3();
   }
 
-  getData() async {
-    market = (await NewServiceMarket.getPosts()) as News?;
-    print("Hello");
-    print(market);
-    if (market != null) {
-      print(market);
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
-
-  getData1() async {
-    economy = (await NewServiceEconomy.getPosts()) as News?;
-    print("Hello");
-    print(economy);
-    if (economy != null) {
-      print(economy);
-      setState(() {
-        isLoaded1 = true;
-      });
-    }
-  }
-
-  getData2() async {
-    tech = (await NewServiceTech.getPosts()) as News?;
-    print("Hello");
-    print(tech);
-    if (tech != null) {
-      print(tech);
-      setState(() {
-        isLoaded2 = true;
-      });
-    }
-  }
-
-  getData3() async {
-    all = (await NewServiceAll.getPosts()) as News?;
-    print("Hello");
-    print(all);
-    if (all != null) {
-      print(all);
-      setState(() {
-        isLoaded3 = true;
-      });
-    }
-  }
+  // getData() async {
+  //   market = (await NewServiceMarket.getPosts()) as News?;
+  //   print("Hello");
+  //   print(market);
+  //   if (market != null) {
+  //     print(market);
+  //     setState(() {
+  //       isLoaded = true;
+  //     });
+  //   }
+  // }
+  //
+  // getData1() async {
+  //   economy = (await NewServiceEconomy.getPosts()) as News?;
+  //   print("Hello");
+  //   print(economy);
+  //   if (economy != null) {
+  //     print(economy);
+  //     setState(() {
+  //       isLoaded1 = true;
+  //     });
+  //   }
+  // }
+  //
+  // getData2() async {
+  //   tech = (await NewServiceTech.getPosts()) as News?;
+  //   print("Hello");
+  //   print(tech);
+  //   if (tech != null) {
+  //     print(tech);
+  //     setState(() {
+  //       isLoaded2 = true;
+  //     });
+  //   }
+  // }
+  //
+  // getData3() async {
+  //   all = (await NewServiceAll.getPosts()) as News?;
+  //   print("Hello");
+  //   print(all);
+  //   if (all != null) {
+  //     print(all);
+  //     setState(() {
+  //       isLoaded3 = true;
+  //     });
+  //   }
+  // }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -204,7 +205,7 @@ class _NewsPageState extends State<NewsPage> {
             if (selec == -1) ...[
               Column(children: [
                 Visibility(
-                  visible: isLoaded3,
+                  visible: isFD,
                   child: Container(
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
@@ -332,7 +333,7 @@ class _NewsPageState extends State<NewsPage> {
             ] else if (selec == 0) ...[
               Column(children: [
                 Visibility(
-                  visible: isLoaded,
+                  visible: isFD,
                   child: Container(
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
@@ -456,7 +457,7 @@ class _NewsPageState extends State<NewsPage> {
             ] else if (selec == 1) ...[
               Column(children: [
                 Visibility(
-                  visible: isLoaded1,
+                  visible: isFD,
                   child: Container(
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
@@ -580,7 +581,7 @@ class _NewsPageState extends State<NewsPage> {
             ] else if (selec == 2) ...[
               Column(children: [
                 Visibility(
-                  visible: isLoaded2,
+                  visible: isFD,
                   child: Container(
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,

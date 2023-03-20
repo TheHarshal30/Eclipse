@@ -55,9 +55,22 @@ class _WelcomePageState extends State<WelcomePage> {
                 },
                 child: Container(
                   child: Center(
-                    child: Text(
-                      "Lets do this",
-                      style: GoogleFonts.ubuntu(fontSize: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage("assets/images/google.png"),
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            "Continue with Google",
+                            style: GoogleFonts.ubuntu(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   height: 50,

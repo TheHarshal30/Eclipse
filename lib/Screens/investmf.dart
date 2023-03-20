@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_interpolation_to_compose_strings, sort_child_properties_last, avoid_unnecessary_containers, unnecessary_new
 
+import 'package:eclipsis/main.dart';
 import 'package:eclipsis/models/fdmodel.dart';
 import 'package:eclipsis/models/mfmodel.dart';
 import 'package:eclipsis/models/mfmodel2.dart';
@@ -16,41 +17,12 @@ class InvestMFPage extends StatefulWidget {
 }
 
 class _InvestMFPageState extends State<InvestMFPage> {
-  FDs? fdlist;
-  List<Welcome>? mflist;
-  List<Welcome>? mflist2;
-  List<MFNAV>? mfnavlist;
-  Welcome2? mflist3;
-  var isLoaded = false;
-  var isLoaded2 = false;
-  var isLoaded1 = false;
-  var selec = 0;
 
+  var selec = 0;
   @override
   void initState() {
     super.initState();
-    getData2();
-    getData3();
-  }
 
-  getData2() async {
-    fdlist = (await RemoteService2.getPosts());
-
-    if (fdlist != null) {
-      //print("Hello");
-      setState(() {
-        isLoaded1 = true;
-      });
-    }
-  }
-
-  getData3() async {
-    mfnavlist = (await RemoteService4.getPosts());
-    if (mfnavlist != null) {
-      setState(() {
-        isLoaded2 = true;
-      });
-    }
   }
 
   Widget build(BuildContext context) {
@@ -144,7 +116,7 @@ class _InvestMFPageState extends State<InvestMFPage> {
                       Container(
                           height: MediaQuery.of(context).size.height / 1.37,
                           child: Visibility(
-                            visible: isLoaded1,
+                            visible: isFD,
                             child: SingleChildScrollView(
                               child: ListView.builder(
                                   shrinkWrap: true,
@@ -289,7 +261,7 @@ class _InvestMFPageState extends State<InvestMFPage> {
                       Container(
                           height: MediaQuery.of(context).size.height / 1.37,
                           child: Visibility(
-                            visible: isLoaded2,
+                            visible: isMF,
                             child: SingleChildScrollView(
                               child: ListView.builder(
                                   shrinkWrap: true,
