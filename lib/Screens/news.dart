@@ -205,7 +205,7 @@ class _NewsPageState extends State<NewsPage> {
             if (selec == -1) ...[
               Column(children: [
                 Visibility(
-                  visible: isFD,
+                  visible: nAll,
                   child: Container(
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
@@ -333,7 +333,7 @@ class _NewsPageState extends State<NewsPage> {
             ] else if (selec == 0) ...[
               Column(children: [
                 Visibility(
-                  visible: isFD,
+                  visible: nMar,
                   child: Container(
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
@@ -457,7 +457,7 @@ class _NewsPageState extends State<NewsPage> {
             ] else if (selec == 1) ...[
               Column(children: [
                 Visibility(
-                  visible: isFD,
+                  visible: nEco,
                   child: Container(
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
@@ -581,7 +581,7 @@ class _NewsPageState extends State<NewsPage> {
             ] else if (selec == 2) ...[
               Column(children: [
                 Visibility(
-                  visible: isFD,
+                  visible:nTech,
                   child: Container(
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,

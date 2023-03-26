@@ -26,7 +26,6 @@ var nTech = false;
 var nAll = false;
 getFDs() async {
   fdlist = (await RemoteService2.getPosts());
-
   if (fdlist != null) {
     //print("Hello");
     isFD = true;
@@ -65,9 +64,24 @@ Future main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    getFDs();
+    getMFs();
+    getNAll();
+    getNEco();
+    getNMar();
+    getNTech();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,17 +103,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    getFDs();
-    getMFs();
-    getNAll();
-    getNEco();
-    getNMar();
-    getNTech();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

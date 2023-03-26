@@ -5,6 +5,7 @@ import 'package:eclipsis/Screens/investmf.dart';
 import 'package:eclipsis/Screens/navigator.dart';
 import 'package:eclipsis/Screens/personalfinance.dart';
 import 'package:eclipsis/Screens/incometax2.dart';
+import 'package:eclipsis/main.dart';
 import 'package:eclipsis/models/fdmodel.dart';
 import 'package:eclipsis/models/newsmodel.dart';
 import 'package:eclipsis/models/newsservices.dart';
@@ -31,10 +32,8 @@ class HomePage extends StatefulWidget {
 TextEditingController _textFieldController = TextEditingController();
 
 class _HomePageState extends State<HomePage> {
-  News? market;
-  FDs? fdlist;
-  var isLoaded = false;
-  var isLoaded1 = false;
+  // News? market;
+  // FDs? fdlist;
   dynamic username = TextEditingController(text: "User");
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   String name = '';
@@ -42,29 +41,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
 getperms();
     initialize();
-getData2();
-getData();
-
     super.initState();
-  }
-  getData2() async {
-    fdlist = (await RemoteService2.getPosts());
-
-    if (fdlist != null) {
-      //print("Hello");
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
-
-  getData() async {
-    market = (await NewServiceMarket.getPosts());
-    if (market != null) {
-      setState(() {
-        isLoaded1 = true;
-      });
-    }
   }
 
   void getperms()async{
@@ -184,7 +161,7 @@ getData();
               ),
             ),
             Visibility(
-              visible: isLoaded,
+              visible: isFD,
               // ignore: sort_child_properties_last
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -428,51 +405,124 @@ getData();
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: (() {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => (Swipe())));
-              }),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  color: Colors.blueGrey.shade50,
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5.0),
-                        child: Text(
-                          "Introducing Eclipse Education",
-                          style: GoogleFonts.ubuntu(
-                              fontWeight: FontWeight.w500, fontSize: 16),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: (() {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => (Swipe())));
+                    }),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 5),
+                      child: Container(
+                        padding: EdgeInsets.only(
+                            right: 10, left: 20, top: 20, bottom: 20),
+                        color: Colors.blueGrey.shade50,
+                        width: MediaQuery.of(context).size.width / 1.20,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text(
+                                "Introducing Eclipse Education",
+                                style: GoogleFonts.ubuntu(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.black),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  child: Text(
+                                    "A list of articles made using blogs and reasearch papers by Personal Finance Experts",
+                                    style:
+                                    GoogleFonts.ubuntu(color: Colors.grey),
+                                  ),
+                                ),
+                                Image(
+                                  image: AssetImage("assets/images/learn2.png"),
+                                  height:
+                                  MediaQuery.of(context).size.height / 12,
+                                  color: Colors.grey.shade200,
+                                ),
+                              ],
+                            ),
+                            Text(
+                              "Start Learning",
+                              style: GoogleFonts.ubuntu(color: Colors.blue),
+                            )
+                          ],
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 1.65,
-                            child: Text(
-                              "A list of articles made using blogs and reasearch papers by Personal Finance Experts",
-                              style: GoogleFonts.ubuntu(color: Colors.grey),
-                            ),
-                          ),
-                          Image(
-                            image: AssetImage("assets/images/learn2.png"),
-                            height: MediaQuery.of(context).size.height / 12,
-                          ),
-                        ],
-                      ),
-                      Text(
-                        "Start Learning",
-                        style: GoogleFonts.ubuntu(color: Colors.blue),
-                      )
-                    ],
+                    ),
                   ),
-                ),
+                  GestureDetector(
+                    onTap: () async {
+                      Uri url =
+                      Uri(scheme: "https", host: "eclipse-edu.netlify.app");
+
+                      if (!await launchUrl(
+                        url,
+                        mode: LaunchMode.externalApplication,
+                      )) {
+                        throw Exception('Could not launch $url');
+                      }
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: Container(
+                        padding: EdgeInsets.only(
+                            right: 10, left: 20, top: 20, bottom: 20),
+                        color: Colors.blueGrey.shade50,
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
+                              child: Text(
+                                "Want to write for Eclipse?",
+                                style: GoogleFonts.ubuntu(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.black),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  child: Text(
+                                    "We invite people from all over the globe to write about personal fiance,etc",
+                                    style:
+                                    GoogleFonts.ubuntu(color: Colors.grey),
+                                  ),
+                                ),
+                                Image(
+                                  image: AssetImage("assets/images/learn2.png"),
+                                  height:
+                                  MediaQuery.of(context).size.height / 12,
+                                  color: Colors.grey.shade200,
+                                ),
+                              ],
+                            ),
+                            Text(
+                              "Start Writing",
+                              style: GoogleFonts.ubuntu(color: Colors.blue),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(
@@ -491,7 +541,9 @@ getData();
                           Text(
                             "Eclipse News Flash",
                             style: GoogleFonts.ubuntu(
-                                fontWeight: FontWeight.w500, fontSize: 16),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Colors.white),
                           ),
                           Text(
                             "Read top news on the go",
@@ -508,7 +560,7 @@ getData();
             Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
               child: Visibility(
-                  visible: isLoaded1,
+                  visible: nEco,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Container(
