@@ -70,6 +70,7 @@ getperms();
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             GestureDetector(
@@ -327,15 +328,10 @@ getperms();
                                     GestureDetector(
                                       onTap: () {
                                         setState(() {
-                                          Navigator.of(context)
-                                              .pushAndRemoveUntil(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      NavPage(
-                                                        pageIndex: 1, bank: bank,
-                                                      )),
-                                                  (Route<dynamic> route) =>
-                                              false);
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => InvestMFPage()),
+                                          );
                                         });
                                       },
                                       child: Padding(
@@ -449,7 +445,6 @@ getperms();
                                   image: AssetImage("assets/images/learn2.png"),
                                   height:
                                   MediaQuery.of(context).size.height / 12,
-                                  color: Colors.grey.shade200,
                                 ),
                               ],
                             ),
@@ -500,7 +495,7 @@ getperms();
                                 Container(
                                   width: MediaQuery.of(context).size.width / 2,
                                   child: Text(
-                                    "We invite people from all over the globe to write about personal fiance,etc",
+                                    "We invite people from all over the globe to write about personal finance,etc",
                                     style:
                                     GoogleFonts.ubuntu(color: Colors.grey),
                                   ),
@@ -509,7 +504,6 @@ getperms();
                                   image: AssetImage("assets/images/learn2.png"),
                                   height:
                                   MediaQuery.of(context).size.height / 12,
-                                  color: Colors.grey.shade200,
                                 ),
                               ],
                             ),
@@ -543,7 +537,7 @@ getperms();
                             style: GoogleFonts.ubuntu(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16,
-                                color: Colors.white),
+                                color: Colors.black),
                           ),
                           Text(
                             "Read top news on the go",
@@ -558,153 +552,485 @@ getperms();
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: Visibility(
-                  visible: nEco,
-                  child: SingleChildScrollView(
+              padding: const EdgeInsets.only(top: 8.0, left: 10, right: 10,bottom: 20),
+              child: Container(
+                height: MediaQuery.of(context).size.height / 2,
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    child: Container(
-                        height: MediaQuery.of(context).size.height / 2.8,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 10,
-                          itemBuilder: ((context, index) {
-                            return Card(
-                              elevation: 1,
-                              child: Padding(
-                                padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 18.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade200,
+                                borderRadius: BorderRadius.circular(5)),
+                            height: MediaQuery.of(context).size.height / 2.8,
+                            width: MediaQuery.of(context).size.width / 1.2,
+                            child: Column(children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 12.0, bottom: 5),
+                                child: Text(
+                                  "All Finance Headlines",
+                                  style: GoogleFonts.ubuntu( fontSize: 17),
+                                ),
+                              ),
+                              Visibility(
+                                visible: nAll,
                                 child: Container(
-                                  width:
-                                  MediaQuery.of(context).size.width / 1.5,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          width: 1, color: Colors.white)),
-                                  child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                      children: [
-                                        if (market!.feed[index].bannerImage ==
-                                            null) ...[
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8),
+                                  height:
+                                  MediaQuery.of(context).size.height / 2.2,
+                                  child: ListView.builder(
+                                      physics: BouncingScrollPhysics(),
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: all?.feed.length,
+                                      itemBuilder: (context, index) {
+                                        return GestureDetector(
+                                          onTap: () async {
+                                            var url =
+                                            Uri.parse(all!.feed[index].url);
+                                            if (await canLaunchUrl(url)) {
+                                              await launchUrl(
+                                                url,
+                                                mode: LaunchMode
+                                                    .externalApplication,
+                                              );
+                                            } else {
+                                              throw 'Could not launch $url';
+                                            }
+                                          },
+                                          child: Padding(
+                                            padding:
+                                            const EdgeInsets.symmetric(),
                                             child: Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                                  6,
-                                              child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/profile.png")),
-                                            ),
-                                          )
-                                        ] else if (Uri.parse(market!
-                                            .feed[index].bannerImage
-                                            .toString())
-                                            .host
-                                            .isEmpty) ...[
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                                  6,
-                                              child: Image(
-                                                  image: AssetImage(
-                                                      "assets/images/profile.png")),
-                                            ),
-                                          )
-                                        ] else ...[
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 8.0, vertical: 2),
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                                  6,
-                                              child: Image.network(
-                                                market!.feed[index].bannerImage
-                                                    .toString(),
-                                                fit: BoxFit.fill,
-                                                loadingBuilder:
-                                                    (BuildContext context,
-                                                    Widget child,
-                                                    ImageChunkEvent?
-                                                    loadingProgress) {
-                                                  if (loadingProgress == null)
-                                                    return child;
-                                                  return Center(
-                                                    child:
-                                                    CircularProgressIndicator(
-                                                      value: loadingProgress
-                                                          .expectedTotalBytes !=
-                                                          null
-                                                          ? loadingProgress
-                                                          .cumulativeBytesLoaded /
-                                                          loadingProgress
-                                                              .expectedTotalBytes!
-                                                          : null,
-                                                    ),
-                                                  );
-                                                },
+                                              padding: EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey.shade200,
+                                                border: Border(
+                                                  bottom: BorderSide(
+                                                    width: 0.2,
+                                                    color: Colors.black,
+                                                  )
+                                                )
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                        padding:
+                                                        EdgeInsets.only(),
+                                                        width: MediaQuery.of(
+                                                            context)
+                                                            .size
+                                                            .width,
+                                                        child: Text(
+                                                          all!.feed[index]
+                                                              .title,
+                                                          style: GoogleFonts
+                                                              .ubuntu(
+                                                              fontSize: 14),
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "Source: ",
+                                                            style: GoogleFonts
+                                                                .ubuntu(
+                                                                color: Colors
+                                                                    .grey,
+                                                                fontSize:
+                                                                12),
+                                                          ),
+                                                          Text(
+                                                              all!.feed[index]
+                                                                  .source,
+                                                              style: GoogleFonts
+                                                                  .ubuntu(
+                                                                  fontSize:
+                                                                  12,
+                                                                  color: Colors
+                                                                      .grey)),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
-                                        ],
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8.0),
-                                          child: Text(
-                                            market!.feed[index].title,
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 3,
-                                            style: GoogleFonts.ubuntu(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ),
-                                      ]),
+                                        );
+                                      }),
+                                ),
+                                replacement: const Center(
+                                  child: CircularProgressIndicator(),
                                 ),
                               ),
-                            );
-                          }),
-                        )),
-                  ),
-                  replacement: Center(
-                      child: Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.grey[100]!,
-                        child: Container(
-                          width: 1000,
-                          height: MediaQuery.of(context).size.height / 3,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 6,
-                            itemBuilder: (context, index) {
-                              return Card(
-                                elevation: 1.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: const SizedBox(height: 80),
-                              );
-                            },
+                            ]),
                           ),
                         ),
-                      ))),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 18.0),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade200,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              height: MediaQuery.of(context).size.height / 2.8,
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              child: Column(children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12.0,bottom: 5),
+                                  child: Text(
+                                    "Market Headlines",
+                                    style: GoogleFonts.ubuntu( fontSize: 17),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: nMar,
+                                  child: Container(
+                                    padding: EdgeInsets.all(8),
+                                    height: MediaQuery.of(context).size.height /
+                                        2.2,
+                                    child: ListView.builder(
+                                        physics: BouncingScrollPhysics(),
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: market?.feed.length,
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                            onTap: () async {
+                                              var url = Uri.parse(
+                                                  market!.feed[index].url);
+                                              if (await canLaunchUrl(url)) {
+                                                await launchUrl(
+                                                  url,
+                                                  mode: LaunchMode
+                                                      .externalApplication,
+                                                );
+                                              } else {
+                                                throw 'Could not launch $url';
+                                              }
+                                            },
+                                            child: Padding(
+                                              padding:
+                                              const EdgeInsets.symmetric(),
+                                              child: Container(
+                                                padding: EdgeInsets.all(10),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey.shade200,
+                                                  border: Border(
+                                                      bottom: BorderSide(
+                                                        width: 0.2,
+                                                        color: Colors.black,
+                                                      )
+                                                  ),
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        Container(
+                                                          padding:
+                                                          EdgeInsets.only(),
+                                                          width: MediaQuery.of(
+                                                              context)
+                                                              .size
+                                                              .width,
+                                                          child: Text(
+                                                            market!.feed[index]
+                                                                .title,
+                                                            style: GoogleFonts
+                                                                .ubuntu(
+                                                                fontSize:
+                                                                14,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              "Source: ",
+                                                              style: GoogleFonts
+                                                                  .ubuntu(
+                                                                  color: Colors
+                                                                      .grey,
+                                                                  fontSize:
+                                                                  12),
+                                                            ),
+                                                            Text(
+                                                                market!
+                                                                    .feed[index]
+                                                                    .source,
+                                                                style: GoogleFonts.ubuntu(
+                                                                    fontSize:
+                                                                    12,
+                                                                    color: Colors
+                                                                        .grey)),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                                  ),
+                                  replacement: const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                )
+                              ])),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 18.0),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade200,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              height: MediaQuery.of(context).size.height / 2.8,
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              child: Column(children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12.0,bottom: 5),
+                                  child: Text(
+                                    "Economy Headlines",
+                                    style: GoogleFonts.ubuntu( fontSize: 17),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: nEco,
+                                  child: Container(
+                                    padding: EdgeInsets.all(8),
+                                    height: MediaQuery.of(context).size.height /
+                                        2.2,
+                                    child: ListView.builder(
+                                        physics: BouncingScrollPhysics(),
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: economy?.feed.length,
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                            onTap: () async {
+                                              var url = Uri.parse(
+                                                  economy!.feed[index].url);
+                                              if (await canLaunchUrl(url)) {
+                                                await launchUrl(
+                                                  url,
+                                                  mode: LaunchMode
+                                                      .externalApplication,
+                                                );
+                                              } else {
+                                                throw 'Could not launch $url';
+                                              }
+                                            },
+                                            child: Padding(
+                                              padding:
+                                              const EdgeInsets.symmetric(),
+                                              child: Container(
+                                                padding: EdgeInsets.all(10),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey.shade200,
+                                                  border: Border(
+                                                      bottom: BorderSide(
+                                                        width: 0.2,
+                                                        color: Colors.black,
+                                                      )
+                                                  ),
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        Container(
+                                                          padding:
+                                                          EdgeInsets.only(),
+                                                          width: MediaQuery.of(
+                                                              context)
+                                                              .size
+                                                              .width,
+                                                          child: Text(
+                                                            economy!.feed[index]
+                                                                .title,
+                                                            style: GoogleFonts
+                                                                .ubuntu(
+                                                                fontSize:
+                                                                14,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              "Source: ",
+                                                              style: GoogleFonts
+                                                                  .ubuntu(
+                                                                  color: Colors
+                                                                      .grey,
+                                                                  fontSize:
+                                                                  12),
+                                                            ),
+                                                            Text(
+                                                                economy!
+                                                                    .feed[index]
+                                                                    .source,
+                                                                style: GoogleFonts.ubuntu(
+                                                                    fontSize:
+                                                                    12,
+                                                                    color: Colors
+                                                                        .grey)),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                                  ),
+                                  replacement: const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                )
+                              ])),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 18.0),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade200,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              height: MediaQuery.of(context).size.height / 2.8,
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              child: Column(children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12.0,bottom: 5),
+                                  child: Text(
+                                    "Technology Headlines",
+                                    style: GoogleFonts.ubuntu( fontSize: 17),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: nTech,
+                                  child: Container(
+                                    padding: EdgeInsets.all(8),
+                                    height: MediaQuery.of(context).size.height /
+                                        2.2,
+                                    child: ListView.builder(
+                                        physics: BouncingScrollPhysics(),
+                                        scrollDirection: Axis.vertical,
+                                        itemCount: tech?.feed.length,
+                                        itemBuilder: (context, index) {
+                                          return GestureDetector(
+                                            onTap: () async {
+                                              var url = Uri.parse(
+                                                  tech!.feed[index].url);
+                                              if (await canLaunchUrl(url)) {
+                                                await launchUrl(
+                                                  url,
+                                                  mode: LaunchMode
+                                                      .externalApplication,
+                                                );
+                                              } else {
+                                                throw 'Could not launch $url';
+                                              }
+                                            },
+                                            child: Padding(
+                                              padding:
+                                              const EdgeInsets.symmetric(),
+                                              child: Container(
+                                                padding: EdgeInsets.all(10),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey.shade200,
+                                                  border: Border(
+                                                      bottom: BorderSide(
+                                                        width: 0.2,
+                                                        color: Colors.black,
+                                                      )
+                                                  ),
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        Container(
+                                                          padding:
+                                                          EdgeInsets.only(),
+                                                          width: MediaQuery.of(
+                                                              context)
+                                                              .size
+                                                              .width,
+                                                          child: Text(
+                                                            tech!.feed[index]
+                                                                .title,
+                                                            style: GoogleFonts
+                                                                .ubuntu(
+                                                                fontSize:
+                                                                14,
+                                                               ),
+                                                          ),
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              "Source: ",
+                                                              style: GoogleFonts
+                                                                  .ubuntu(
+                                                                  color: Colors
+                                                                      .grey,
+                                                                  fontSize:
+                                                                  12),
+                                                            ),
+                                                            Text(
+                                                                tech!
+                                                                    .feed[index]
+                                                                    .source,
+                                                                style: GoogleFonts.ubuntu(
+                                                                    fontSize:
+                                                                    12,
+                                                                    color: Colors
+                                                                        .grey)),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }),
+                                  ),
+                                  replacement: const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                )
+                              ])),
+                        ),
+                      ],
+                    )),
+              ),
             ),
           ],
         ),

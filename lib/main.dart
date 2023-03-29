@@ -1,5 +1,6 @@
 import 'package:eclipsis/Screens/homepage.dart';
 import 'package:eclipsis/Screens/navigator.dart';
+import 'package:eclipsis/Screens/splashscreen.dart';
 import 'package:eclipsis/Screens/welcome.dart';
 import 'package:eclipsis/firebase_options.dart';
 import 'package:eclipsis/models/fdmodel.dart';
@@ -120,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           }
           if (snapshot.hasData) {
-            return NavPage(pageIndex: 0, bank: 0);
+            return Splash();
           } else {
             return WelcomePage();
           }

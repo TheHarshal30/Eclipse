@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../bar graphs/expenseSummary.dart';
 import 'package:eclipsis/main.dart';// @TODO genrate mai jan.add
+bool kk = false;
 class ExpensePage extends StatefulWidget {
   int bank;
   ExpensePage({super.key,required this.bank});
@@ -19,6 +20,7 @@ class ExpensePage extends StatefulWidget {
 
 class ExpensePageState extends State<ExpensePage> {
   int bank =0;
+  bool _isLoading = true;
   bool temppp = false;
   SupaBaseHandler supaBaseHandler = SupaBaseHandler();
   bool gen1 = true;
@@ -676,7 +678,7 @@ class ExpensePageState extends State<ExpensePage> {
     if (permission.isGranted) {
       final messages = await _query.querySms(
         kinds: [SmsQueryKind.inbox],
-        address: 'BX-v',
+        address: 'BX-BOIIND',
       );
       debugPrint('sms inbox messages: ${messages.length}');
       setState(() => _messages.addAll(messages));
@@ -885,10 +887,47 @@ class ExpensePageState extends State<ExpensePage> {
   }
 
 
+@override
+void dispose() {
+print("dispose");
+    super.dispose();
+    janex = 0;
+    febx = 0;
+    marx = 0;
+    mayx = 0;
+    aprx = 0;
+    junex = 0;
+    julyx = 0;
+    augustx = 0;
+    septx = 0;
+    octx = 0;
+    novx = 0;
+    decx = 0;
+    jan = [];
+    feb = [];
+    mar = [];
+    apr = [];
+    may = [];
+    june = [];
+    july = [];
+    august = [];
+    september = [];
+    october = [];
+    november = [];
+    december = [];
+_messages = [];
 
+}
   @override
   void initState() {
+    _isLoading = true;
     super.initState();
+    Future.delayed(Duration(seconds: 30), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       new Future.delayed(Duration.zero, () {
         showDialog(
@@ -1023,7 +1062,6 @@ class ExpensePageState extends State<ExpensePage> {
                                               )
                                             ],
                                           ),
-
                                         ],
                                       ),
                                     ),
@@ -1037,28 +1075,14 @@ class ExpensePageState extends State<ExpensePage> {
                                   child: GestureDetector(
                                     onTap : (){
                                       bank =2;
-                                      getsmsvm2sba();
-                                      getsmsJDs();
-                                      getsmsjgsbp();
-                                      getsmsbrs();
-                                      getsmsjgbk();
-                                      getsmsjgbx();
-                                      getsmsjgscp();
-                                      getsmsjgsqp();
-                                      getsmsjgsbw();
-                                      getsmsjgsbw();
-                                      getsmsvms();
-                                      getsmsvm2s();
-                                      getsmsads();
-                                      getsmsBPs();
-                                      getsmsvks();
-                                      getsmsaxs();
-                                      getsmsjms();
-                                      getsmsbrs();
-                                      getsmsjgsbv();
-                                      getsmsjgs();
+                                       getsmsjgsbp() ; getsmsjgscp() ; getsmsjgsqp() ;getsmsjgsbw() ;getsmsjgbx() ;getsmsjgsbz() ;getsmsjgsbv() ; getsmsjgs() ; getsmsbrs() ; getsmsjms() ; getsmsaxs(); getsmsJDs() ;
+                                       getsmsBPs();getsmsvks() ;
+                                       getsmsads();
+                                       getsmsvms() ;
+                                       getsmsvm2s() ;
+                                       getsmsvm2svk() ;
+                                       getsmsvm2sba() ;
                                       Navigator.of(context).pop(context);
-
                                     },
                                     child: Container(
                                       height:
@@ -1288,32 +1312,8 @@ class ExpensePageState extends State<ExpensePage> {
       supaBaseHandler.readData();
 
 
-      print(widget.bank);
+      print("bank $bank");
 
-      janex = 0;
-      febx = 0;
-      marx = 0;
-      mayx = 0;
-      aprx = 0;
-      junex = 0;
-      julyx = 0;
-      augustx = 0;
-      septx = 0;
-      octx = 0;
-      novx = 0;
-      decx = 0;
-      jan = [];
-      feb = [];
-      mar = [];
-      apr = [];
-      may = [];
-      june = [];
-      july = [];
-      august = [];
-      september = [];
-      october = [];
-      november = [];
-      december = [];
       // if(bank==0){
       //   getsmsvmbk();
       //   getsmsvm2bk();
@@ -1423,10 +1423,34 @@ class ExpensePageState extends State<ExpensePage> {
       //   getsmsvmboi();
       //   getsmsvm2boi() ;
       // }
+
     });
-
-
     super.initState();
+    janex = 0;
+    febx = 0;
+    marx = 0;
+    mayx = 0;
+    aprx = 0;
+    junex = 0;
+    julyx = 0;
+    augustx = 0;
+    septx = 0;
+    octx = 0;
+    novx = 0;
+    decx = 0;
+    jan = [];
+    feb = [];
+    mar = [];
+    apr = [];
+    may = [];
+    june = [];
+    july = [];
+    august = [];
+    september = [];
+    october = [];
+    november = [];
+    december = [];
+    _messages = [];
     initialize();
   }
 
@@ -1494,8 +1518,7 @@ class ExpensePageState extends State<ExpensePage> {
                   ],
                 ),
               ),
-              selected == 2
-                  ? Padding(
+              selected==2? Padding(
                       padding:
                           const EdgeInsets.only(left: 18.0, top: 30, right: 18),
                       child: Container(
@@ -1621,94 +1644,6 @@ class ExpensePageState extends State<ExpensePage> {
                                     );
                                   });});
                             setState(() {
-                                // FirebaseFirestore.instance
-                                //     .collection("Users")
-                                //     .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //     .set({
-                                //   'january': jan
-                                // }, SetOptions(merge: true));
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'february':feb
-                                //   }, SetOptions(merge: true));
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'march': mar
-                                //   }, SetOptions(merge: true));
-                                //
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'april': apr
-                                //   }, SetOptions(merge: true));
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'may': may
-                                //   }, SetOptions(merge: true));
-                                //
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'june': june
-                                //   }, SetOptions(merge: true));
-                                //
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'july': july
-                                //   }, SetOptions(merge: true));
-                                //
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'august': august
-                                //   }, SetOptions(merge: true));
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'september': september
-                                //   }, SetOptions(merge: true));
-                                //
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'october': october
-                                //   }, SetOptions(merge: true));
-                                //
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'november': november
-                                //   }, SetOptions(merge: true));
-                                //
-                                //   FirebaseFirestore.instance
-                                //       .collection("Users")
-                                //       .doc(FirebaseAuth.instance.currentUser!.uid)
-                                //       .set({
-                                //     'december': december
-                                //   }, SetOptions(merge: true));
                               janex = 0;
                               febx = 0;
                               marx = 0;
@@ -1952,7 +1887,7 @@ class ExpensePageState extends State<ExpensePage> {
                         ),
                       ),
                     ),
-              _messages.length!=0?
+              _isLoading==false?
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -2302,7 +2237,7 @@ class ExpensePageState extends State<ExpensePage> {
       }
 
 
-                              if (message.date?.month == DateTime.january ) {
+                              if (message.date?.month == DateTime.january) {
                                 jan.add(rek);
                               }
                               if (message.date?.month == DateTime.february ) {
@@ -2311,21 +2246,21 @@ class ExpensePageState extends State<ExpensePage> {
                               if (message.date?.month == DateTime.march ) {
                                 mar.add(rek);
                               }
-                              if (message.date?.month == DateTime.april   ) {
+                              if (message.date?.month == DateTime.april ) {
                                 apr.add(rek);
                               }
-                              if (message.date?.month == DateTime.may    ) {
+                              if (message.date?.month == DateTime.may ) {
                                 may.add(rek);
 
                               }
-                              if (message.date?.month == DateTime.june   ) {
+                              if (message.date?.month == DateTime.june ) {
                                 june.add(rek);
 
                               }
                               if (message.date?.month == DateTime.july ) {
                                 july.add(rek);
                               }
-                              if (message.date?.month == DateTime.august ) {
+                              if (message.date?.month == DateTime.august  ) {
                                 august.add(rek);
 
                               }
@@ -2337,16 +2272,16 @@ class ExpensePageState extends State<ExpensePage> {
                                 october.add(rek);
 
                               }
-                              if (message.date?.month == DateTime.november  ) {
+                              if (message.date?.month == DateTime.november ) {
                                 november.add(rek);
 
                               }
-                              if (message.date?.month == DateTime.december) {
+                              if (message.date?.month == DateTime.december ) {
                                 december.add(rek);
                               }
-                              // if(i==_messages.length-1){
-                              //   kk=true;
-                              // }
+                              if(i==_messages.length-1){
+                                kk=true;
+                              }
                               return
                                 (i < 4) && p.length>4
                                   ? Card(

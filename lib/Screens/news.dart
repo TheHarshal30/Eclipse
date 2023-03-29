@@ -86,6 +86,7 @@ class _NewsPageState extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
         child: Column(
           children: [
             SingleChildScrollView(
@@ -210,6 +211,7 @@ class _NewsPageState extends State<NewsPage> {
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
                     child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: all?.feed.length,
@@ -228,97 +230,96 @@ class _NewsPageState extends State<NewsPage> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                    border: Border.all(
-                                        width: 1, color: Colors.grey.shade400)),
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    if (!Uri.tryParse(all!
-                                        .feed[index].bannerImage
-                                        .toString())!
-                                        .hasAbsolutePath) ...[
-                                      Container(
-                                        width:
-                                        MediaQuery.of(context).size.width,
-                                        height:
-                                        MediaQuery.of(context).size.height /
-                                            4,
-                                        child: Image(
-                                            image: AssetImage(
-                                                "assets/images/profile.png")),
-                                      )
-                                    ] else ...[
-                                      Container(
-                                        width:
-                                        MediaQuery.of(context).size.width,
-                                        height:
-                                        MediaQuery.of(context).size.height /
-                                            4,
-                                        child: Image.network(
-                                          all!.feed[index].bannerImage
-                                              .toString(),
-                                          filterQuality: FilterQuality.high,
-                                          fit: BoxFit.fill,
-                                          loadingBuilder: (BuildContext context,
-                                              Widget child,
-                                              ImageChunkEvent?
-                                              loadingProgress) {
-                                            if (loadingProgress == null) {
-                                              return child;
-                                            }
-                                            return Center(
-                                              child: CircularProgressIndicator(
-                                                value: loadingProgress
-                                                    .expectedTotalBytes !=
-                                                    null
-                                                    ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                    loadingProgress
-                                                        .expectedTotalBytes!
-                                                    : null,
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                    Column(
-                                      children: [
+                              child: Card(
+                                elevation: 1,
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      if (!Uri.tryParse(all!
+                                          .feed[index].bannerImage
+                                          .toString())!
+                                          .hasAbsolutePath) ...[
                                         Container(
-                                          padding: EdgeInsets.only(
-                                              top: 20,
-                                              bottom: 10,
-                                              left: 5,
-                                              right: 5),
                                           width:
                                           MediaQuery.of(context).size.width,
-                                          child: Text(
-                                            all!.feed[index].title,
-                                            style: GoogleFonts.ubuntu(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
+                                          height:
+                                          MediaQuery.of(context).size.height /
+                                              4,
+                                          child: Image(
+                                              image: AssetImage(
+                                                  "assets/images/profile.png")),
+                                        )
+                                      ] else ...[
                                         Container(
-                                          padding: EdgeInsets.only(
-                                              bottom: 10, left: 5, right: 5),
                                           width:
                                           MediaQuery.of(context).size.width,
-                                          child: Text(
-                                            all!.feed[index].summary,
-                                            style: GoogleFonts.ubuntu(
-                                                color: Colors.grey),
+                                          height:
+                                          MediaQuery.of(context).size.height /
+                                              4,
+                                          child: Image.network(
+                                            all!.feed[index].bannerImage
+                                                .toString(),
+                                            filterQuality: FilterQuality.high,
+                                            fit: BoxFit.fill,
+                                            loadingBuilder: (BuildContext context,
+                                                Widget child,
+                                                ImageChunkEvent?
+                                                loadingProgress) {
+                                              if (loadingProgress == null) {
+                                                return child;
+                                              }
+                                              return Center(
+                                                child: CircularProgressIndicator(
+                                                  value: loadingProgress
+                                                      .expectedTotalBytes !=
+                                                      null
+                                                      ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                      loadingProgress
+                                                          .expectedTotalBytes!
+                                                      : null,
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ),
                                       ],
-                                    ),
-                                  ],
+                                      Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                top: 20,
+                                                bottom: 10,
+                                                left: 5,
+                                                right: 5),
+                                            width:
+                                            MediaQuery.of(context).size.width,
+                                            child: Text(
+                                              all!.feed[index].title,
+                                              style: GoogleFonts.ubuntu(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                bottom: 10, left: 5, right: 5),
+                                            width:
+                                            MediaQuery.of(context).size.width,
+                                            child: Text(
+                                              all!.feed[index].summary,
+                                              style: GoogleFonts.ubuntu(
+                                                  color: Colors.grey),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -338,6 +339,7 @@ class _NewsPageState extends State<NewsPage> {
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
                     child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: market?.feed.length,
@@ -356,93 +358,92 @@ class _NewsPageState extends State<NewsPage> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Container(
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                    border: Border.all(
-                                        width: 1, color: Colors.grey.shade300)),
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    if (market!.feed[index].bannerImage ==
-                                        null) ...[
-                                      Container(
-                                        width:
-                                        MediaQuery.of(context).size.width,
-                                        height:
-                                        MediaQuery.of(context).size.height /
-                                            4,
-                                        child: Image(
-                                            image: AssetImage(
-                                                "assets/images/profile.png")),
-                                      )
-                                    ] else ...[
-                                      Container(
-                                        width:
-                                        MediaQuery.of(context).size.width,
-                                        height:
-                                        MediaQuery.of(context).size.height /
-                                            4,
-                                        child: Image.network(
-                                          market!.feed[index].bannerImage
-                                              .toString(),
-                                          fit: BoxFit.fill,
-                                          loadingBuilder: (BuildContext context,
-                                              Widget child,
-                                              ImageChunkEvent?
-                                              loadingProgress) {
-                                            if (loadingProgress == null)
-                                              return child;
-                                            return Center(
-                                              child: CircularProgressIndicator(
-                                                value: loadingProgress
-                                                    .expectedTotalBytes !=
-                                                    null
-                                                    ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                    loadingProgress
-                                                        .expectedTotalBytes!
-                                                    : null,
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                    Column(
-                                      children: [
+                              child: Card(
+                                elevation: 1,
+                                child: Container(
+                                  padding: EdgeInsets.all(8),
+
+                                  child: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      if (market!.feed[index].bannerImage ==
+                                          null) ...[
                                         Container(
-                                          padding: EdgeInsets.only(
-                                              top: 20,
-                                              bottom: 10,
-                                              left: 5,
-                                              right: 5),
                                           width:
                                           MediaQuery.of(context).size.width,
-                                          child: Text(
-                                            market!.feed[index].title,
-                                            style: GoogleFonts.ubuntu(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ),
+                                          height:
+                                          MediaQuery.of(context).size.height /
+                                              4,
+                                          child: Image(
+                                              image: AssetImage(
+                                                  "assets/images/profile.png")),
+                                        )
+                                      ] else ...[
                                         Container(
-                                          padding: EdgeInsets.only(
-                                              bottom: 10, left: 5, right: 5),
                                           width:
                                           MediaQuery.of(context).size.width,
-                                          child: Text(
-                                            market!.feed[index].summary,
-                                            style: GoogleFonts.ubuntu(
-                                                color: Colors.grey),
+                                          height:
+                                          MediaQuery.of(context).size.height /
+                                              4,
+                                          child: Image.network(
+                                            market!.feed[index].bannerImage
+                                                .toString(),
+                                            fit: BoxFit.fill,
+                                            loadingBuilder: (BuildContext context,
+                                                Widget child,
+                                                ImageChunkEvent?
+                                                loadingProgress) {
+                                              if (loadingProgress == null)
+                                                return child;
+                                              return Center(
+                                                child: CircularProgressIndicator(
+                                                  value: loadingProgress
+                                                      .expectedTotalBytes !=
+                                                      null
+                                                      ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                      loadingProgress
+                                                          .expectedTotalBytes!
+                                                      : null,
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ),
                                       ],
-                                    ),
-                                  ],
+                                      Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                top: 20,
+                                                bottom: 10,
+                                                left: 5,
+                                                right: 5),
+                                            width:
+                                            MediaQuery.of(context).size.width,
+                                            child: Text(
+                                              market!.feed[index].title,
+                                              style: GoogleFonts.ubuntu(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                bottom: 10, left: 5, right: 5),
+                                            width:
+                                            MediaQuery.of(context).size.width,
+                                            child: Text(
+                                              market!.feed[index].summary,
+                                              style: GoogleFonts.ubuntu(
+                                                  color: Colors.grey),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -462,6 +463,7 @@ class _NewsPageState extends State<NewsPage> {
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
                     child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: economy?.feed.length,
@@ -480,93 +482,91 @@ class _NewsPageState extends State<NewsPage> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Container(
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(5)),
-                                    border: Border.all(
-                                        width: 1, color: Colors.grey.shade300)),
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    if (economy!.feed[index].bannerImage ==
-                                        null) ...[
-                                      Container(
-                                        width:
-                                        MediaQuery.of(context).size.width,
-                                        height:
-                                        MediaQuery.of(context).size.height /
-                                            5,
-                                        child: Image(
-                                            image: AssetImage(
-                                                "assets/images/profile.png")),
-                                      )
-                                    ] else ...[
-                                      Container(
-                                        width:
-                                        MediaQuery.of(context).size.width,
-                                        height:
-                                        MediaQuery.of(context).size.height /
-                                            5,
-                                        child: Image.network(
-                                          economy!.feed[index].bannerImage
-                                              .toString(),
-                                          fit: BoxFit.fill,
-                                          loadingBuilder: (BuildContext context,
-                                              Widget child,
-                                              ImageChunkEvent?
-                                              loadingProgress) {
-                                            if (loadingProgress == null)
-                                              return child;
-                                            return Center(
-                                              child: CircularProgressIndicator(
-                                                value: loadingProgress
-                                                    .expectedTotalBytes !=
-                                                    null
-                                                    ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                    loadingProgress
-                                                        .expectedTotalBytes!
-                                                    : null,
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                    Column(
-                                      children: [
+                              child: Card(
+                                elevation: 1,
+                                child: Container(
+                                  padding: EdgeInsets.all(8),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      if (economy!.feed[index].bannerImage ==
+                                          null) ...[
                                         Container(
-                                          padding: EdgeInsets.only(
-                                              top: 20,
-                                              bottom: 10,
-                                              left: 5,
-                                              right: 5),
                                           width:
                                           MediaQuery.of(context).size.width,
-                                          child: Text(
-                                            economy!.feed[index].title,
-                                            style: GoogleFonts.ubuntu(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ),
+                                          height:
+                                          MediaQuery.of(context).size.height /
+                                              5,
+                                          child: Image(
+                                              image: AssetImage(
+                                                  "assets/images/profile.png")),
+                                        )
+                                      ] else ...[
                                         Container(
-                                          padding: EdgeInsets.only(
-                                              bottom: 10, left: 5, right: 5),
                                           width:
                                           MediaQuery.of(context).size.width,
-                                          child: Text(
-                                            economy!.feed[index].summary,
-                                            style: GoogleFonts.ubuntu(
-                                                color: Colors.grey),
+                                          height:
+                                          MediaQuery.of(context).size.height /
+                                              5,
+                                          child: Image.network(
+                                            economy!.feed[index].bannerImage
+                                                .toString(),
+                                            fit: BoxFit.fill,
+                                            loadingBuilder: (BuildContext context,
+                                                Widget child,
+                                                ImageChunkEvent?
+                                                loadingProgress) {
+                                              if (loadingProgress == null)
+                                                return child;
+                                              return Center(
+                                                child: CircularProgressIndicator(
+                                                  value: loadingProgress
+                                                      .expectedTotalBytes !=
+                                                      null
+                                                      ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                      loadingProgress
+                                                          .expectedTotalBytes!
+                                                      : null,
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ),
                                       ],
-                                    ),
-                                  ],
+                                      Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                top: 20,
+                                                bottom: 10,
+                                                left: 5,
+                                                right: 5),
+                                            width:
+                                            MediaQuery.of(context).size.width,
+                                            child: Text(
+                                              economy!.feed[index].title,
+                                              style: GoogleFonts.ubuntu(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                bottom: 10, left: 5, right: 5),
+                                            width:
+                                            MediaQuery.of(context).size.width,
+                                            child: Text(
+                                              economy!.feed[index].summary,
+                                              style: GoogleFonts.ubuntu(
+                                                  color: Colors.grey),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -586,6 +586,7 @@ class _NewsPageState extends State<NewsPage> {
                     padding: EdgeInsets.all(8),
                     height: MediaQuery.of(context).size.height / 1.20,
                     child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         itemCount: tech?.feed.length,
@@ -604,93 +605,91 @@ class _NewsPageState extends State<NewsPage> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Container(
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                    border: Border.all(
-                                        width: 1, color: Colors.grey.shade300)),
-                                child: Column(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    if (tech!.feed[index].bannerImage ==
-                                        null) ...[
-                                      Container(
-                                        width:
-                                        MediaQuery.of(context).size.width,
-                                        height:
-                                        MediaQuery.of(context).size.height /
-                                            5,
-                                        child: Image(
-                                            image: AssetImage(
-                                                "assets/images/profile.png")),
-                                      )
-                                    ] else ...[
-                                      Container(
-                                        width:
-                                        MediaQuery.of(context).size.width,
-                                        height:
-                                        MediaQuery.of(context).size.height /
-                                            5,
-                                        child: Image.network(
-                                          tech!.feed[index].bannerImage
-                                              .toString(),
-                                          fit: BoxFit.fill,
-                                          loadingBuilder: (BuildContext context,
-                                              Widget child,
-                                              ImageChunkEvent?
-                                              loadingProgress) {
-                                            if (loadingProgress == null)
-                                              return child;
-                                            return Center(
-                                              child: CircularProgressIndicator(
-                                                value: loadingProgress
-                                                    .expectedTotalBytes !=
-                                                    null
-                                                    ? loadingProgress
-                                                    .cumulativeBytesLoaded /
-                                                    loadingProgress
-                                                        .expectedTotalBytes!
-                                                    : null,
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                    Column(
-                                      children: [
+                              child: Card(
+                                elevation: 1,
+                                child: Container(
+                                  padding: EdgeInsets.all(8),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      if (tech!.feed[index].bannerImage ==
+                                          null) ...[
                                         Container(
-                                          padding: EdgeInsets.only(
-                                              top: 20,
-                                              bottom: 10,
-                                              left: 5,
-                                              right: 5),
                                           width:
                                           MediaQuery.of(context).size.width,
-                                          child: Text(
-                                            tech!.feed[index].title,
-                                            style: GoogleFonts.ubuntu(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ),
+                                          height:
+                                          MediaQuery.of(context).size.height /
+                                              5,
+                                          child: Image(
+                                              image: AssetImage(
+                                                  "assets/images/profile.png")),
+                                        )
+                                      ] else ...[
                                         Container(
-                                          padding: EdgeInsets.only(
-                                              bottom: 10, left: 5, right: 5),
                                           width:
                                           MediaQuery.of(context).size.width,
-                                          child: Text(
-                                            tech!.feed[index].summary,
-                                            style: GoogleFonts.ubuntu(
-                                                color: Colors.grey),
+                                          height:
+                                          MediaQuery.of(context).size.height /
+                                              5,
+                                          child: Image.network(
+                                            tech!.feed[index].bannerImage
+                                                .toString(),
+                                            fit: BoxFit.fill,
+                                            loadingBuilder: (BuildContext context,
+                                                Widget child,
+                                                ImageChunkEvent?
+                                                loadingProgress) {
+                                              if (loadingProgress == null)
+                                                return child;
+                                              return Center(
+                                                child: CircularProgressIndicator(
+                                                  value: loadingProgress
+                                                      .expectedTotalBytes !=
+                                                      null
+                                                      ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                      loadingProgress
+                                                          .expectedTotalBytes!
+                                                      : null,
+                                                ),
+                                              );
+                                            },
                                           ),
                                         ),
                                       ],
-                                    ),
-                                  ],
+                                      Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                top: 20,
+                                                bottom: 10,
+                                                left: 5,
+                                                right: 5),
+                                            width:
+                                            MediaQuery.of(context).size.width,
+                                            child: Text(
+                                              tech!.feed[index].title,
+                                              style: GoogleFonts.ubuntu(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                bottom: 10, left: 5, right: 5),
+                                            width:
+                                            MediaQuery.of(context).size.width,
+                                            child: Text(
+                                              tech!.feed[index].summary,
+                                              style: GoogleFonts.ubuntu(
+                                                  color: Colors.grey),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

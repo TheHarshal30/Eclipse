@@ -4,6 +4,7 @@ import 'package:eclipsis/Screens/homepage.dart';
 import 'package:eclipsis/Screens/incometax2.dart';
 import 'package:eclipsis/Screens/investmf.dart';
 import 'package:eclipsis/Screens/news.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,7 +24,6 @@ class _NavPageState extends State<NavPage> {
 
   List<Widget> widgetlists = [
     HomePage(),
-    InvestMFPage(),
     ExpensePage(bank: bank),
     NewsPage(),
     TaxPage(),
@@ -140,9 +140,25 @@ class _NavPageState extends State<NavPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 50.0),
-                    child: Text(
-                      "Made with ❤️",
-                      style: GoogleFonts.ubuntu(fontSize: 15),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Made with ❤️",
+                          style: GoogleFonts.ubuntu(fontSize: 15),
+                        ),
+                        Text(
+                          "Version 1.0.0",
+                          style: GoogleFonts.ubuntu(
+                              fontSize: 14, color: Colors.grey),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            "Backed by Inside Labs",
+                            style: GoogleFonts.ubuntu(fontSize: 15),
+                          ),
+                        ),
+                      ],
                     ),
                   )
                 ],
@@ -168,7 +184,7 @@ class _NavPageState extends State<NavPage> {
             child: CircleAvatar(
                 backgroundColor: Colors.white,
                 radius: 20,
-                backgroundImage: AssetImage("assets/images/profile.png")),
+                backgroundImage:  NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)),
           ),
           title: Padding(
             padding: const EdgeInsets.only(top: 0.0, left: 0),
@@ -176,25 +192,46 @@ class _NavPageState extends State<NavPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Hello, " + username.text + "!",
-                  style: GoogleFonts.ubuntu(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black),
-                ),
-                Text(
-                  " Great to see you",
-                  style: GoogleFonts.ubuntu(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.black),
-                )
+                if (widget.pageIndex == 0) ...[
+                  Text(
+                    "Hello, " + username.text + "!",
+                    style: GoogleFonts.ubuntu(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                  ),
+                ]else if (widget.pageIndex == 1) ...[
+                  Text(
+                    "Eclipse Tracking",
+                    style: GoogleFonts.ubuntu(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                  ),
+                ] else if (widget.pageIndex == 2) ...[
+                  Text(
+                    "Eclipse News",
+                    style: GoogleFonts.ubuntu(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                  ),
+                ] else if (widget.pageIndex == 3) ...[
+                  Text(
+                    "Eclipse Taxes",
+                    style: GoogleFonts.ubuntu(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                  ),
+                ],
               ],
             ),
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           selectedIconTheme: IconThemeData(color: Colors.blue),
           currentIndex: widget.pageIndex,
           type: BottomNavigationBarType.fixed,
@@ -204,30 +241,19 @@ class _NavPageState extends State<NavPage> {
             });
           },
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage("assets/images/invest2.png"),
+                icon: Icon(
+                  Icons.home_outlined,
                   size: 30,
                 ),
-                label: "Invest"),
+                label: "Home"),
             BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage("assets/images/track2.png"),
-                  size: 30,
-                ),
+                icon: Icon(Icons.account_balance_wallet_outlined, size: 30),
                 label: "Expenses"),
             BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage("assets/images/bank.png"),
-                  size: 30,
-                ),
-                label: "News"),
+                icon: Icon(Icons.newspaper_outlined, size: 30), label: "News"),
             BottomNavigationBarItem(
-                icon: ImageIcon(
-                  AssetImage("assets/images/tax.png"),
-                  size: 30,
-                ),
+                icon: Icon(Icons.request_quote_outlined, size: 30),
                 label: "Taxes"),
           ],
         ),
