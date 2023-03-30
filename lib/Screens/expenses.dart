@@ -2,7 +2,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eclipsis/Screens/Expenselist.dart';
-import 'package:eclipsis/supabasehandler.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
@@ -22,7 +21,6 @@ class ExpensePageState extends State<ExpensePage> {
   int bank =0;
   bool _isLoading = true;
   bool temppp = false;
-  SupaBaseHandler supaBaseHandler = SupaBaseHandler();
   bool gen1 = true;
   List<dynamic> jan = [];
   List<dynamic> feb = [];
@@ -1308,8 +1306,6 @@ _messages = [];
 
 
       income = 0;
-
-      supaBaseHandler.readData();
 
 
       print("bank $bank");

@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:eclipsis/supabasehandler.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
-  SupaBaseHandler supaBaseHandler = SupaBaseHandler();
   final googleSignIn = GoogleSignIn();
   GoogleSignInAccount? _user;
   GoogleSignInAccount get user => _user!;
@@ -29,7 +27,6 @@ class GoogleSignInProvider extends ChangeNotifier {
       {
         bool condition = await doesUserExist();
         if (condition == false){
-          supaBaseHandler.addData(FirebaseAuth.instance.currentUser!.uid,[],FirebaseAuth.instance.currentUser!.displayName.toString());
           print("in create");
           FirebaseFirestore.instance.collection("Users").doc(FirebaseAuth.instance.currentUser!.uid).set({
             'name' : FirebaseAuth.instance.currentUser!.displayName,
