@@ -1,5 +1,6 @@
 
-align = "center">
+
+<div align = "center">
 <img alt="WebBadge" border="0" height='150'src="assets\images\readme2.png" ></img>
 <h1 align ="center"><b>Eclipse </b></h1>
  </div>
