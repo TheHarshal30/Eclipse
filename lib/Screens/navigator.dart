@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eclipsis/Screens/expenses.dart';
 import 'package:eclipsis/Screens/homepage.dart';
 import 'package:eclipsis/Screens/incometax2.dart';
@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:eclipsis/main.dart';
 
 class NavPage extends StatefulWidget {
   int pageIndex;
@@ -132,7 +133,88 @@ class _NavPageState extends State<NavPage> {
                                       ],
                                     ),
                                   )),
+
                             ]),
+                            FutureBuilder(
+                                future: FirebaseFirestore.instance.collection("version").doc("version").get(),
+                                builder: (context, snapshot) {
+                                  if(snapshot.hasData){
+                                    Map<String, dynamic>? temp2 = snapshot.data!.data();
+                                    return Padding(
+                                      padding: const EdgeInsets.only(top: 30.0, left: 20),
+                                      child: Column(
+                                        children: [
+                                          GestureDetector(
+                                            onTap: ()   {
+                                              if(temp2?["version"].toString() != version.toString()){
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return AlertDialog(
+                                                      title: Text("New upadte available"),
+                                                      actions: [
+                                                        ElevatedButton(
+                                                          child: Text("Install Now!"),
+                                                          onPressed: () async {
+                                                            Uri url = Uri(
+                                                                scheme: "https",
+                                                                host: temp2?["download"]);
+                                                            if (!await launchUrl(
+                                                              url,
+                                                              mode: LaunchMode.externalApplication,
+                                                            )) {
+                                                              throw Exception('Could not launch $url');
+                                                            }
+                                                          },
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              }
+                                              else{
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return Dialog(
+                                                      child: Container(
+                                                        height: MediaQuery.of(context).size.height/10,
+                                                        child: Column(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                          children: [
+                                                            Text("No new updates!")
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              }
+                                            },
+                                            child: Row(children: [
+                                              Icon(
+                                                Icons.update,
+                                                size: 20,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 10.0),
+                                                child: Text(
+                                                  "Check for Updates",
+                                                  style: GoogleFonts.ubuntu(fontSize: 18),
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }
+                                  else{
+                                    return Text("Loading...");
+                                  }
+                                }
+                              /*child: ,*/
+                            ),
                           ],
                         ),
                       ),
@@ -147,7 +229,7 @@ class _NavPageState extends State<NavPage> {
                           style: GoogleFonts.ubuntu(fontSize: 15),
                         ),
                         Text(
-                          "Version 1.0.0",
+                          "Version $version",
                           style: GoogleFonts.ubuntu(
                               fontSize: 14, color: Colors.grey),
                         ),
@@ -177,7 +259,6 @@ class _NavPageState extends State<NavPage> {
                 ))
           ],
           toolbarHeight: MediaQuery.of(context).size.height / 12,
-          //backgroundColor: Colors.white,
           elevation: 0,
           leading: Padding(
             padding: const EdgeInsets.only(left: 8.0),
