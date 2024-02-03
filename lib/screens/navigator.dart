@@ -2,6 +2,7 @@
 
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:app1/main.dart';
+import 'package:app1/models/newsmodel.dart';
 import 'package:app1/screens/expenses.dart';
 import 'package:app1/screens/homepage2.dart';
 import 'package:app1/screens/incometax2.dart';
@@ -110,12 +111,12 @@ class _NavPageState extends State<NavPage> {
 
   List<Widget> widgetlists = [
     HomePage2(),
-    InvestMFPage(),
+    // InvestMFPage(),
     ExpensePage(),
     NewsPage(
       index: 2,
     ),
-    TaxPage(),
+    // TaxPage(),
   ];
   void _showDialog(BuildContext context) {
     showDialog(
@@ -453,17 +454,17 @@ class _NavPageState extends State<NavPage> {
                           style: GoogleFonts.ubuntu(
                               fontSize: 14, color: Colors.grey),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            "Backed by Inside Labs",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontFamily: 'Anderson',
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 8.0),
+                        //   child: Text(
+                        //     "Backed by Inside Labs",
+                        //     style: TextStyle(
+                        //         fontSize: 16,
+                        //         color: Colors.white,
+                        //         fontFamily: 'Anderson',
+                        //         fontWeight: FontWeight.bold),
+                        //   ),
+                        // ),
                       ],
                     ),
                   )
@@ -484,6 +485,19 @@ class _NavPageState extends State<NavPage> {
                           icon: Icon(Icons.menu),
                           onPressed: () => Scaffold.of(context).openDrawer()))
               : Text(""),
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.only(right: 18.0),
+          //     child: GestureDetector(
+          //         onTap: () {
+          //           Navigator.of(context).push(MaterialPageRoute(
+          //               builder: (context) => NewsPage(
+          //                     index: 0,
+          //                   )));
+          //         },
+          //         child: Icon(Icons.arrow_forward_ios, size: 25)),
+          //   )
+          // ],
           title: Padding(
             padding: const EdgeInsets.only(top: 0.0, left: 0),
             child: Column(
@@ -508,34 +522,27 @@ class _NavPageState extends State<NavPage> {
                       fontFamily: 'AndersonB',
                     ),
                   )
-                ] else if (widget.pageIndex == 2) ...[
-                  Text(
-                    "Eclipse Tracking",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color.fromRGBO(186, 201, 255, 1),
-                      fontFamily: 'AndersonB',
-                    ),
-                  ),
-                ] else if (widget.pageIndex == 3) ...[
-                  Text(
-                    "Eclipse News",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color.fromRGBO(186, 201, 255, 1),
-                      fontFamily: 'AndersonB',
-                    ),
-                  ),
-                ] else if (widget.pageIndex == 4) ...[
-                  Text(
-                    "Eclipse Taxes",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color.fromRGBO(186, 201, 255, 1),
-                      fontFamily: 'AndersonB',
-                    ),
-                  ),
                 ],
+                if (widget.pageIndex == 2) ...[
+                  Text(
+                    "News",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Color.fromRGBO(186, 201, 255, 1),
+                      fontFamily: 'AndersonB',
+                    ),
+                  ),
+                ]
+                // ] else if (widget.pageIndex == 4) ...[
+                //   Text(
+                //     "Eclipse Taxes",
+                //     style: TextStyle(
+                //       fontSize: 18,
+                //       color: Color.fromRGBO(186, 201, 255, 1),
+                //       fontFamily: 'AndersonB',
+                //     ),
+                //   ),
+                // ],
               ],
             ),
           ),
@@ -575,6 +582,7 @@ class _NavPageState extends State<NavPage> {
             });
           },
         ),*/
+
         bottomNavigationBar: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
@@ -613,34 +621,34 @@ class _NavPageState extends State<NavPage> {
                         EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
                     child: Icon(FeatherIcons.home, size: 25)),
                 label: "Home"),
-            BottomNavigationBarItem(
-              icon: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: (widget.pageIndex == 1)
-                          ? RadialGradient(
-                              radius: 1,
-                              colors: [
-                                Color.fromRGBO(102, 19, 255, 0.7),
-                                const Color.fromRGBO(117, 114, 255, 0),
-                                const Color.fromRGBO(132, 112, 255, 0),
-                              ],
-                            )
-                          : RadialGradient(colors: [
-                              Color.fromRGBO(102, 19, 255, 0),
-                              const Color.fromRGBO(117, 114, 255, 0),
-                              const Color.fromRGBO(132, 112, 255, 0)
-                            ])),
-                  padding:
-                      EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
-                  child: Icon(FeatherIcons.dollarSign, size: 25)),
-              label: "",
-            ),
+            // BottomNavigationBarItem(
+            //   icon: Container(
+            //       decoration: BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           gradient: (widget.pageIndex == 1)
+            //               ? RadialGradient(
+            //                   radius: 1,
+            //                   colors: [
+            //                     Color.fromRGBO(102, 19, 255, 0.7),
+            //                     const Color.fromRGBO(117, 114, 255, 0),
+            //                     const Color.fromRGBO(132, 112, 255, 0),
+            //                   ],
+            //                 )
+            //               : RadialGradient(colors: [
+            //                   Color.fromRGBO(102, 19, 255, 0),
+            //                   const Color.fromRGBO(117, 114, 255, 0),
+            //                   const Color.fromRGBO(132, 112, 255, 0)
+            //                 ])),
+            //       padding:
+            //           EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
+            //       child: Icon(FeatherIcons.dollarSign, size: 25)),
+            //   label: "",
+            // ),
             BottomNavigationBarItem(
                 icon: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        gradient: (widget.pageIndex == 2)
+                        gradient: (widget.pageIndex == 1)
                             ? RadialGradient(
                                 radius: 1,
                                 colors: [
@@ -663,7 +671,7 @@ class _NavPageState extends State<NavPage> {
                 icon: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        gradient: (widget.pageIndex == 3)
+                        gradient: (widget.pageIndex == 2)
                             ? RadialGradient(
                                 radius: 1,
                                 colors: [
@@ -681,30 +689,203 @@ class _NavPageState extends State<NavPage> {
                         EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
                     child: Icon(Icons.newspaper_outlined, size: 25)),
                 label: "News"),
-            BottomNavigationBarItem(
-                icon: Container(
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: (widget.pageIndex == 4)
-                            ? RadialGradient(
-                                radius: 1,
-                                colors: [
-                                  Color.fromRGBO(102, 19, 255, 0.7),
-                                  const Color.fromRGBO(117, 114, 255, 0),
-                                  const Color.fromRGBO(132, 112, 255, 0),
-                                ],
-                              )
-                            : RadialGradient(colors: [
-                                Color.fromRGBO(102, 19, 255, 0),
-                                const Color.fromRGBO(117, 114, 255, 0),
-                                const Color.fromRGBO(132, 112, 255, 0)
-                              ])),
-                    padding:
-                        EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
-                    child: Icon(Icons.request_quote_outlined, size: 25)),
-                label: "Taxes"),
+            // BottomNavigationBarItem(
+            //     icon: Container(
+            //         decoration: BoxDecoration(
+            //             shape: BoxShape.circle,
+            //             gradient: (widget.pageIndex == 4)
+            //                 ? RadialGradient(
+            //                     radius: 1,
+            //                     colors: [
+            //                       Color.fromRGBO(102, 19, 255, 0.7),
+            //                       const Color.fromRGBO(117, 114, 255, 0),
+            //                       const Color.fromRGBO(132, 112, 255, 0),
+            //                     ],
+            //                   )
+            //                 : RadialGradient(colors: [
+            //                     Color.fromRGBO(102, 19, 255, 0),
+            //                     const Color.fromRGBO(117, 114, 255, 0),
+            //                     const Color.fromRGBO(132, 112, 255, 0)
+            //                   ])),
+            //         padding:
+            //             EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
+            //         child: Icon(Icons.request_quote_outlined, size: 25)),
+            //     label: "Taxes"),
           ],
         ),
         body: Center(child: widgetlists[widget.pageIndex]));
+    //  Stack(
+    //   children: [
+    //     IndexedStack(
+    //       index: widget.pageIndex,
+    //       children: widgetlists,
+    //     ),
+    //     Positioned(
+    //       bottom: 0,
+    //       left: 0,
+    //       right: 0,
+    //       child: Padding(
+    //         padding:
+    //             const EdgeInsets.only(bottom: 20.0, left: 80, right: 80),
+    //         child: Container(
+    //           height: MediaQuery.of(context).size.height / 14,
+    //           child: ClipRRect(
+    //             borderRadius: BorderRadius.circular(10),
+    //             child: BottomNavigationBar(
+    //               showSelectedLabels: false,
+    //               showUnselectedLabels: false,
+    //               backgroundColor: Colors.black.withOpacity(0.7),
+    //               unselectedItemColor: Colors.white60,
+    //               selectedIconTheme: IconThemeData(
+    //                   color: /*Color.fromRGBO(170, 168, 253, 1)*/
+    //                       Color.fromRGBO(186, 201, 255, 1)),
+    //               currentIndex: widget.pageIndex,
+    //               type: BottomNavigationBarType.fixed,
+    //               onTap: (index) {
+    //                 setState(() {
+    //                   widget.pageIndex = index;
+    //                 });
+    //               },
+    //               items: [
+    //                 // BottomNavigationBarItem(
+    //                 //     icon: Container(
+    //                 //         decoration: BoxDecoration(
+    //                 //             shape: BoxShape.circle,
+    //                 //             gradient: (widget.pageIndex == 0)
+    //                 //                 ? RadialGradient(
+    //                 //                     radius: 1,
+    //                 //                     colors: [
+    //                 //                       Color.fromRGBO(
+    //                 //                           102, 19, 255, 0.7),
+    //                 //                       const Color.fromRGBO(
+    //                 //                           117, 114, 255, 0),
+    //                 //                       const Color.fromRGBO(
+    //                 //                           132, 112, 255, 0),
+    //                 //                     ],
+    //                 //                   )
+    //                 //                 : RadialGradient(colors: [
+    //                 //                     Color.fromRGBO(102, 19, 255, 0),
+    //                 //                     const Color.fromRGBO(
+    //                 //                         117, 114, 255, 0),
+    //                 //                     const Color.fromRGBO(
+    //                 //                         132, 112, 255, 0)
+    //                 //                   ])),
+    //                 //         padding: EdgeInsets.only(
+    //                 //             top: 5, bottom: 5, left: 10, right: 10),
+    //                 //         child: Icon(FeatherIcons.home, size: 25)),
+    //                 //     label: "Home"),
+    //                 // BottomNavigationBarItem(
+    //                 //   icon: Container(
+    //                 //       decoration: BoxDecoration(
+    //                 //           shape: BoxShape.circle,
+    //                 //           gradient: (widget.pageIndex == 1)
+    //                 //               ? RadialGradient(
+    //                 //                   radius: 1,
+    //                 //                   colors: [
+    //                 //                     Color.fromRGBO(102, 19, 255, 0.7),
+    //                 //                     const Color.fromRGBO(
+    //                 //                         117, 114, 255, 0),
+    //                 //                     const Color.fromRGBO(
+    //                 //                         132, 112, 255, 0),
+    //                 //                   ],
+    //                 //                 )
+    //                 //               : RadialGradient(colors: [
+    //                 //                   Color.fromRGBO(102, 19, 255, 0),
+    //                 //                   const Color.fromRGBO(
+    //                 //                       117, 114, 255, 0),
+    //                 //                   const Color.fromRGBO(
+    //                 //                       132, 112, 255, 0)
+    //                 //                 ])),
+    //                 //       padding: EdgeInsets.only(
+    //                 //           top: 5, bottom: 5, left: 10, right: 10),
+    //                 //       child: Icon(FeatherIcons.dollarSign, size: 25)),
+    //                 //   label: "",
+    //                 // ),
+    //                 BottomNavigationBarItem(
+    //                     icon: Container(
+    //                         decoration: BoxDecoration(
+    //                             shape: BoxShape.circle,
+    //                             gradient: (widget.pageIndex == 2)
+    //                                 ? RadialGradient(
+    //                                     radius: 1,
+    //                                     colors: [
+    //                                       Color.fromRGBO(102, 19, 255, 0.7),
+    //                                       const Color.fromRGBO(
+    //                                           117, 114, 255, 0),
+    //                                       const Color.fromRGBO(
+    //                                           132, 112, 255, 0),
+    //                                     ],
+    //                                   )
+    //                                 : RadialGradient(colors: [
+    //                                     Color.fromRGBO(102, 19, 255, 0),
+    //                                     const Color.fromRGBO(
+    //                                         117, 114, 255, 0),
+    //                                     const Color.fromRGBO(
+    //                                         132, 112, 255, 0)
+    //                                   ])),
+    //                         padding: EdgeInsets.only(
+    //                             top: 0, bottom: 0, left: 10, right: 10),
+    //                         child: Icon(
+    //                             Icons.account_balance_wallet_outlined,
+    //                             size: 25)),
+    //                     label: "Expenses"),
+    //                 BottomNavigationBarItem(
+    //                     icon: Container(
+    //                         decoration: BoxDecoration(
+    //                             shape: BoxShape.circle,
+    //                             gradient: (widget.pageIndex == 3)
+    //                                 ? RadialGradient(
+    //                                     radius: 1,
+    //                                     colors: [
+    //                                       Color.fromRGBO(102, 19, 255, 0.7),
+    //                                       const Color.fromRGBO(
+    //                                           117, 114, 255, 0),
+    //                                       const Color.fromRGBO(
+    //                                           132, 112, 255, 0),
+    //                                     ],
+    //                                   )
+    //                                 : RadialGradient(colors: [
+    //                                     Color.fromRGBO(102, 19, 255, 0),
+    //                                     const Color.fromRGBO(
+    //                                         117, 114, 255, 0),
+    //                                     const Color.fromRGBO(
+    //                                         132, 112, 255, 0)
+    //                                   ])),
+    //                         padding: EdgeInsets.only(
+    //                             top: 0, bottom: 0, left: 10, right: 10),
+    //                         child:
+    //                             Icon(Icons.newspaper_outlined, size: 25)),
+    //                     label: "News"),
+    //                 // BottomNavigationBarItem(
+    //                 //     icon: Container(
+    //                 //         decoration: BoxDecoration(
+    //                 //             shape: BoxShape.circle,
+    //                 //             gradient: (widget.pageIndex == 4)
+    //                 //                 ? RadialGradient(
+    //                 //                     radius: 1,
+    //                 //                     colors: [
+    //                 //                       Color.fromRGBO(102, 19, 255, 0.7),
+    //                 //                       const Color.fromRGBO(117, 114, 255, 0),
+    //                 //                       const Color.fromRGBO(132, 112, 255, 0),
+    //                 //                     ],
+    //                 //                   )
+    //                 //                 : RadialGradient(colors: [
+    //                 //                     Color.fromRGBO(102, 19, 255, 0),
+    //                 //                     const Color.fromRGBO(117, 114, 255, 0),
+    //                 //                     const Color.fromRGBO(132, 112, 255, 0)
+    //                 //                   ])),
+    //                 //         padding:
+    //                 //             EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
+    //                 //         child: Icon(Icons.request_quote_outlined, size: 25)),
+    //                 //     label: "Taxes"),
+    //               ],
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //     )
+    //   ],
+    // ));
+    //
   }
 }

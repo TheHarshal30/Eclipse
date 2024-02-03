@@ -142,7 +142,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    Provider.of<FD>(context, listen: false).getPosts();
+    //Provider.of<FD>(context, listen: false).getPosts();
     //  Provider.of<FD>(context, listen: false).getUsername();
     get();
 /*
@@ -259,7 +259,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: Color.fromRGBO(186, 201, 255, 0.1),
+                      color: Color.fromRGBO(186, 201, 255, 0.05),
                       borderRadius: BorderRadius.circular(10)),
                   height: MediaQuery.of(context).size.height / 12,
                   width: MediaQuery.of(context).size.width,
@@ -390,554 +390,366 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
               ),
             ),*/
             Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: Container(
-                height: MediaQuery.of(context).size.height / 12,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Eclipse Investings",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontFamily: 'AndersonB'),
-                          ),
-                          Text(
-                            "Invest in safe places",
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontFamily: 'Anderson',
-                                fontWeight: FontWeight.w500),
-                          )
-                        ]),
-                    Image(
-                        image: AssetImage("assets/images/search.png"),
-                        height: MediaQuery.of(context).size.height / 22)
-                  ],
-                ),
-              ),
+              padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+              child: Text("WHAT'S NEW ⚡",
+                  style: GoogleFonts.exo2(
+                    letterSpacing: 2,
+                    color: Colors.grey.shade600,
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                    ),
+                  )),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Consumer<FD>(
-                  builder: (context, snapshot, _) => (snapshot.fdlist != null)
-                      ? Container(
-                          height: MediaQuery.of(context).size.height / 4,
-                          child: Row(
-                            children: [
-                              ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 2,
-                                  itemBuilder: ((context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 8.0, bottom: 20),
-                                      child: Container(
-                                        padding: EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                1.25,
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                const Color.fromRGBO(
-                                                    161, 128, 255, 0.25),
-                                                const Color.fromRGBO(
-                                                    117, 114, 255, 0.1),
-                                                const Color.fromRGBO(
-                                                    132, 112, 255, 0.01),
-                                              ],
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            border: Border.all(width: 0.2)),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Container(
-                                                  padding: EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(
-                                                    color: Color.fromRGBO(
-                                                        186, 201, 255, 0.2),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    //  border: Border.all(color: Colors.black, width: 1)
-                                                  ),
-                                                  child: Image(
-                                                      image: AssetImage(
-                                                          "assets/images/invest.png"),
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height /
-                                                              20),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 15.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                          snapshot
-                                                              .fdlist!
-                                                              .data[index]
-                                                              .attributes
-                                                              .name,
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              color:
-                                                                  Colors.white,
-                                                              fontFamily:
-                                                                  'Anderson',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700)),
-                                                      Text(
-                                                        "Type: Fixed Deposit",
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                                color: Colors
-                                                                    .grey),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Column(
-                                                  children: [
-                                                    Text(
-                                                      "Interest Rate",
-                                                      style: GoogleFonts.ubuntu(
-                                                          color: Colors
-                                                              .grey.shade600,
-                                                          fontSize: 12),
-                                                    ),
-                                                    Text(
-                                                      "${snapshot.fdlist!.data[index].attributes.interestRate}%",
-                                                      style: GoogleFonts.ubuntu(
-                                                          color: Color.fromRGBO(
-                                                              186, 201, 255, 1),
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    Text(
-                                                      "Min Amount",
-                                                      style: GoogleFonts.ubuntu(
-                                                          color: Colors
-                                                              .grey.shade600,
-                                                          fontSize: 12),
-                                                    ),
-                                                    Text(
-                                                      "₹${snapshot.fdlist!.data[index].attributes.minAmount}",
-                                                      style: GoogleFonts.ubuntu(
-                                                          color: Color.fromRGBO(
-                                                              186, 201, 255, 1),
-                                                          fontSize: 18),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Container(
-                                                  padding: EdgeInsets.all(10),
-                                                  decoration: BoxDecoration(
-                                                      color: Colors
-                                                          .lightBlue.shade50,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5)),
-                                                  child: Row(
-                                                    children: [
-                                                      Text(
-                                                        snapshot
-                                                            .fdlist!
-                                                            .data[index]
-                                                            .attributes
-                                                            .tenureFromInMonths
-                                                            .toString(),
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        " Months",
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  })),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    bottom: 20.0, left: 8, right: 8),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.25,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(width: 0.5)),
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                                "Looking for more options,\ndifferent rates, returns?",
-                                                style: TextStyle(
-                                                  fontSize: 17,
-                                                  color: Colors.white,
-                                                  fontFamily: 'Anderson',
-                                                )),
-                                            GestureDetector(
-                                              onTap: () {
-                                                setState(() {
-                                                  Navigator.of(context)
-                                                      .pushAndRemoveUntil(
-                                                          _createRoute(NavPage(
-                                                              pageIndex: 1)),
-                                                          (Route<dynamic>
-                                                                  route) =>
-                                                              false);
-                                                });
-                                              },
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 15.0),
-                                                child: Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      18,
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      4,
-                                                  padding: EdgeInsets.all(10),
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      border: Border.all(
-                                                          color: Color.fromRGBO(
-                                                              186,
-                                                              201,
-                                                              255,
-                                                              1))),
-                                                  child: Center(
-                                                    child: Text(
-                                                      "Explore",
-                                                      style: TextStyle(
-                                                        fontSize: 18,
-                                                        color: Color.fromRGBO(
-                                                            186, 201, 255, 1),
-                                                        fontFamily: 'AndersonB',
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ]),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Image(
-                                              image: AssetImage(
-                                                  "assets/images/income.png"),
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  12,
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      : CircularProgressIndicator()),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 20),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      _createRoute(NavPage(pageIndex: 2)),
-                      (Route<dynamic> route) => false);
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height / 6,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.black),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width / 2,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                  "Take control of your expenses with Eclipse!",
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                    fontFamily: 'AndersonB',
-                                  )),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 15.0),
-                                child: Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 2.8,
-                        height: MediaQuery.of(context).size.height / 3.5,
-                        child: Image(
-                          image: AssetImage("assets/images/ex2.gif"),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: Column(
-                children: [
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 15, right: 0),
+            //   child: Container(
+            //     height: MediaQuery.of(context).size.height / 12,
+            //     width: MediaQuery.of(context).size.width,
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       crossAxisAlignment: CrossAxisAlignment.center,
+            //       children: [
+            //         Column(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Text(
+            //                 "Eclipse Tracking",
+            //                 style: TextStyle(
+            //                     fontSize: 18,
+            //                     color: Colors.white,
+            //                     fontFamily: 'AndersonB'),
+            //               ),
+            //               Text(
+            //                 "Track your money on the go",
+            //                 style: TextStyle(
+            //                     color: Colors.grey,
+            //                     fontFamily: 'Anderson',
+            //                     fontWeight: FontWeight.w500),
+            //               )
+            //             ]),
+            //         Container(
+            //           width: MediaQuery.of(context).size.width / 2.8,
+            //           height: MediaQuery.of(context).size.height / 3.5,
+            //           child: Image(
+            //             image: AssetImage("assets/images/ex2.gif"),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            Container(
+                height: MediaQuery.of(context).size.height / 4,
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Container(
-                    height: MediaQuery.of(context).size.height / 8,
-                    child: PageView(
-                      scrollDirection: Axis.horizontal,
-                      controller: _controller,
-                      children: [
-                        GestureDetector(
-                          onTap: (() {
-                            Navigator.of(context).push(_createRoute(Swipe()));
-                          }),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 25, right: 25),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height / 9,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(186, 201, 255, 1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              width: MediaQuery.of(context).size.width / 1.25,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, left: 8),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Eclipse Education",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black,
-                                              fontFamily: 'AndersonB',
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                              child: Text(
-                                                "Blogs and aricles by personal finance experts",
-                                                style: GoogleFonts.ubuntu(
-                                                    color: Colors.grey.shade800,
-                                                    fontSize: 12),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Image(
-                                      image:
-                                          AssetImage("assets/images/edu.png"),
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              7,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                    padding: EdgeInsets.only(left: 10, right: 10),
+                    width: MediaQuery.of(context).size.width / 1.11,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            const Color.fromRGBO(161, 128, 255, 0.25),
+                            const Color.fromRGBO(117, 114, 255, 0.1),
+                            const Color.fromRGBO(132, 112, 255, 0.01),
+                          ],
                         ),
-                        GestureDetector(
-                          onTap: () async {
-                            Uri url = Uri(
-                                scheme: "https",
-                                host: "insidelibrary.weebly.com");
-
-                            if (!await launchUrl(
-                              url,
-                              mode: LaunchMode.externalApplication,
-                            )) {
-                              throw Exception('Could not launch $url');
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 25, right: 15),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height / 9,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(186, 201, 255, 1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              width: MediaQuery.of(context).size.width / 1.25,
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(width: 0.2)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // Container(
+                            //   padding: EdgeInsets.all(8),
+                            //   decoration: BoxDecoration(
+                            //     color: Color.fromRGBO(186, 201, 255, 0.2),
+                            //     borderRadius: BorderRadius.circular(5),
+                            //     //  border: Border.all(color: Colors.black, width: 1)
+                            //   ),
+                            //   child: Image(
+                            //       image: AssetImage("assets/images/invest.png"),
+                            //       height:
+                            //           MediaQuery.of(context).size.height / 20),
+                            // ),
+                            Container(
+                              width: MediaQuery.of(context).size.width / 2,
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, left: 8),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Write for Eclipse",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black,
-                                              fontFamily: 'AndersonB',
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  1.9,
-                                              child: Text(
-                                                "We invite you to join our platform as writers",
-                                                style: GoogleFonts.ubuntu(
-                                                    color: Colors.grey.shade800,
-                                                    fontSize: 12),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Image(
-                                      image:
-                                          AssetImage("assets/images/edu.png"),
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              7,
-                                    ),
+                                    // RichText(
+                                    //   text: TextSpan(
+                                    //     text: '',
+                                    //     style: GoogleFonts.urbanist(
+                                    //       textStyle: TextStyle(
+                                    //           color: Colors.white,
+                                    //           fontSize: 20,
+                                    //           fontFamily: 'Anderson',
+                                    //           fontWeight: FontWeight.w700),
+                                    //     ),
+                                    //     children: <TextSpan>[
+                                    //       TextSpan(
+                                    //         text: ' ',
+                                    //         style: TextStyle(
+                                    //             color: Colors.white,
+                                    //             fontSize: 20,
+                                    //             fontFamily: 'Anderson',
+                                    //             fontWeight: FontWeight.bold),
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // ),
+                                    Text("Track Your Money on the GO!",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontFamily: 'Anderson',
+                                            fontWeight: FontWeight.w700)),
+                                    Text(
+                                      "for individuals and family!",
+                                      style: GoogleFonts.ubuntu(
+                                          color: Colors.grey),
+                                    )
                                   ],
                                 ),
                               ),
                             ),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(186, 201, 255, 0.2),
+                                  borderRadius: BorderRadius.circular(5),
+                                  //  border: Border.all(color: Colors.black, width: 1)
+                                ),
+                                child: Image(
+                                    image: AssetImage("assets/images/skul.png"),
+                                    height: MediaQuery.of(context).size.height /
+                                        15),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Column(
+                            //   children: [
+                            //     Text(
+                            //       "Interest Rate",
+                            //       style: GoogleFonts.ubuntu(
+                            //           color: Colors.grey.shade600,
+                            //           fontSize: 12),
+                            //     ),
+                            //     Text(
+                            //       "${100}%",
+                            //       style: GoogleFonts.ubuntu(
+                            //           color: Color.fromRGBO(186, 201, 255, 1),
+                            //           fontSize: 18),
+                            //     ),
+                            //   ],
+                            // ),
+                            // Column(
+                            //   children: [
+                            //     Text(
+                            //       "Min Amount",
+                            //       style: GoogleFonts.ubuntu(
+                            //           color: Colors.grey.shade600,
+                            //           fontSize: 12),
+                            //     ),
+                            //     Text(
+                            //       "₹${1500000}",
+                            //       style: GoogleFonts.ubuntu(
+                            //           color: Color.fromRGBO(186, 201, 255, 1),
+                            //           fontSize: 18),
+                            //     ),
+                            //   ],
+                            // ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 20),
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(186, 201, 255, 0.2),
+                                  borderRadius: BorderRadius.circular(5)),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "Start Now",
+                                    style: GoogleFonts.ubuntu(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: SmoothPageIndicator(
-                      controller: _controller,
-                      count: 2,
-                      effect: ExpandingDotsEffect(
-                        dotColor: Colors.grey,
-                        activeDotColor:
-                            const Color.fromRGBO(117, 114, 255, 0.8),
-                        dotHeight: 4,
-                        dotWidth: 8,
-                        expansionFactor: 4,
-                        spacing: 4.0,
-                      ),
+                  )
+                ])),
+
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //       bottom: 20.0, left: 8, right: 8),
+            //   child: Container(
+            //     width: MediaQuery.of(context).size.width / 1.25,
+            //     decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(5),
+            //         border: Border.all(width: 0.5)),
+            //     child: Stack(
+            //       alignment: Alignment.center,
+            //       children: [
+            //         Column(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             crossAxisAlignment: CrossAxisAlignment.center,
+            //             children: [
+            //               Text(
+            //                   "Looking for more options,\ndifferent rates, returns?",
+            //                   style: TextStyle(
+            //                     fontSize: 17,
+            //                     color: Colors.white,
+            //                     fontFamily: 'Anderson',
+            //                   )),
+            //               GestureDetector(
+            //                 onTap: () {
+            //                   setState(() {
+            //                     Navigator.of(context)
+            //                         .pushAndRemoveUntil(
+            //                             _createRoute(
+            //                                 NavPage(pageIndex: 1)),
+            //                             (Route<dynamic> route) =>
+            //                                 false);
+            //                   });
+            //                 },
+            //                 child: Padding(
+            //                   padding:
+            //                       const EdgeInsets.only(top: 15.0),
+            //                   child: Container(
+            //                     height: MediaQuery.of(context)
+            //                             .size
+            //                             .height /
+            //                         18,
+            //                     width: MediaQuery.of(context)
+            //                             .size
+            //                             .width /
+            //                         4,
+            //                     padding: EdgeInsets.all(10),
+            //                     decoration: BoxDecoration(
+            //                         borderRadius:
+            //                             BorderRadius.circular(5),
+            //                         border: Border.all(
+            //                             color: Color.fromRGBO(
+            //                                 186, 201, 255, 1))),
+            //                     child: Center(
+            //                       child: Text(
+            //                         "Explore",
+            //                         style: TextStyle(
+            //                           fontSize: 18,
+            //                           color: Color.fromRGBO(
+            //                               186, 201, 255, 1),
+            //                           fontFamily: 'AndersonB',
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ]),
+            //         Align(
+            //           alignment: Alignment.bottomRight,
+            //           child: Row(
+            //             mainAxisAlignment: MainAxisAlignment.end,
+            //             children: [
+            //               Image(
+            //                 image: AssetImage(
+            //                     "assets/images/income.png"),
+            //                 height:
+            //                     MediaQuery.of(context).size.height /
+            //                         12,
+            //               )
+            //             ],
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // )
+
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 15, right: 15, bottom: 20),
+            //   child: GestureDetector(
+            //     onTap: () {
+            //       Navigator.of(context).pushAndRemoveUntil(
+            //           _createRoute(NavPage(pageIndex: 2)),
+            //           (Route<dynamic> route) => false);
+            //     },
+            //     child: Container(
+            //       height: MediaQuery.of(context).size.height / 6,
+            //       decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(5),
+            //           color: Colors.black),
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.only(left: 15.0),
+            //             child: Container(
+            //               width: MediaQuery.of(context).size.width / 2,
+            //               child: Column(
+            //                 mainAxisAlignment: MainAxisAlignment.center,
+            //                 crossAxisAlignment: CrossAxisAlignment.start,
+            //                 children: [
+            //                   Text(
+            //                       "Take control of your expenses with Eclipse!",
+            //                       style: TextStyle(
+            //                         fontSize: 17,
+            //                         color: Colors.white,
+            //                         fontFamily: 'AndersonB',
+            //                       )),
+            //                   Padding(
+            //                     padding: const EdgeInsets.only(top: 15.0),
+            //                     child: Icon(
+            //                       Icons.arrow_forward,
+            //                       color: Colors.white,
+            //                       size: 18,
+            //                     ),
+            //                   )
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //           Container(
+            //             width: MediaQuery.of(context).size.width / 2.8,
+            //             height: MediaQuery.of(context).size.height / 3.5,
+            //             child: Image(
+            //               image: AssetImage("assets/images/ex2.gif"),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+              child: Text("EXPLORE ECLIPSE 🤖",
+                  style: GoogleFonts.exo2(
+                    letterSpacing: 2,
+                    color: Colors.grey.shade600,
+                    textStyle: TextStyle(
+                      fontSize: 16,
                     ),
-                  ),
-                ],
-              ),
+                  )),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
@@ -1159,7 +971,183 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                   )
                 ],
               ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height / 8,
+                    child: PageView(
+                      scrollDirection: Axis.horizontal,
+                      controller: _controller,
+                      children: [
+                        GestureDetector(
+                          onTap: (() {
+                            Navigator.of(context).push(_createRoute(Swipe()));
+                          }),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 25, right: 25),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height / 9,
+                              decoration: BoxDecoration(
+                                color: Color.fromRGBO(186, 201, 255, 1),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              width: MediaQuery.of(context).size.width / 1.25,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 8.0, left: 8),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Eclipse Education",
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontFamily: 'AndersonB',
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 8.0),
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2,
+                                              child: Text(
+                                                "Blogs and aricles by personal finance experts",
+                                                style: GoogleFonts.ubuntu(
+                                                    color: Colors.grey.shade800,
+                                                    fontSize: 12),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Image(
+                                      image:
+                                          AssetImage("assets/images/edu.png"),
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              7,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            Uri url = Uri(
+                                scheme: "https",
+                                host: "insidelibrary.weebly.com");
+
+                            if (!await launchUrl(
+                              url,
+                              mode: LaunchMode.externalApplication,
+                            )) {
+                              throw Exception('Could not launch $url');
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 25, right: 15),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height / 9,
+                              decoration: BoxDecoration(
+                                color: Color.fromRGBO(186, 201, 255, 1),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              width: MediaQuery.of(context).size.width / 1.25,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 8.0, left: 8),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Write for Eclipse",
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontFamily: 'AndersonB',
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 8.0),
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  1.9,
+                                              child: Text(
+                                                "We invite you to join our platform as writers",
+                                                style: GoogleFonts.ubuntu(
+                                                    color: Colors.grey.shade800,
+                                                    fontSize: 12),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Image(
+                                      image:
+                                          AssetImage("assets/images/edu.png"),
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              7,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: SmoothPageIndicator(
+                      controller: _controller,
+                      count: 2,
+                      effect: ExpandingDotsEffect(
+                        dotColor: Colors.grey,
+                        activeDotColor:
+                            const Color.fromRGBO(117, 114, 255, 0.8),
+                        dotHeight: 4,
+                        dotWidth: 8,
+                        expansionFactor: 4,
+                        spacing: 4.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
             /*
             Padding(
               padding: const EdgeInsets.only(bottom: 10.0),

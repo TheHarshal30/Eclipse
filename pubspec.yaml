@@ -42,7 +42,6 @@ dependencies:
   flutter_svg: ^1.1.6
   fl_chart: ^0.60.0
   http: ^0.13.5
-  scrolling_page_indicator: ^0.1.3
   url_launcher: ^6.1.10
   flutter_onboarding_slider: ^1.0.8
   glassmorphism: ^3.0.0
@@ -70,6 +69,7 @@ dependencies:
   permission_handler: ^10.2.0
   permission_request_page: ^1.0.0
   flutter_launcher_icons: ^0.13.1
+  patterns_canvas: ^0.4.0
   
 dev_dependencies:
   flutter_test:

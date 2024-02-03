@@ -4,6 +4,7 @@ import 'package:app1/screens/navigator.dart';
 import 'package:app1/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patterns_canvas/patterns_canvas.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
@@ -85,18 +86,32 @@ class _NewsPageState extends State<NewsPage> {
   }
 
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return await Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => NavPage(
-                      pageIndex: 0,
-                    )));
-      },
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.black,
+      //   //backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   centerTitle: true,
+      //   title: Text(
+      //     "News",
+      //     style: TextStyle(
+      //       fontSize: 20,
+      //       color: Color.fromRGBO(186, 201, 255, 1),
+      //       fontFamily: 'AndersonB',
+      //     ),
+      //   ),
+      // ),
+      body: WillPopScope(
+        onWillPop: () async {
+          return await Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => NavPage(
+                        pageIndex: 0,
+                      )));
+        },
+        child: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
           child: Column(
             children: [
@@ -244,7 +259,7 @@ class _NewsPageState extends State<NewsPage> {
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                      .symmetric(
+                                                                  .symmetric(
                                                                   vertical: 10),
                                                           child: Container(
                                                             padding:
@@ -456,7 +471,7 @@ class _NewsPageState extends State<NewsPage> {
                                                             child: Padding(
                                                               padding:
                                                                   const EdgeInsets
-                                                                          .symmetric(
+                                                                      .symmetric(
                                                                       vertical:
                                                                           10),
                                                               child: Container(
@@ -636,7 +651,7 @@ class _NewsPageState extends State<NewsPage> {
                                                                 },
                                                                 child: Padding(
                                                                   padding: const EdgeInsets
-                                                                          .symmetric(
+                                                                      .symmetric(
                                                                       vertical:
                                                                           10),
                                                                   child:
@@ -739,6 +754,7 @@ class _NewsPageState extends State<NewsPage> {
     );
   }
 }
+
 /* Container(
                               decoration: BoxDecoration(
                                   border:
@@ -756,3 +772,12 @@ class _NewsPageState extends State<NewsPage> {
                               style: GoogleFonts.ubuntu(
                                   fontSize: 15, color: Colors.grey),
                             )*/
+class ContainerPatternPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Dots(bgColor: Colors.black, fgColor: Colors.white);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}

@@ -703,7 +703,7 @@ class _DashboardState extends State<Dashboard> {
                   ],
                 )
               : Center(
-                  child: Text("Add a family member to get started",
+                  child: Text("Coming Soon!",
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.grey,

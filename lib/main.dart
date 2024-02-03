@@ -33,25 +33,25 @@ var username = "";
 bool isUserName = false;
 
 class FD with ChangeNotifier {
-  FDs? fdlist;
-  bool isFD = false;
+  // FDs? fdlist;
+  // bool isFD = false;
   List<MFNAV>? mfnavlist;
   News? market;
   News? economy;
   News? tech;
   News? all;
-  Future<void> getPosts() async {
-    var client = http.Client();
+  // Future<void> getPosts() async {
+  //   var client = http.Client();
 
-    var uri =
-        Uri.parse('https://api.kuvera.in/fixed_deposit/api/v1/plans.json');
-    var response = await client.get(uri);
+  //   var uri =
+  //       Uri.parse('https://api.kuvera.in/fixed_deposit/api/v1/plans.json');
+  //   var response = await client.get(uri);
 
-    var json = response.body;
-    fdlist = FDsFromJson(json);
-    isFD = true;
-    notifyListeners();
-  }
+  //   var json = response.body;
+  //   fdlist = FDsFromJson(json);
+  //   isFD = true;
+  //   notifyListeners();
+  // }
 
   Future<void> getMF() async {
     var client = http.Client();
