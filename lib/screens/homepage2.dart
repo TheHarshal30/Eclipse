@@ -103,7 +103,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
   bool ursername = false;
   void get() async {
     Map<String, dynamic>? temp = await FirebaseFirestore.instance
-        .collection("username")
+        .collection("personal expense")
         .doc(curruserID)
         .get()
         .then((value) => value.data());
@@ -166,9 +166,22 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
 
   Future addUsername(String username) async {
     await FirebaseFirestore.instance
-        .collection("username")
+        .collection("personal expense")
         .doc(curruserID)
         .set({
+      "jan": 0.0,
+      "feb": 0.0,
+      "mar": 0.0,
+      "apr": 0.0,
+      "may": 0.0,
+      "jun": 0.0,
+      "jul": 0.0,
+      "aug": 0.0,
+      "sep": 0.0,
+      "oct": 0.0,
+      "nov": 0.0,
+      "dec": 0.0,
+      "total": 0.0,
       "username": username,
     });
   }
@@ -290,6 +303,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
               GestureDetector(
                 onTap: () {
                   _showDialog(context);
+                  HapticFeedback.heavyImpact();
                 },
                 child: Padding(
                   padding:
@@ -440,11 +454,11 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
             //   ),
             // ),
             Container(
-                height: MediaQuery.of(context).size.height / 4,
+                height: MediaQuery.of(context).size.height / 3.5,
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Container(
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 10),
                     width: MediaQuery.of(context).size.width / 1.11,
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -506,7 +520,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                                     //     ],
                                     //   ),
                                     // ),
-                                    Text("Track Your Money on the GO!",
+                                    Text("track your money on the GO!",
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.white,
@@ -524,7 +538,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
                               child: Container(
-                                padding: EdgeInsets.all(8),
+                                padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   color: Color.fromRGBO(186, 201, 255, 0.2),
                                   borderRadius: BorderRadius.circular(5),
@@ -573,22 +587,30 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                             //     ),
                             //   ],
                             // ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 20),
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(186, 201, 255, 0.2),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Start Now",
-                                    style: GoogleFonts.ubuntu(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    _createRoute(NavPage(pageIndex: 1)),
+                                    (Route<dynamic> route) => false);
+                                HapticFeedback.heavyImpact();
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                decoration: BoxDecoration(
+                                    color: Color.fromRGBO(186, 201, 255, 0.2),
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "start now",
+                                      style: GoogleFonts.ubuntu(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             )
                           ],
@@ -741,8 +763,103 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
             //   ),
             // ),
             Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+              child: Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(186, 201, 255, 0.1),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.25,
+                      child: Text(
+                        "upcoming updates!",
+                        style: GoogleFonts.ubuntu(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 1.25,
+                        child: Text(
+                          "eclipse AI",
+                          style: GoogleFonts.ubuntu(
+                            fontSize: 18,
+                            color: Colors.blueGrey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      child: Text(
+                        "eclipse ai will help you analyze current news and provide detalied strategy on how to act in markets",
+                        style: GoogleFonts.ubuntu(
+                          fontSize: 13,
+                          color: Colors.white60,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        child: Text(
+                          "for more info visit our socials!",
+                          style: GoogleFonts.ubuntu(
+                            fontSize: 13,
+                            color: Colors.white60,
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        Uri url = Uri(
+                            scheme: "https", host: "insidelibrary.weebly.com");
+
+                        if (!await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                        )) {
+                          throw Exception('Could not launch $url');
+                        }
+                        HapticFeedback.heavyImpact();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "socials",
+                              style: GoogleFonts.ubuntu(
+                                  fontSize: 12, color: Colors.grey),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5.0),
+                              child: Icon(
+                                Icons.arrow_forward,
+                                color: Colors.grey,
+                                size: 12,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.only(top: 20.0, bottom: 20),
-              child: Text("EXPLORE ECLIPSE 🤖",
+              child: Text("MORE ON ECLIPSE 🤖",
                   style: GoogleFonts.exo2(
                     letterSpacing: 2,
                     color: Colors.grey.shade600,
@@ -751,227 +868,618 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                     ),
                   )),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-              child: Container(
-                height: MediaQuery.of(context).size.height / 12,
-                width: MediaQuery.of(context).size.width,
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+            //   child: Container(
+            //     height: MediaQuery.of(context).size.height / 12,
+            //     width: MediaQuery.of(context).size.width,
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       crossAxisAlignment: CrossAxisAlignment.center,
+            //       children: [
+            //         Column(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Text(
+            //                 "Eclipse News",
+            //                 style: TextStyle(
+            //                   fontSize: 18,
+            //                   color: Colors.white,
+            //                   fontFamily: 'AndersonB',
+            //                 ),
+            //               ),
+            //               Text(
+            //                 "Read top news on Eclipse",
+            //                 style: TextStyle(
+            //                     color: Colors.grey,
+            //                     fontFamily: 'Anderson',
+            //                     fontWeight: FontWeight.w500),
+            //               )
+            //             ]),
+            //         Image(
+            //             image: AssetImage("assets/images/newsflash.png"),
+            //             height: MediaQuery.of(context).size.height / 22)
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Eclipse News",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontFamily: 'AndersonB',
+                    Container(
+                      height: MediaQuery.of(context).size.height / 3,
+                      width: MediaQuery.of(context).size.width / 1.15,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40.0),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.5,
+                                  child: Text(
+                                    "hey there,\nread something new today",
+                                    style: GoogleFonts.ubuntu(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width / 2.3,
+                                child: Text(
+                                  "read latest news and stay on top of trends",
+                                  style: GoogleFonts.ubuntu(
+                                      fontSize: 12, color: Colors.grey),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "view more",
+                                      style: GoogleFonts.ubuntu(
+                                          fontSize: 12, color: Colors.grey),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 10.0),
+                                      child: Icon(
+                                        Icons.arrow_forward,
+                                        color: Colors.grey,
+                                        size: 12,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ]),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            _createRoute(NavPage(pageIndex: 2)),
+                            (Route<dynamic> route) => false);
+                        HapticFeedback.heavyImpact();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 1.8,
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          decoration: BoxDecoration(
+                            // color: Color.fromRGBO(186, 201, 255, 0.1),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                const Color.fromRGBO(161, 128, 255, 0.25),
+                                const Color.fromRGBO(117, 114, 255, 0.1),
+                                const Color.fromRGBO(132, 112, 255, 0.01),
+                              ],
                             ),
+                            borderRadius: BorderRadius.circular(5),
                           ),
-                          Text(
-                            "Read top news on Eclipse",
-                            style: TextStyle(
-                                color: Colors.grey,
-                                fontFamily: 'Anderson',
-                                fontWeight: FontWeight.w500),
-                          )
-                        ]),
-                    Image(
-                        image: AssetImage("assets/images/newsflash.png"),
-                        height: MediaQuery.of(context).size.height / 22)
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 20.0, bottom: 20),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image(
+                                    image:
+                                        AssetImage("assets/images/ecomar.png"),
+                                    height:
+                                        MediaQuery.of(context).size.height / 5,
+                                  ),
+                                ),
+                              ),
+                              Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                2,
+                                        child: Text(
+                                          "get latest updates through news to plan your finances",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                              fontFamily: 'Anderson',
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      child: Text(
+                                        "Read latest news and stay on top of trends",
+                                        style: GoogleFonts.ubuntu(
+                                            fontSize: 12, color: Colors.grey),
+                                      ),
+                                    ),
+                                    Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 40.0,
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "read more",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontSize: 14,
+                                                  color: Colors.grey),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
+                                              child: Icon(
+                                                Icons.arrow_forward,
+                                                color: Colors.grey,
+                                                size: 12,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ])
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            _createRoute(NavPage(pageIndex: 2)),
+                            (Route<dynamic> route) => false);
+                        HapticFeedback.heavyImpact();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 1.8,
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          decoration: BoxDecoration(
+                            // color: Color.fromRGBO(186, 201, 255, 0.1),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                const Color.fromRGBO(161, 128, 255, 0.25),
+                                const Color.fromRGBO(117, 114, 255, 0.1),
+                                const Color.fromRGBO(132, 112, 255, 0.01),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 20.0, bottom: 20),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image(
+                                    image:
+                                        AssetImage("assets/images/newnews.png"),
+                                    height:
+                                        MediaQuery.of(context).size.height / 5,
+                                  ),
+                                ),
+                              ),
+                              Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                2,
+                                        child: Text(
+                                          "see what's happening in the market",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                              fontFamily: 'Anderson',
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      child: Text(
+                                        "Read latest news and stay on top of trends",
+                                        style: GoogleFonts.ubuntu(
+                                            fontSize: 12, color: Colors.grey),
+                                      ),
+                                    ),
+                                    Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 40.0,
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "read market news",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontSize: 14,
+                                                  color: Colors.grey),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
+                                              child: Icon(
+                                                Icons.arrow_forward,
+                                                color: Colors.grey,
+                                                size: 12,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ])
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            _createRoute(NavPage(pageIndex: 2)),
+                            (Route<dynamic> route) => false);
+                        HapticFeedback.heavyImpact();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height / 1.8,
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          decoration: BoxDecoration(
+                            // color: Color.fromRGBO(186, 201, 255, 0.1),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                const Color.fromRGBO(161, 128, 255, 0.25),
+                                const Color.fromRGBO(117, 114, 255, 0.1),
+                                const Color.fromRGBO(132, 112, 255, 0.01),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 20.0, bottom: 20),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image(
+                                    image: AssetImage(
+                                        "assets/images/newnews1.png"),
+                                    height:
+                                        MediaQuery.of(context).size.height / 5,
+                                  ),
+                                ),
+                              ),
+                              Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 10.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width /
+                                                2,
+                                        child: Text(
+                                          "read about latest trends in science and technology",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white,
+                                              fontFamily: 'Anderson',
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      child: Text(
+                                        "Read latest news and stay on top of trends",
+                                        style: GoogleFonts.ubuntu(
+                                            fontSize: 12, color: Colors.grey),
+                                      ),
+                                    ),
+                                    Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 40.0,
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "read tech news",
+                                              style: GoogleFonts.ubuntu(
+                                                  fontSize: 14,
+                                                  color: Colors.grey),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0),
+                                              child: Icon(
+                                                Icons.arrow_forward,
+                                                color: Colors.grey,
+                                                size: 12,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ])
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     Navigator.of(context).pushAndRemoveUntil(
+                    //         _createRoute(NavPage(pageIndex: 2)),
+                    //         (Route<dynamic> route) => false);
+                    //   },
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(left: 20.0),
+                    //     child: Container(
+                    //       height: MediaQuery.of(context).size.height / 5,
+                    //       width: MediaQuery.of(context).size.width / 1.25,
+                    //       decoration: BoxDecoration(
+                    //         color: Color.fromRGBO(186, 201, 255, 0.1),
+                    //         borderRadius: BorderRadius.circular(10),
+                    //       ),
+                    //       child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //         children: [
+                    //           Padding(
+                    //             padding: const EdgeInsets.only(left: 8.0),
+                    //             child: ClipRRect(
+                    //               borderRadius: BorderRadius.circular(5),
+                    //               child: Image(
+                    //                 image: AssetImage("assets/images/techn.png"),
+                    //                 height:
+                    //                     MediaQuery.of(context).size.height / 7.5,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //           Column(
+                    //               mainAxisAlignment: MainAxisAlignment.center,
+                    //               children: [
+                    //                 Padding(
+                    //                   padding:
+                    //                       const EdgeInsets.only(bottom: 20.0),
+                    //                   child: Container(
+                    //                     width: MediaQuery.of(context).size.width /
+                    //                         2.5,
+                    //                     child: Text(
+                    //                       "Technology News",
+                    //                       style: TextStyle(
+                    //                           fontSize: 20,
+                    //                           color: Colors.white,
+                    //                           fontFamily: 'Anderson',
+                    //                           fontWeight: FontWeight.w700),
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //                 Container(
+                    //                   width:
+                    //                       MediaQuery.of(context).size.width / 2.5,
+                    //                   child: Text(
+                    //                     "Read latest news and stay on top of trends",
+                    //                     style: GoogleFonts.ubuntu(
+                    //                         fontSize: 14, color: Colors.grey),
+                    //                   ),
+                    //                 ),
+                    //               ])
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     Navigator.of(context).pushAndRemoveUntil(
+                    //         _createRoute(NavPage(pageIndex: 3)),
+                    //         (Route<dynamic> route) => false);
+                    //   },
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.only(left: 20.0),
+                    //     child: Container(
+                    //       height: MediaQuery.of(context).size.height / 5,
+                    //       width: MediaQuery.of(context).size.width / 1.25,
+                    //       decoration: BoxDecoration(
+                    //         color: Color.fromRGBO(186, 201, 255, 0.1),
+                    //         borderRadius: BorderRadius.circular(5),
+                    //       ),
+                    //       child: Row(
+                    //         children: [
+                    //           Image(
+                    //             image: AssetImage("assets/images/news.png"),
+                    //             height: MediaQuery.of(context).size.height / 5,
+                    //           ),
+                    //           Column(
+                    //               mainAxisAlignment: MainAxisAlignment.center,
+                    //               children: [
+                    //                 Padding(
+                    //                   padding:
+                    //                       const EdgeInsets.only(bottom: 20.0),
+                    //                   child: Container(
+                    //                     width: MediaQuery.of(context).size.width /
+                    //                         2.5,
+                    //                     child: Text(
+                    //                       "Latest News",
+                    //                       style: TextStyle(
+                    //                           fontSize: 20,
+                    //                           color: Colors.white,
+                    //                           fontFamily: 'Anderson',
+                    //                           fontWeight: FontWeight.w700),
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //                 Container(
+                    //                   width:
+                    //                       MediaQuery.of(context).size.width / 2.5,
+                    //                   child: Text(
+                    //                     "Read latest news and stay on top of trends",
+                    //                     style: GoogleFonts.ubuntu(
+                    //                         fontSize: 14, color: Colors.grey),
+                    //                   ),
+                    //                 ),
+                    //               ])
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               ),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          _createRoute(NavPage(pageIndex: 3)),
-                          (Route<dynamic> route) => false);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 5,
-                        width: MediaQuery.of(context).size.width / 1.25,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(186, 201, 255, 0.1),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image(
-                                image: AssetImage("assets/images/allNews.png"),
-                                height:
-                                    MediaQuery.of(context).size.height / 7.5,
-                              ),
-                            ),
-                            Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 20.0),
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          2.5,
-                                      child: Text(
-                                        "Market News",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.white,
-                                            fontFamily: 'Anderson',
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.5,
-                                    child: Text(
-                                      "Read latest news and stay on top of trends",
-                                      style: GoogleFonts.ubuntu(
-                                          fontSize: 14, color: Colors.grey),
-                                    ),
-                                  ),
-                                ])
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          _createRoute(NavPage(pageIndex: 3)),
-                          (Route<dynamic> route) => false);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 5,
-                        width: MediaQuery.of(context).size.width / 1.25,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(186, 201, 255, 0.1),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(5),
-                                child: Image(
-                                  image: AssetImage("assets/images/techn.png"),
-                                  height:
-                                      MediaQuery.of(context).size.height / 7.5,
-                                ),
-                              ),
-                            ),
-                            Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 20.0),
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          2.5,
-                                      child: Text(
-                                        "Technology News",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.white,
-                                            fontFamily: 'Anderson',
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.5,
-                                    child: Text(
-                                      "Read latest news and stay on top of trends",
-                                      style: GoogleFonts.ubuntu(
-                                          fontSize: 14, color: Colors.grey),
-                                    ),
-                                  ),
-                                ])
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          _createRoute(NavPage(pageIndex: 3)),
-                          (Route<dynamic> route) => false);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 5,
-                        width: MediaQuery.of(context).size.width / 1.25,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(186, 201, 255, 0.1),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Row(
-                          children: [
-                            Image(
-                              image: AssetImage("assets/images/news.png"),
-                              height: MediaQuery.of(context).size.height / 5,
-                            ),
-                            Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 20.0),
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width /
-                                          2.5,
-                                      child: Text(
-                                        "Latest News",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.white,
-                                            fontFamily: 'Anderson',
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2.5,
-                                    child: Text(
-                                      "Read latest news and stay on top of trends",
-                                      style: GoogleFonts.ubuntu(
-                                          fontSize: 14, color: Colors.grey),
-                                    ),
-                                  ),
-                                ])
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 0.0),
+            //   child: Container(
+            //     height: MediaQuery.of(context).size.height / 5,
+            //     width: MediaQuery.of(context).size.width / 1.11,
+            //     decoration: BoxDecoration(
+            //       color: Color.fromRGBO(186, 201, 255, 0.01),
+            //       borderRadius: BorderRadius.circular(5),
+            //     ),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         // ClipRRect(
+            //         //   borderRadius: BorderRadius.circular(10),
+            //         //   child: Image(
+            //         //     image: AssetImage("assets/images/allNews.png"),
+            //         //     height: MediaQuery.of(context).size.height / 7.5,
+            //         //   ),
+            //         // ),
+            //         Padding(
+            //           padding: const EdgeInsets.only(left: 20.0),
+            //           child: Column(
+            //               mainAxisAlignment: MainAxisAlignment.center,
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(bottom: 5.0),
+            //                   child: Container(
+            //                     width: MediaQuery.of(context).size.width / 2.4,
+            //                     child: Text(
+            //                       "hello, Bawe",
+            //                       style: GoogleFonts.ubuntu(
+            //                           fontSize: 20,
+            //                           color: Colors.white,
+            //                           fontWeight: FontWeight.w500),
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 Container(
+            //                   width: MediaQuery.of(context).size.width / 2.3,
+            //                   child: Text(
+            //                     "read latest news and stay on top of trends",
+            //                     style: GoogleFonts.ubuntu(
+            //                         fontSize: 12, color: Colors.grey),
+            //                   ),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(top: 20.0),
+            //                   child: Row(
+            //                     children: [
+            //                       Text(
+            //                         "view more",
+            //                         style: GoogleFonts.ubuntu(
+            //                             fontSize: 12, color: Colors.grey),
+            //                       ),
+            //                       Padding(
+            //                         padding: const EdgeInsets.only(left: 10.0),
+            //                         child: Icon(
+            //                           Icons.arrow_forward,
+            //                           color: Colors.grey,
+            //                           size: 12,
+            //                         ),
+            //                       )
+            //                     ],
+            //                   ),
+            //                 ),
+            //               ]),
+            //         ),
+            //         Padding(
+            //           padding: const EdgeInsets.only(right: 20),
+            //           child: ClipRRect(
+            //             borderRadius: BorderRadius.circular(10),
+            //             child: Image(
+            //               image: AssetImage("assets/images/newss.gif"),
+            //               height: MediaQuery.of(context).size.height / 7.5,
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.only(top: 15.0),
               child: Column(
@@ -985,6 +1493,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                         GestureDetector(
                           onTap: (() {
                             Navigator.of(context).push(_createRoute(Swipe()));
+                            HapticFeedback.heavyImpact();
                           }),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 25, right: 25),
@@ -1061,6 +1570,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                             )) {
                               throw Exception('Could not launch $url');
                             }
+                            HapticFeedback.heavyImpact();
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(left: 25, right: 15),

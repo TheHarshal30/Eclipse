@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, unused_local_variable, prefer_interpolation_to_compose_strings, sized_box_for_whitespace, curly_braces_in_flow_control_structures, avoid_print, annotate_overrides
 
+import 'dart:ui';
+
 import 'package:app1/screens/navigator.dart';
 import 'package:app1/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:patterns_canvas/patterns_canvas.dart';
 import 'package:provider/provider.dart';
@@ -115,49 +118,24 @@ class _NewsPageState extends State<NewsPage> {
           physics: NeverScrollableScrollPhysics(),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selec = -1;
-                        temp.jumpToPage(0);
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      decoration: BoxDecoration(
-                          border: (selec == -1)
-                              ? Border(
-                                  bottom:
-                                      BorderSide(width: 1, color: Colors.blue))
-                              : Border(
-                                  bottom: BorderSide(
-                                      width: 1, color: Colors.black))),
-                      child: Text(
-                        "All",
-                        style: GoogleFonts.ubuntu(
-                            fontSize: 16,
-                            color: (selec == -1) ? Colors.blue : Colors.white),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 0),
-                    child: GestureDetector(
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
                       onTap: () {
                         setState(() {
-                          selec = 0;
-                          temp.jumpToPage(1);
+                          selec = -1;
+                          temp.jumpToPage(0);
                         });
+                        HapticFeedback.heavyImpact();
                       },
                       child: Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                         decoration: BoxDecoration(
-                            border: (selec == 0)
+                            border: (selec == -1)
                                 ? Border(
                                     bottom: BorderSide(
                                         width: 1, color: Colors.blue))
@@ -165,44 +143,78 @@ class _NewsPageState extends State<NewsPage> {
                                     bottom: BorderSide(
                                         width: 1, color: Colors.black))),
                         child: Text(
-                          "Markets",
+                          "All",
                           style: GoogleFonts.ubuntu(
                               fontSize: 16,
-                              color: (selec == 0) ? Colors.blue : Colors.white),
+                              color:
+                                  (selec == -1) ? Colors.blue : Colors.white),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 0.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selec = 1;
-                          temp.jumpToPage(2);
-                        });
-                      },
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        decoration: BoxDecoration(
-                            border: (selec == 1)
-                                ? Border(
-                                    bottom: BorderSide(
-                                        width: 1, color: Colors.blue))
-                                : Border(
-                                    bottom: BorderSide(
-                                        width: 1, color: Colors.black))),
-                        child: Text(
-                          "Tech",
-                          style: GoogleFonts.ubuntu(
-                              fontSize: 16,
-                              color: (selec == 1) ? Colors.blue : Colors.white),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0, right: 0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selec = 0;
+                            temp.jumpToPage(1);
+                          });
+                          HapticFeedback.heavyImpact();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: (selec == 0)
+                                  ? Border(
+                                      bottom: BorderSide(
+                                          width: 1, color: Colors.blue))
+                                  : Border(
+                                      bottom: BorderSide(
+                                          width: 1, color: Colors.black))),
+                          child: Text(
+                            "Markets",
+                            style: GoogleFonts.ubuntu(
+                                fontSize: 16,
+                                color:
+                                    (selec == 0) ? Colors.blue : Colors.white),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selec = 1;
+                            temp.jumpToPage(2);
+                            HapticFeedback.heavyImpact();
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              border: (selec == 1)
+                                  ? Border(
+                                      bottom: BorderSide(
+                                          width: 1, color: Colors.blue))
+                                  : Border(
+                                      bottom: BorderSide(
+                                          width: 1, color: Colors.black))),
+                          child: Text(
+                            "Tech",
+                            style: GoogleFonts.ubuntu(
+                                fontSize: 16,
+                                color:
+                                    (selec == 1) ? Colors.blue : Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.vertical,
@@ -245,16 +257,12 @@ class _NewsPageState extends State<NewsPage> {
                                                                   .all!
                                                                   .feed[index]
                                                                   .url);
-                                                          if (await canLaunchUrl(
-                                                              url)) {
-                                                            await launchUrl(
-                                                              url,
-                                                              mode: LaunchMode
-                                                                  .externalApplication,
-                                                            );
-                                                          } else {
-                                                            throw 'Could not launch $url';
-                                                          }
+
+                                                          launchUrl(
+                                                            url,
+                                                            mode: LaunchMode
+                                                                .externalApplication,
+                                                          );
                                                         },
                                                         child: Padding(
                                                           padding:

@@ -23,7 +23,7 @@ StreamController<int> streamController = StreamController<int>.broadcast();
 String? userrr;
 Future getUsername() async {
   Map<String, dynamic>? temp = await FirebaseFirestore.instance
-      .collection("username")
+      .collection("personal expense")
       .doc(nav.curruserID)
       .get()
       .then((value) => value.data());
@@ -67,7 +67,7 @@ Future addPersonalTotal(
   await FirebaseFirestore.instance
       .collection("personal expense")
       .doc(nav.curruserID)
-      .set({
+      .update({
     "jan": jan,
     "feb": feb,
     "mar": mar,
@@ -211,8 +211,8 @@ class ExpensePageState extends State<ExpensePage> {
         streamController.stream.listen((event) {
           if (event == 1) {
             Navigator.of(context).pop();
-            // addPersonalTotal(jant, febt, mart, aprt, mayt, junt, jult, augt,
-            //     sept, octt, novt, dect, totalt, userrr);
+            addPersonalTotal(jant, febt, mart, aprt, mayt, junt, jult, augt,
+                sept, octt, novt, dect, totalt, userrr);
           }
         });
         return AlertDialog(
@@ -1362,6 +1362,7 @@ class ExpensePageState extends State<ExpensePage> {
                 children: [
                   GestureDetector(
                     onTap: () async {
+                      HapticFeedback.heavyImpact();
                       print(1);
                       Navigator.of(context).pop();
                       _showDialog(context);
@@ -1586,6 +1587,7 @@ class ExpensePageState extends State<ExpensePage> {
                                             2;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
@@ -1636,15 +1638,17 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               } else {
                                 for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
+                                        message.body.toString().indexOf('by') +
+                                            3;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
                                           double.parse(
                                               message.body.toString()[j]);
+                                      // ignore: dead_code
                                     } else {
                                       dd = dd + 1;
                                       double temp =
@@ -1656,30 +1660,21 @@ class ExpensePageState extends State<ExpensePage> {
                                       }
                                       rek = rek + temp;
                                     }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
                                   } else {
                                     if (message.body
                                             .toString()
                                             .indexOf('credited') !=
                                         -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
+                                      // rek *= 10;
+                                      // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= 1;
                                       p.add(rek.toDouble());
-
                                       break;
                                     } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
+                                            ?.indexOf('debited') !=
                                         -1) {
-                                      // rek*=10;
+                                      // rek *= 10;
                                       // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= -1;
@@ -1941,6 +1936,7 @@ class ExpensePageState extends State<ExpensePage> {
                           totalt = expens;
                         });
                       });
+                      HapticFeedback.heavyImpact();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
@@ -1985,6 +1981,7 @@ class ExpensePageState extends State<ExpensePage> {
                   GestureDetector(
                     onTap: () async {
                       // bank =2;
+                      HapticFeedback.heavyImpact();
                       Navigator.of(context).pop();
                       _showDialog(context);
                       _messages = [];
@@ -2217,6 +2214,7 @@ class ExpensePageState extends State<ExpensePage> {
                                             2;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
@@ -2267,15 +2265,17 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               } else {
                                 for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
+                                        message.body.toString().indexOf('by') +
+                                            3;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
                                           double.parse(
                                               message.body.toString()[j]);
+                                      // ignore: dead_code
                                     } else {
                                       dd = dd + 1;
                                       double temp =
@@ -2287,30 +2287,21 @@ class ExpensePageState extends State<ExpensePage> {
                                       }
                                       rek = rek + temp;
                                     }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
                                   } else {
                                     if (message.body
                                             .toString()
                                             .indexOf('credited') !=
                                         -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
+                                      // rek *= 10;
+                                      // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= 1;
                                       p.add(rek.toDouble());
-
                                       break;
                                     } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
+                                            ?.indexOf('debited') !=
                                         -1) {
-                                      // rek*=10;
+                                      // rek *= 10;
                                       // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= -1;
@@ -2572,6 +2563,7 @@ class ExpensePageState extends State<ExpensePage> {
                           totalt = expens;
                         });
                       });
+                      HapticFeedback.heavyImpact();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
@@ -2616,6 +2608,7 @@ class ExpensePageState extends State<ExpensePage> {
                   ),
                   GestureDetector(
                     onTap: () async {
+                      HapticFeedback.heavyImpact();
                       // bank = 3
                       Navigator.of(context).pop();
                       _showDialog(context);
@@ -2840,6 +2833,7 @@ class ExpensePageState extends State<ExpensePage> {
                                             2;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
@@ -2890,15 +2884,17 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               } else {
                                 for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
+                                        message.body.toString().indexOf('by') +
+                                            3;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
                                           double.parse(
                                               message.body.toString()[j]);
+                                      // ignore: dead_code
                                     } else {
                                       dd = dd + 1;
                                       double temp =
@@ -2910,30 +2906,21 @@ class ExpensePageState extends State<ExpensePage> {
                                       }
                                       rek = rek + temp;
                                     }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
                                   } else {
                                     if (message.body
                                             .toString()
                                             .indexOf('credited') !=
                                         -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
+                                      // rek *= 10;
+                                      // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= 1;
                                       p.add(rek.toDouble());
-
                                       break;
                                     } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
+                                            ?.indexOf('debited') !=
                                         -1) {
-                                      // rek*=10;
+                                      // rek *= 10;
                                       // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= -1;
@@ -3195,6 +3182,7 @@ class ExpensePageState extends State<ExpensePage> {
                           totalt = expens;
                         });
                       });
+                      HapticFeedback.heavyImpact();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
@@ -3239,6 +3227,7 @@ class ExpensePageState extends State<ExpensePage> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      HapticFeedback.heavyImpact();
                       // bank=4;
                       Navigator.of(context).pop();
                       _showDialog(context);
@@ -3472,6 +3461,7 @@ class ExpensePageState extends State<ExpensePage> {
                                             2;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
@@ -3522,15 +3512,17 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               } else {
                                 for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
+                                        message.body.toString().indexOf('by') +
+                                            3;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
                                           double.parse(
                                               message.body.toString()[j]);
+                                      // ignore: dead_code
                                     } else {
                                       dd = dd + 1;
                                       double temp =
@@ -3542,30 +3534,21 @@ class ExpensePageState extends State<ExpensePage> {
                                       }
                                       rek = rek + temp;
                                     }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
                                   } else {
                                     if (message.body
                                             .toString()
                                             .indexOf('credited') !=
                                         -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
+                                      // rek *= 10;
+                                      // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= 1;
                                       p.add(rek.toDouble());
-
                                       break;
                                     } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
+                                            ?.indexOf('debited') !=
                                         -1) {
-                                      // rek*=10;
+                                      // rek *= 10;
                                       // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= -1;
@@ -3827,6 +3810,7 @@ class ExpensePageState extends State<ExpensePage> {
                           totalt = expens;
                         });
                       });
+                      HapticFeedback.heavyImpact();
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -3869,6 +3853,7 @@ class ExpensePageState extends State<ExpensePage> {
                   GestureDetector(
                     onTap: () {
                       // bank=4;
+                      HapticFeedback.heavyImpact();
                       Navigator.of(context).pop();
                       _showDialog(context);
                       state = 1;
@@ -4101,6 +4086,7 @@ class ExpensePageState extends State<ExpensePage> {
                                             2;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
@@ -4151,15 +4137,17 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               } else {
                                 for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
+                                        message.body.toString().indexOf('by') +
+                                            3;
                                     j < message.body.toString().length;
                                     j++) {
+                                  print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
                                           double.parse(
                                               message.body.toString()[j]);
+                                      // ignore: dead_code
                                     } else {
                                       dd = dd + 1;
                                       double temp =
@@ -4171,30 +4159,21 @@ class ExpensePageState extends State<ExpensePage> {
                                       }
                                       rek = rek + temp;
                                     }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
                                   } else {
                                     if (message.body
                                             .toString()
                                             .indexOf('credited') !=
                                         -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
+                                      // rek *= 10;
+                                      // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= 1;
                                       p.add(rek.toDouble());
-
                                       break;
                                     } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
+                                            ?.indexOf('debited') !=
                                         -1) {
-                                      // rek*=10;
+                                      // rek *= 10;
                                       // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= -1;
@@ -4568,6 +4547,7 @@ class ExpensePageState extends State<ExpensePage> {
                           totalt = expens;
                         });
                       });
+                      HapticFeedback.heavyImpact();
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -4619,7 +4599,7 @@ class ExpensePageState extends State<ExpensePage> {
 
   void getData() async {
     Map<String, dynamic>? temp1 = await FirebaseFirestore.instance
-        .collection("family")
+        .collection("personal expense")
         .doc(nav.curruserID)
         .get()
         .then((value) => value.data());
@@ -4643,7 +4623,7 @@ class ExpensePageState extends State<ExpensePage> {
         nov2 = temp1['nov'];
         dec2 = temp1['dec'];
         total2 = temp1['total'];
-        user2 = temp1['usernsme'];
+        user2 = temp1['username'];
         print(jan2);
         print(feb2);
         print(mar2);
@@ -4782,6 +4762,7 @@ class ExpensePageState extends State<ExpensePage> {
                                           octx: octx,
                                           novx: novx,
                                           decx: decx)));
+                              HapticFeedback.heavyImpact();
                             },
                             child: Align(
                               alignment: Alignment.topCenter,
@@ -4829,6 +4810,7 @@ class ExpensePageState extends State<ExpensePage> {
                                         dec2: dec2,
                                         isData: isData,
                                       )));
+                                  HapticFeedback.heavyImpact();
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -4885,6 +4867,7 @@ class ExpensePageState extends State<ExpensePage> {
                                           octx: octx,
                                           novx: novx,
                                           decx: decx)));
+                                  HapticFeedback.heavyImpact();
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -4925,6 +4908,7 @@ class ExpensePageState extends State<ExpensePage> {
                                 setState(() {
                                   details = true;
                                 });
+                                HapticFeedback.heavyImpact();
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -4963,13 +4947,15 @@ class ExpensePageState extends State<ExpensePage> {
                           // color: Color.fromRGBO(186, 201, 255, 1),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        width: MediaQuery.of(context).size.width / 1.15,
+                        width: MediaQuery.of(context).size.width / 1.05,
                         child: Column(
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(
@@ -4980,19 +4966,19 @@ class ExpensePageState extends State<ExpensePage> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 8.0, left: 0),
+                                              top: 8.0, left: 20),
                                           child: Text(
                                             "Connect with others",
                                             style: TextStyle(
                                               fontSize: 18,
-                                              color: Colors.white,
+                                              color: Colors.blueGrey,
                                               fontFamily: 'AndersonB',
                                             ),
                                           ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 10.0, left: 0),
+                                              top: 10.0, left: 20),
                                           child: Container(
                                             width: MediaQuery.of(context)
                                                     .size
@@ -5001,7 +4987,7 @@ class ExpensePageState extends State<ExpensePage> {
                                             child: Text(
                                               "Add another member from settings and compare.\nGet userkey from settings to share with others",
                                               style: GoogleFonts.ubuntu(
-                                                  color: Colors.grey.shade800,
+                                                  color: Colors.white60,
                                                   fontSize: 14),
                                             ),
                                           ),
@@ -5017,7 +5003,7 @@ class ExpensePageState extends State<ExpensePage> {
                                           "assets/images/connect.gif"),
                                       height:
                                           MediaQuery.of(context).size.height /
-                                              8,
+                                              10,
                                     ),
                                   ),
                                 ],
@@ -5425,6 +5411,7 @@ class ExpensePageState extends State<ExpensePage> {
             for (int j = message.body.toString().indexOf('Rs') + 2;
                 j < message.body.toString().length;
                 j++) {
+              print(message.body?[j]);
               if (isNumeric(message.body.toString()[j])) {
                 if (pp) {
                   rek = rek * 10 + double.parse(message.body.toString()[j]);
@@ -5464,12 +5451,14 @@ class ExpensePageState extends State<ExpensePage> {
               }
             }
           } else {
-            for (int j = message.body.toString().indexOf('Rs') + 2;
+            for (int j = message.body.toString().indexOf('by') + 3;
                 j < message.body.toString().length;
                 j++) {
+              print(message.body?[j]);
               if (isNumeric(message.body.toString()[j])) {
                 if (pp) {
                   rek = rek * 10 + double.parse(message.body.toString()[j]);
+                  // ignore: dead_code
                 } else {
                   dd = dd + 1;
                   double temp = double.parse(message.body![j]);
@@ -5480,23 +5469,16 @@ class ExpensePageState extends State<ExpensePage> {
                   }
                   rek = rek + temp;
                 }
-              } else if (message.body.toString()[j] == '.') {
-                // if(message.body.toString()[j-1]=='s'){
-                //   continue;
-                // }else{
-                pp = false;
-                // }
               } else {
                 if (message.body.toString().indexOf('credited') != -1) {
-                  // rek*=10;
-                  //  final chars = rek.toString().split('');
+                  // rek *= 10;
+                  // final chars = rek.toString().split('');
                   // rek = double.parse(chars.reversed.join());
                   rek *= 1;
                   p.add(rek.toDouble());
-
                   break;
-                } else if (message.body.toString().indexOf('debited') != -1) {
-                  // rek*=10;
+                } else if (message.body?.indexOf('debited') != -1) {
+                  // rek *= 10;
                   // final chars = rek.toString().split('');
                   // rek = double.parse(chars.reversed.join());
                   rek *= -1;
@@ -5784,7 +5766,7 @@ class ExpensePageState extends State<ExpensePage> {
     //         }
     //       }
     //     }
-    //     else if (message.sender?.indexOf('SBIUPI') != -1) {
+
     //       // print(message.body.toString());
     //       if (message.body.toString().indexOf('credited') != -1) {
     //         for (int j = message.body.toString().indexOf('Rs') + 2;

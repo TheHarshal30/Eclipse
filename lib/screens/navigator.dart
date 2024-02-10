@@ -20,10 +20,15 @@ import 'package:url_launcher/url_launcher.dart';
 final curruserID = FirebaseAuth.instance.currentUser!.uid;
 
 Future addUsername(String username) async {
-  await FirebaseFirestore.instance.collection("username").doc(curruserID).set({
+  await FirebaseFirestore.instance
+      .collection("personal expense")
+      .doc(curruserID)
+      .update({
     "username": username,
   });
 }
+
+String familyUserID = "";
 
 double total2 = 0;
 String user2 = "";
@@ -47,42 +52,7 @@ final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final FirebaseAuth auth = FirebaseAuth.instance;
 void onAdd(String userkey) async {
   if (userkey.isNotEmpty) {
-    Map<String, dynamic>? temp = await FirebaseFirestore.instance
-        .collection("personal expense")
-        .doc(userkey)
-        .get()
-        .then((value) => value.data());
-
-    jan1 = temp!['jan'];
-    feb1 = temp['feb'];
-    mar1 = temp['mar'];
-    apr1 = temp['apr'];
-    may1 = temp['may'];
-    jun1 = temp['jun'];
-    jul1 = temp['jul'];
-    aug1 = temp['aug'];
-    sep1 = temp['sep'];
-    oct1 = temp['oct'];
-    nov1 = temp['nov'];
-    dec1 = temp['dec'];
-    total1 = temp['total'];
-    user1 = temp['username'];
-    Map<String, dynamic> connectData = {
-      "jan": jan1,
-      "feb": feb1,
-      "mar": mar1,
-      "apr": apr1,
-      "may": may1,
-      "jun": jun1,
-      "jul": jul1,
-      "aug": aug1,
-      "sep": sep1,
-      "oct": oct1,
-      "nov": nov1,
-      "dec": dec1,
-      "total": total1,
-      "usernsme": user1,
-    };
+    Map<String, dynamic> connectData = {"userkey": userkey};
     await _firestore.collection('family').doc(curruserID).set(connectData);
 
 /*
@@ -207,6 +177,7 @@ class _NavPageState extends State<NavPage> {
                     ),
                   ),
                   onSubmitted: (value) {
+                    familyUserID = usernmane.text;
                     onAdd(usernmane.text);
                     Navigator.of(context).pop();
                     Fluttertoast.showToast(
@@ -269,6 +240,7 @@ class _NavPageState extends State<NavPage> {
                                 )) {
                                   throw Exception('Could not launch $url');
                                 }
+                                HapticFeedback.heavyImpact();
                               },
                               child: Row(children: [
                                 Icon(
@@ -303,6 +275,7 @@ class _NavPageState extends State<NavPage> {
                               backgroundColor: Colors.black,
                               textColor: Colors.white,
                               fontSize: 16.0);
+                          HapticFeedback.heavyImpact();
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 30.0, left: 20),
@@ -355,6 +328,7 @@ class _NavPageState extends State<NavPage> {
                                       textColor: Colors.white,
                                       fontSize: 14.0);
                                 }
+                                HapticFeedback.heavyImpact();
                               },
                               child: Padding(
                                 padding:
@@ -392,6 +366,7 @@ class _NavPageState extends State<NavPage> {
                       GestureDetector(
                         onTap: () {
                           _showDialog(context);
+                          HapticFeedback.heavyImpact();
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 30.0, left: 20),
@@ -415,6 +390,7 @@ class _NavPageState extends State<NavPage> {
                       GestureDetector(
                         onTap: () {
                           _showdialogue1(context);
+                          HapticFeedback.heavyImpact();
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 30.0, left: 20),
@@ -426,7 +402,7 @@ class _NavPageState extends State<NavPage> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 10.0),
-                              child: Text("Add a family member",
+                              child: Text("Connect a friend",
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -515,7 +491,7 @@ class _NavPageState extends State<NavPage> {
                   ),
                 ] else if (widget.pageIndex == 1) ...[
                   Text(
-                    "Eclipse Investing",
+                    "Eclipse Tracking",
                     style: TextStyle(
                       fontSize: 18,
                       color: Color.fromRGBO(186, 201, 255, 1),
@@ -597,6 +573,7 @@ class _NavPageState extends State<NavPage> {
             setState(() {
               widget.pageIndex = index;
             });
+            HapticFeedback.heavyImpact();
           },
           items: [
             BottomNavigationBarItem(

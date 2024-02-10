@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_final_fields, unused_field
 
+import 'package:app1/main.dart';
 import 'package:app1/screens/expenses.dart';
-import 'package:app1/screens/navigator.dart';
+import 'package:app1/screens/navigator.dart' as nav;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -69,7 +70,7 @@ void onAdd(String userkey) async {
       "total": total1,
       "usernsme": user1,
     };
-    await _firestore.collection('family').doc(curruserID).set(connectData);
+    await _firestore.collection('family').doc(nav.curruserID).set(connectData);
 
 /*
     await _firestore
@@ -137,11 +138,32 @@ class _DashboardState extends State<Dashboard> {
   bool isData = false;
 
   void data() async {
-    Map<String, dynamic>? temp = await FirebaseFirestore.instance
-        .collection("personal expense")
-        .doc(curruserID)
+    Map<String, dynamic>? temp2 = await FirebaseFirestore.instance
+        .collection("family")
+        .doc(nav.curruserID)
         .get()
         .then((value) => value.data());
+    String useee = temp2?["userkey"];
+    Map<String, dynamic>? temp = await FirebaseFirestore.instance
+        .collection("personal expense")
+        .doc(useee)
+        .get()
+        .then((value) => value.data());
+
+    jan1 = temp!['jan'];
+    feb1 = temp['feb'];
+    mar1 = temp['mar'];
+    apr1 = temp['apr'];
+    may1 = temp['may'];
+    jun1 = temp['jun'];
+    jul1 = temp['jul'];
+    aug1 = temp['aug'];
+    sep1 = temp['sep'];
+    oct1 = temp['oct'];
+    nov1 = temp['nov'];
+    dec1 = temp['dec'];
+    total1 = temp['total'];
+    user1 = temp['username'];
     if (temp == null) {
       setState(() {
         isData = false;
@@ -240,30 +262,30 @@ class _DashboardState extends State<Dashboard> {
     fire.add(widget.nov2);
     fire.add(widget.dec2);
 
-    var barGroup1 = makeGroupData(
-        0, (jant / (totalt)) * 100, (widget.jan2 / (totalt)) * 100);
-    var barGroup2 = makeGroupData(
-        1, (febt / (totalt)) * 100, (widget.feb2 / (total2)) * 100);
-    var barGroup3 = makeGroupData(
-        2, (mart / (totalt)) * 100, (widget.mar2 / (total2)) * 100);
-    var barGroup4 = makeGroupData(
-        3, (aprt / (totalt)) * 100, (widget.apr2 / (total2)) * 100);
-    var barGroup5 = makeGroupData(
-        4, (mayt / (totalt)) * 100, (widget.may2 / (total2)) * 100);
-    var barGroup6 = makeGroupData(
-        5, (junt / (totalt)) * 100, (widget.jun2 / (total2)) * 100);
-    var barGroup7 = makeGroupData(
-        6, (jult / (totalt)) * 100, (widget.jul2 / (total2)) * 100);
-    var barGroup8 = makeGroupData(
-        7, (augt / (totalt)) * 100, (widget.aug2 / (total2)) * 100);
-    var barGroup9 = makeGroupData(
-        8, (sept / (totalt)) * 100, (widget.sep2 / (total2)) * 100);
-    var barGroup10 = makeGroupData(
-        9, (octt / (totalt)) * 100, (widget.oct2 / (total2)) * 100);
-    var barGroup11 = makeGroupData(
-        10, (novt / (totalt)) * 100, (widget.nov2 / (total2)) * 100);
-    var barGroup12 = makeGroupData(
-        11, (dect / (totalt)) * 100, (widget.dec2 / (total2)) * 100);
+    var barGroup1 =
+        makeGroupData(0, (jant / (totalt)) * 100, (jan1 / (totalt)) * 100);
+    var barGroup2 =
+        makeGroupData(1, (febt / (totalt)) * 100, (feb1 / (totalt)) * 100);
+    var barGroup3 =
+        makeGroupData(2, (mart / (totalt)) * 100, (mar1 / (totalt)) * 100);
+    var barGroup4 =
+        makeGroupData(3, (aprt / (totalt)) * 100, (apr1 / (totalt)) * 100);
+    var barGroup5 =
+        makeGroupData(4, (mayt / (totalt)) * 100, (may1 / (totalt)) * 100);
+    var barGroup6 =
+        makeGroupData(5, (junt / (totalt)) * 100, (jun1 / (totalt)) * 100);
+    var barGroup7 =
+        makeGroupData(6, (jult / (totalt)) * 100, (jul1 / (totalt)) * 100);
+    var barGroup8 =
+        makeGroupData(7, (augt / (totalt)) * 100, (aug1 / (totalt)) * 100);
+    var barGroup9 =
+        makeGroupData(8, (sept / (totalt)) * 100, (sep1 / (totalt)) * 100);
+    var barGroup10 =
+        makeGroupData(9, (octt / (totalt)) * 100, (oct1 / (totalt)) * 100);
+    var barGroup11 =
+        makeGroupData(10, (novt / (totalt)) * 100, (nov1 / (totalt)) * 100);
+    var barGroup12 =
+        makeGroupData(11, (dect / (totalt)) * 100, (dec1 / (totalt)) * 100);
 
     /*
     var barGroup2 = makeGroupData(1, febt, widget.feb2);
@@ -300,7 +322,7 @@ class _DashboardState extends State<Dashboard> {
 
   final dataMap = <String, double>{
     userrr.toString(): totalt,
-    user2: (total2),
+    user1: (total1),
   };
   final legendLabels = <String, String>{
     "Flutter": "Flutter legend",
@@ -471,7 +493,7 @@ class _DashboardState extends State<Dashboard> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(user2,
+                                Text(user1,
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.white,
@@ -485,7 +507,7 @@ class _DashboardState extends State<Dashboard> {
                                             color: Colors.white,
                                             fontFamily: 'Neo',
                                             fontWeight: FontWeight.w400)),
-                                    Text((total2).toString(),
+                                    Text((total1).toString(),
                                         style: TextStyle(
                                             fontSize: 25,
                                             color: Colors.white,
@@ -703,7 +725,7 @@ class _DashboardState extends State<Dashboard> {
                   ],
                 )
               : Center(
-                  child: Text("Coming Soon!",
+                  child: Text("Please connect a friend from settings!",
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.grey,
