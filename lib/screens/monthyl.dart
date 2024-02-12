@@ -415,7 +415,7 @@ class _MonthlyState extends State<Monthly> {
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .only(
+                                                                .only(
                                                                 left: 20.0,
                                                                 top: 8,
                                                                 bottom: 8),
@@ -449,7 +449,7 @@ class _MonthlyState extends State<Monthly> {
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .only(
+                                                                .only(
                                                                 left: 20,
                                                                 bottom: 8,
                                                                 top: 8),
@@ -547,7 +547,7 @@ class _MonthlyState extends State<Monthly> {
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsets
-                                                                        .only(
+                                                                    .only(
                                                                     left: 20.0,
                                                                     top: 8,
                                                                     bottom: 8),
@@ -582,7 +582,7 @@ class _MonthlyState extends State<Monthly> {
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsets
-                                                                        .only(
+                                                                    .only(
                                                                     left: 20,
                                                                     bottom: 8,
                                                                     top: 8),
@@ -686,7 +686,7 @@ class _MonthlyState extends State<Monthly> {
                                                               Padding(
                                                                 padding:
                                                                     const EdgeInsets
-                                                                            .only(
+                                                                        .only(
                                                                         left:
                                                                             20.0,
                                                                         top: 8,
@@ -723,7 +723,7 @@ class _MonthlyState extends State<Monthly> {
                                                               Padding(
                                                                 padding:
                                                                     const EdgeInsets
-                                                                            .only(
+                                                                        .only(
                                                                         left:
                                                                             20,
                                                                         bottom:
@@ -801,7 +801,7 @@ class _MonthlyState extends State<Monthly> {
                                                       return Padding(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .only(
+                                                                .only(
                                                                 top: 10.0),
                                                         child: Container(
                                                           height: MediaQuery.of(
@@ -836,7 +836,7 @@ class _MonthlyState extends State<Monthly> {
                                                                 children: [
                                                                   Padding(
                                                                     padding: const EdgeInsets
-                                                                            .only(
+                                                                        .only(
                                                                         left:
                                                                             20.0,
                                                                         top: 8,
@@ -867,7 +867,7 @@ class _MonthlyState extends State<Monthly> {
                                                                   ),
                                                                   Padding(
                                                                     padding: const EdgeInsets
-                                                                            .only(
+                                                                        .only(
                                                                         left:
                                                                             20,
                                                                         bottom:
@@ -888,7 +888,7 @@ class _MonthlyState extends State<Monthly> {
                                                               Padding(
                                                                 padding:
                                                                     const EdgeInsets
-                                                                            .all(
+                                                                        .all(
                                                                         8.0),
                                                                 child: p < 0
                                                                     ? Text(
@@ -934,7 +934,7 @@ class _MonthlyState extends State<Monthly> {
                                                           return Padding(
                                                             padding:
                                                                 const EdgeInsets
-                                                                        .only(
+                                                                    .only(
                                                                     top: 10.0),
                                                             child: Container(
                                                               height: MediaQuery.of(
@@ -968,7 +968,8 @@ class _MonthlyState extends State<Monthly> {
                                                                   Row(
                                                                     children: [
                                                                       Padding(
-                                                                        padding: const EdgeInsets.only(
+                                                                        padding: const EdgeInsets
+                                                                            .only(
                                                                             left:
                                                                                 20.0,
                                                                             top:
@@ -996,7 +997,8 @@ class _MonthlyState extends State<Monthly> {
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsets.only(
+                                                                        padding: const EdgeInsets
+                                                                            .only(
                                                                             left:
                                                                                 20,
                                                                             bottom:
@@ -1013,7 +1015,8 @@ class _MonthlyState extends State<Monthly> {
                                                                   ),
                                                                   Padding(
                                                                     padding:
-                                                                        const EdgeInsets.all(
+                                                                        const EdgeInsets
+                                                                            .all(
                                                                             8.0),
                                                                     child: p < 0
                                                                         ? Text(
@@ -1044,9 +1047,10 @@ class _MonthlyState extends State<Monthly> {
                                                         })
                                                     : index == 6
                                                         ? ListView.builder(
-                                                            itemCount:
-                                                                (widget.july.length)
-                                                                    .toInt(),
+                                                            itemCount: (widget
+                                                                    .july
+                                                                    .length)
+                                                                .toInt(),
                                                             itemBuilder:
                                                                 (context, i) {
                                                               var p = widget
@@ -1054,7 +1058,7 @@ class _MonthlyState extends State<Monthly> {
                                                               return Padding(
                                                                 padding:
                                                                     const EdgeInsets
-                                                                            .only(
+                                                                        .only(
                                                                         top:
                                                                             10.0),
                                                                 child:
@@ -1117,8 +1121,9 @@ class _MonthlyState extends State<Monthly> {
                                                                         ],
                                                                       ),
                                                                       Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(8.0),
+                                                                        padding: const EdgeInsets
+                                                                            .all(
+                                                                            8.0),
                                                                         child: p <
                                                                                 0
                                                                             ? Text(
@@ -1147,16 +1152,14 @@ class _MonthlyState extends State<Monthly> {
                                                             })
                                                         : index == 7
                                                             ? ListView.builder(
-                                                                itemCount: (widget
-                                                                        .august
-                                                                        .length)
-                                                                    .toInt(),
+                                                                itemCount:
+                                                                    (widget.august.length).toInt(),
                                                                 itemBuilder: (context, i) {
                                                                   var p = widget
                                                                       .august[i];
                                                                   return Padding(
                                                                     padding: const EdgeInsets
-                                                                            .only(
+                                                                        .only(
                                                                         top:
                                                                             10.0),
                                                                     child:
@@ -1240,8 +1243,10 @@ class _MonthlyState extends State<Monthly> {
                                                                       var p = widget
                                                                           .september[i];
                                                                       return Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.only(top: 10.0),
+                                                                        padding: const EdgeInsets
+                                                                            .only(
+                                                                            top:
+                                                                                10.0),
                                                                         child:
                                                                             Container(
                                                                           height:

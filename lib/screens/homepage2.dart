@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, curly_braces_in_flow_control_structures, sort_child_properties_last, unused_field
 import 'package:app1/main.dart';
+import 'package:app1/models/firebaseCalls.dart';
 import 'package:app1/models/newsservices.dart';
 import 'package:app1/models/remote_services.dart';
 import 'package:app1/models/tipsmodel.dart';
@@ -90,6 +91,8 @@ Future getFD() async {
   return fdlist;
 }
 
+var curruserKey = FirebaseCalls().getCurrentUserKey();
+
 class HomePage2 extends StatefulWidget {
   const HomePage2({
     super.key,
@@ -102,14 +105,12 @@ class HomePage2 extends StatefulWidget {
 class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
   bool ursername = false;
   void get() async {
-    Map<String, dynamic>? temp = await FirebaseFirestore.instance
-        .collection("personal expense")
-        .doc(curruserID)
-        .get()
-        .then((value) => value.data());
-    print(curruserID);
+    Future<bool> result = FirebaseCalls().checkUsername(curruserKey);
+    bool check = await result;
+    print("check: $check");
+
     setState(() {
-      if (temp?["username"] != null) {
+      if (check) {
         ursername = true;
       }
     });
@@ -145,6 +146,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
     //Provider.of<FD>(context, listen: false).getPosts();
     //  Provider.of<FD>(context, listen: false).getUsername();
     get();
+
 /*
     getFDs();
     getNAll();
@@ -164,27 +166,27 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
     }
   }
 
-  Future addUsername(String username) async {
-    await FirebaseFirestore.instance
-        .collection("personal expense")
-        .doc(curruserID)
-        .set({
-      "jan": 0.0,
-      "feb": 0.0,
-      "mar": 0.0,
-      "apr": 0.0,
-      "may": 0.0,
-      "jun": 0.0,
-      "jul": 0.0,
-      "aug": 0.0,
-      "sep": 0.0,
-      "oct": 0.0,
-      "nov": 0.0,
-      "dec": 0.0,
-      "total": 0.0,
-      "username": username,
-    });
-  }
+  // Future addUsername(String username) async {
+  //   await FirebaseFirestore.instance
+  //       .collection("personal expense")
+  //       .doc(curruserID)
+  //       .set({
+  //     "jan": 0.0,
+  //     "feb": 0.0,
+  //     "mar": 0.0,
+  //     "apr": 0.0,
+  //     "may": 0.0,
+  //     "jun": 0.0,
+  //     "jul": 0.0,
+  //     "aug": 0.0,
+  //     "sep": 0.0,
+  //     "oct": 0.0,
+  //     "nov": 0.0,
+  //     "dec": 0.0,
+  //     "total": 0.0,
+  //     "username": username,
+  //   });
+  // }
 
   void _showDialog(BuildContext context) {
     showDialog(
@@ -219,7 +221,8 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                     setState(() {
                       ursername = true;
                     });
-                    addUsername(value);
+                    FirebaseCalls().addOrUpdateUsername(value, curruserKey);
+
                     Navigator.of(context).pop();
                   },
                 ),
@@ -266,35 +269,37 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
         child: Column(
           children: [
             if (ursername) ...[
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 10.0, right: 10, bottom: 8),
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(186, 201, 255, 0.05),
-                      borderRadius: BorderRadius.circular(10)),
-                  height: MediaQuery.of(context).size.height / 12,
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text("Welcome to Eclipse",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontFamily: 'AndersonB',
-                            )),
-                        Text("Build a head start to your finances",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.grey,
-                              fontFamily: 'Anderson',
-                            ))
-                      ],
+              GestureDetector(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10.0, right: 10, bottom: 8),
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(186, 201, 255, 0.05),
+                        borderRadius: BorderRadius.circular(10)),
+                    height: MediaQuery.of(context).size.height / 12,
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text("Welcome to Eclipse",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'AndersonB',
+                              )),
+                          Text("Build a head start to your finances",
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.grey,
+                                fontFamily: 'Anderson',
+                              ))
+                        ],
+                      ),
                     ),
                   ),
                 ),

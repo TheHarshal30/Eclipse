@@ -120,7 +120,7 @@ class FD with ChangeNotifier {
   Future<bool> getUsername() async {
     Map<String, dynamic>? temp = await FirebaseFirestore.instance
         .collection("username")
-        .doc(curruserID)
+        .doc(curruserKey)
         .get()
         .then((value) => value.data());
     if (temp != null) {

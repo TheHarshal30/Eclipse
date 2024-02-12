@@ -5,7 +5,9 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:app1/bar%20graphs/expenseSummary.dart';
+import 'package:app1/models/firebaseCalls.dart';
 import 'package:app1/screens/dashboard.dart';
+import 'package:app1/screens/homepage2.dart';
 import 'package:app1/screens/monthyl.dart';
 import 'package:app1/screens/navigator.dart' as nav;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,10 +23,11 @@ import '../main.dart';
 
 StreamController<int> streamController = StreamController<int>.broadcast();
 String? userrr;
+
 Future getUsername() async {
   Map<String, dynamic>? temp = await FirebaseFirestore.instance
       .collection("personal expense")
-      .doc(nav.curruserID)
+      .doc(curruserKey)
       .get()
       .then((value) => value.data());
   userrr = temp?["username"].toString();
@@ -49,41 +52,41 @@ Route _createRoute(value) {
   );
 }
 
-Future addPersonalTotal(
-    double jan,
-    double feb,
-    double mar,
-    double apr,
-    double may,
-    double jun,
-    double jul,
-    double aug,
-    double sep,
-    double oct,
-    double nov,
-    double dec,
-    double total,
-    String? username) async {
-  await FirebaseFirestore.instance
-      .collection("personal expense")
-      .doc(nav.curruserID)
-      .update({
-    "jan": jan,
-    "feb": feb,
-    "mar": mar,
-    "apr": apr,
-    "may": may,
-    "jun": jun,
-    "jul": jul,
-    "aug": aug,
-    "sep": sep,
-    "oct": oct,
-    "nov": nov,
-    "dec": dec,
-    "total": total,
-    "username": username
-  });
-}
+// Future addPersonalTotal(
+//     double jan,
+//     double feb,
+//     double mar,
+//     double apr,
+//     double may,
+//     double jun,
+//     double jul,
+//     double aug,
+//     double sep,
+//     double oct,
+//     double nov,
+//     double dec,
+//     double total,
+//     String? username) async {
+//   await FirebaseFirestore.instance
+//       .collection("personal expense")
+//       .doc(curruserKey)
+//       .update({
+//     "jan": jan,
+//     "feb": feb,
+//     "mar": mar,
+//     "apr": apr,
+//     "may": may,
+//     "jun": jun,
+//     "jul": jul,
+//     "aug": aug,
+//     "sep": sep,
+//     "oct": oct,
+//     "nov": nov,
+//     "dec": dec,
+//     "total": total,
+//     "username": username
+//   });
+// }
 
 /*
 double jan = 100;
@@ -116,41 +119,38 @@ double novt = 100;
 double dect = 100;
 double totalt = 00;
 
-Future addFamily(
-    double jan,
-    double feb,
-    double mar,
-    double apr,
-    double may,
-    double jun,
-    double jul,
-    double aug,
-    double sep,
-    double oct,
-    double nov,
-    double dec,
-    double total,
-    String username) async {
-  await FirebaseFirestore.instance
-      .collection("username")
-      .doc(nav.curruserID)
-      .set({
-    "jan": jan,
-    "feb": feb,
-    "mar": mar,
-    "apr": apr,
-    "may": may,
-    "jun": jun,
-    "jul": jul,
-    "aug": aug,
-    "sep": sep,
-    "oct": oct,
-    "nov": nov,
-    "dec": dec,
-    "total": total,
-    "username": username,
-  });
-}
+// Future addFamily(
+//     double jan,
+//     double feb,
+//     double mar,
+//     double apr,
+//     double may,
+//     double jun,
+//     double jul,
+//     double aug,
+//     double sep,
+//     double oct,
+//     double nov,
+//     double dec,
+//     double total,
+//     String username) async {
+//   await FirebaseFirestore.instance.collection("username").doc(curruserKey).set({
+//     "jan": jan,
+//     "feb": feb,
+//     "mar": mar,
+//     "apr": apr,
+//     "may": may,
+//     "jun": jun,
+//     "jul": jul,
+//     "aug": aug,
+//     "sep": sep,
+//     "oct": oct,
+//     "nov": nov,
+//     "dec": dec,
+//     "total": total,
+//     "username": username,
+//   });
+// }
 
 class ExpensePage extends StatefulWidget {
   const ExpensePage({super.key});
@@ -211,8 +211,22 @@ class ExpensePageState extends State<ExpensePage> {
         streamController.stream.listen((event) {
           if (event == 1) {
             Navigator.of(context).pop();
-            addPersonalTotal(jant, febt, mart, aprt, mayt, junt, jult, augt,
-                sept, octt, novt, dect, totalt, userrr);
+            FirebaseCalls().addPersonalExpense(
+                jant,
+                febt,
+                mart,
+                aprt,
+                mayt,
+                junt,
+                jult,
+                augt,
+                sept,
+                octt,
+                novt,
+                dect,
+                totalt,
+                userrr,
+                curruserKey);
           }
         });
         return AlertDialog(
@@ -3812,42 +3826,45 @@ class ExpensePageState extends State<ExpensePage> {
                       });
                       HapticFeedback.heavyImpact();
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(186, 201, 255, 0.05),
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      height: MediaQuery.of(context).size.height / 12,
-                      child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 5),
-                                decoration: BoxDecoration(
-                                  color: Color.fromRGBO(186, 201, 255, 0.1),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Image(
-                                  image: AssetImage("assets/images/boi.jpg"),
-                                  height:
-                                      MediaQuery.of(context).size.height / 25,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                "Bank of India",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontFamily: 'AndersonB',
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Color.fromRGBO(186, 201, 255, 0.05),
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                        height: MediaQuery.of(context).size.height / 12,
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 5),
+                                  decoration: BoxDecoration(
+                                    color: Color.fromRGBO(186, 201, 255, 0.1),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Image(
+                                    image: AssetImage("assets/images/boi.jpg"),
+                                    height:
+                                        MediaQuery.of(context).size.height / 25,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ]),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  "Bank of India",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontFamily: 'AndersonB',
+                                  ),
+                                ),
+                              ),
+                            ]),
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -4597,40 +4614,40 @@ class ExpensePageState extends State<ExpensePage> {
     );
   }
 
-  void getData() async {
-    Map<String, dynamic>? temp1 = await FirebaseFirestore.instance
-        .collection("personal expense")
-        .doc(nav.curruserID)
-        .get()
-        .then((value) => value.data());
-    print(temp1);
-    if (temp1 == null) {
-      setState(() {
-        isData = false;
-      });
-    } else {
-      setState(() {
-        jan2 = temp1['jan'];
-        feb2 = temp1['feb'];
-        mar2 = temp1['mar'];
-        apr2 = temp1['apr'];
-        may2 = temp1['may'];
-        jun2 = temp1['jun'];
-        jul2 = temp1['jul'];
-        aug2 = temp1['aug'];
-        sep2 = temp1['sep'];
-        oct2 = temp1['oct'];
-        nov2 = temp1['nov'];
-        dec2 = temp1['dec'];
-        total2 = temp1['total'];
-        user2 = temp1['username'];
-        print(jan2);
-        print(feb2);
-        print(mar2);
-        isData = true;
-      });
-    }
-  }
+  // void getData() async {
+  //   Map<String, dynamic>? temp1 = await FirebaseFirestore.instance
+  //       .collection("personal expense")
+  //       .doc(curruserKey)
+  //       .get()
+  //       .then((value) => value.data());
+  //   print(temp1);
+  //   if (temp1 == null) {
+  //     setState(() {
+  //       isData = false;
+  //     });
+  //   } else {
+  //     setState(() {
+  //       jan2 = temp1['jan'];
+  //       feb2 = temp1['feb'];
+  //       mar2 = temp1['mar'];
+  //       apr2 = temp1['apr'];
+  //       may2 = temp1['may'];
+  //       jun2 = temp1['jun'];
+  //       jul2 = temp1['jul'];
+  //       aug2 = temp1['aug'];
+  //       sep2 = temp1['sep'];
+  //       oct2 = temp1['oct'];
+  //       nov2 = temp1['nov'];
+  //       dec2 = temp1['dec'];
+  //       total2 = temp1['total'];
+  //       user2 = temp1['username'];
+  //       print(jan2);
+  //       print(feb2);
+  //       print(mar2);
+  //       isData = true;
+  //     });
+  //   }
+  // }
 
   void getperms() async {
     var status = await Permission.sms.status;
@@ -4644,7 +4661,7 @@ class ExpensePageState extends State<ExpensePage> {
   void initState() {
     super.initState();
     getUsername();
-    getData();
+    // getData();
     getperms();
   }
 
@@ -4794,22 +4811,7 @@ class ExpensePageState extends State<ExpensePage> {
                               GestureDetector(
                                 onTap: () {
                                   Navigator.push(
-                                      context,
-                                      _createRoute(Dashboard(
-                                        jan2: jan2,
-                                        feb2: feb2,
-                                        mar2: mar2,
-                                        apr2: apr2,
-                                        may2: may2,
-                                        jun2: jun2,
-                                        jul2: jul2,
-                                        aug2: aug2,
-                                        sep2: sep2,
-                                        oct2: oct2,
-                                        nov2: nov2,
-                                        dec2: dec2,
-                                        isData: isData,
-                                      )));
+                                      context, _createRoute(Dashboard()));
                                   HapticFeedback.heavyImpact();
                                 },
                                 child: Container(

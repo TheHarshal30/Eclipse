@@ -2,6 +2,7 @@
 
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:app1/main.dart';
+import 'package:app1/models/firebaseCalls.dart';
 import 'package:app1/models/newsmodel.dart';
 import 'package:app1/screens/expenses.dart';
 import 'package:app1/screens/homepage2.dart';
@@ -17,16 +18,14 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final curruserID = FirebaseAuth.instance.currentUser!.uid;
-
-Future addUsername(String username) async {
-  await FirebaseFirestore.instance
-      .collection("personal expense")
-      .doc(curruserID)
-      .update({
-    "username": username,
-  });
-}
+// Future addUsername(String username) async {
+//   await FirebaseFirestore.instance
+//       .collection("personal expense")
+//       .doc(curruserID)
+//       .update({
+//     "username": username,
+//   });
+// }
 
 String familyUserID = "";
 
@@ -50,21 +49,21 @@ TextEditingController usernmane = TextEditingController();
 final userkey = TextEditingController();
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final FirebaseAuth auth = FirebaseAuth.instance;
-void onAdd(String userkey) async {
-  if (userkey.isNotEmpty) {
-    Map<String, dynamic> connectData = {"userkey": userkey};
-    await _firestore.collection('family').doc(curruserID).set(connectData);
+// void onAdd(String userkey) async {
+//   if (userkey.isNotEmpty) {
+//     Map<String, dynamic> connectData = {"userkey": userkey};
+//     await _firestore.collection('family').doc(curruserID).set(connectData);
 
-/*
-    await _firestore
-        .collection('family')
-        .doc(userrr)
-        .collection('connect')
-        .doc(userkey)
-        .set(connectData);
-        */
-  }
-}
+// /*
+//     await _firestore
+//         .collection('family')
+//         .doc(userrr)
+//         .collection('connect')
+//         .doc(userkey)
+//         .set(connectData);
+//         */
+//   }
+// }
 
 class NavPage extends StatefulWidget {
   NavPage({required this.pageIndex, super.key});
@@ -118,7 +117,8 @@ class _NavPageState extends State<NavPage> {
                     ),
                   ),
                   onSubmitted: (value) {
-                    addUsername(value);
+                    FirebaseCalls().addOrUpdateUsername(value, curruserKey);
+                    // addUsername(value);
                     Navigator.of(context).pop();
                     Fluttertoast.showToast(
                         msg: "Username Changed!",
@@ -177,8 +177,9 @@ class _NavPageState extends State<NavPage> {
                     ),
                   ),
                   onSubmitted: (value) {
-                    familyUserID = usernmane.text;
-                    onAdd(usernmane.text);
+                    FirebaseCalls().connectFriend(usernmane.text, curruserKey);
+                    // familyUserID = usernmane.text;
+                    // onAdd(usernmane.text);
                     Navigator.of(context).pop();
                     Fluttertoast.showToast(
                         msg: "Member added!",
@@ -264,7 +265,7 @@ class _NavPageState extends State<NavPage> {
                       GestureDetector(
                         onTap: () async {
                           await Clipboard.setData(
-                              ClipboardData(text: curruserID));
+                              ClipboardData(text: curruserKey));
 
                           // copied successfully
                           Fluttertoast.showToast(
