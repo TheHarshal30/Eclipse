@@ -1,29 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:app1/models/fdmodel.dart';
 import 'package:app1/models/mfmodel3.dart';
-import 'package:app1/pf/temp.dart';
 import 'package:app1/screens/club.dart';
-import 'package:app1/screens/expenses.dart';
-import 'package:app1/screens/homepage.dart';
+import 'package:app1/screens/eclipseai.dart';
 import 'package:app1/screens/homepage2.dart';
-import 'package:app1/screens/investmf.dart';
-import 'package:app1/screens/navigator.dart';
-import 'package:app1/screens/splash.dart';
-import 'package:app1/screens/splashscreen.dart';
 import 'package:app1/screens/welcomepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:app1/screens/news2.dart';
 import 'package:flutter/services.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 import 'models/newsmodel.dart';
-import 'models/newsservices.dart';
-import 'models/remote_services.dart';
 import 'package:http/http.dart' as http;
 
 import 'models/signin.dart';

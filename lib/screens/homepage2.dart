@@ -11,6 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mrx_charts/mrx_charts.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -767,77 +768,89 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
             //     ),
             //   ),
             // ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
-              child: Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: Color.fromRGBO(186, 201, 255, 0.1),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.25,
-                      child: Text(
-                        "upcoming updates!",
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Container(
+            GestureDetector(
+              onTap: () async {
+                Uri url =
+                    Uri(scheme: "https", host: "insidelibrary.weebly.com");
+
+                if (!await launchUrl(
+                  url,
+                  mode: LaunchMode.externalApplication,
+                )) {
+                  throw Exception('Could not launch $url');
+                }
+                HapticFeedback.heavyImpact();
+              },
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      color: Color.fromRGBO(186, 201, 255, 0.1),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
                         width: MediaQuery.of(context).size.width / 1.25,
                         child: Text(
-                          "eclipse AI",
+                          "upcoming updates!",
                           style: GoogleFonts.ubuntu(
-                            fontSize: 18,
-                            color: Colors.blueGrey,
+                            fontSize: 12,
+                            color: Colors.grey,
                           ),
                         ),
                       ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.5,
-                      child: Text(
-                        "eclipse ai will help you analyze current news and provide detalied strategy on how to act in markets",
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 13,
-                          color: Colors.white60,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 1.5,
-                        child: Text(
-                          "for more info visit our socials!",
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 13,
-                            color: Colors.white60,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 1.25,
+                          child: Text(
+                            "eclipse AI",
+                            style: GoogleFonts.ubuntu(
+                              fontSize: 18,
+                              color: Colors.blueGrey,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () async {
-                        Uri url = Uri(
-                            scheme: "https", host: "insidelibrary.weebly.com");
-
-                        if (!await launchUrl(
-                          url,
-                          mode: LaunchMode.externalApplication,
-                        )) {
-                          throw Exception('Could not launch $url');
-                        }
-                        HapticFeedback.heavyImpact();
-                      },
-                      child: Padding(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Text(
+                              "eclipse ai will help you analyze current news and provide detalied strategy on how to act in markets",
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 13,
+                                color: Colors.white60,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width / 4,
+                            child: Lottie.asset(
+                              "assets/images/ai.json",
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          child: Text(
+                            "for more info visit our socials!",
+                            style: GoogleFonts.ubuntu(
+                              fontSize: 13,
+                              color: Colors.white60,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Row(
                           children: [
@@ -857,8 +870,8 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
