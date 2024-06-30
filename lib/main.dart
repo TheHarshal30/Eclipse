@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:app1/models/mfmodel3.dart';
+import 'package:app1/screens/advise..dart';
 import 'package:app1/screens/club.dart';
 import 'package:app1/screens/eclipseai.dart';
 import 'package:app1/screens/homepage2.dart';
@@ -185,6 +186,7 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (context) => UserLogin())
         ],
         child: MaterialApp(
+            theme: ThemeData(useMaterial3: false),
             debugShowCheckedModeBanner: false,
             title: "Eclipse",
             home: HomeScreen()));

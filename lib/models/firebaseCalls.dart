@@ -5,8 +5,31 @@ var family = FirebaseFirestore.instance.collection('family');
 var personalExpense = FirebaseFirestore.instance.collection('personal expense');
 String friendName = "";
 String userName = "";
+String totalExpense = "";
+DateTime now = DateTime.now();
+int currentMonth = now.month;
 
 class FirebaseCalls {
+  createNewUser(String userID) async {
+    print("We in current user");
+    await personalExpense.doc(userID).set({
+      "jan": 0.0,
+      "feb": 0.0,
+      "mar": 0.0,
+      "apr": 0.0,
+      "may": 0.0,
+      "jun": 0.0,
+      "jul": 0.0,
+      "aug": 0.0,
+      "sep": 0.0,
+      "oct": 0.0,
+      "nov": 0.0,
+      "dec": 0.0,
+      "total": 0.0,
+      'username': "",
+    });
+  }
+
   getCurrentUserKey() {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     final User? currentUser = _auth.currentUser;
@@ -20,13 +43,32 @@ class FirebaseCalls {
   }
 
   Future<bool> checkUsername(String userID) async {
+    DocumentSnapshot docRef = await personalExpense.doc(userID).get();
+    if (!docRef.exists) {
+      createNewUser(userID);
+      return false;
+    } else {
+      final DocumentSnapshot<Map<String, dynamic>> result =
+          await personalExpense.doc(userID).get();
+      print("Data: " + result.data().toString());
+      final Map<String, dynamic> data = result.data()!;
+      double tt = data['total'];
+      tt = tt / currentMonth;
+      totalExpense = tt.toString();
+      if (result['username'] != null || result['username' == ""])
+        return true;
+      else
+        return false;
+    }
+  }
+
+  Future<double> getExpenses(String userID) async {
     final DocumentSnapshot<Map<String, dynamic>> result =
         await personalExpense.doc(userID).get();
-    print(result.data());
-    if (result['username'] != null)
-      return true;
-    else
-      return false;
+    final Map<String, dynamic> data = result.data()!;
+    final double total = await data['total'];
+    print(total.runtimeType);
+    return data['total'];
   }
 
   addOrUpdateUsername(String username, String userID) async {

@@ -14,6 +14,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sms_inbox/flutter_sms_inbox.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mrx_charts/mrx_charts.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -4309,7 +4310,7 @@ class ExpensePageState extends State<ExpensePage> {
                               print("inside ${message.body}");
                               if (message.body.toString().indexOf('credited') !=
                                       -1 &&
-                                  message.body.toString().indexOf('debited') !=
+                                  message.body.toString().indexOf('debited') ==
                                       -1) {
                                 print("inside if");
                                 for (int j =
@@ -4335,7 +4336,7 @@ class ExpensePageState extends State<ExpensePage> {
                                     }
                                   } else if (message.body.toString()[j] ==
                                       '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
+                                    // if(message.toString()[j-1]=='s'){
                                     //   continue;
                                     // }else{
                                     pp = false;
@@ -4391,7 +4392,7 @@ class ExpensePageState extends State<ExpensePage> {
                                     }
                                   } else if (message.body.toString()[j] ==
                                       '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
+                                    // if(message.toString()[j-1]=='s'){
                                     //   continue;
                                     // }else{
                                     pp = false;
@@ -4829,12 +4830,21 @@ class ExpensePageState extends State<ExpensePage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          "Connect",
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                            fontFamily: 'AndersonB',
+                                        FaIcon(
+                                          FontAwesomeIcons.userGroup,
+                                          size: 16,
+                                          color: Colors.grey.shade300,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.only(left: 10, top: 2),
+                                          child: Text(
+                                            "Connect",
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontFamily: 'AndersonB',
+                                            ),
                                           ),
                                         ),
                                       ]),
@@ -4886,9 +4896,14 @@ class ExpensePageState extends State<ExpensePage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.calendar,
+                                          size: 16,
+                                          color: Colors.grey.shade300,
+                                        ),
                                         Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 0.0),
+                                                left: 10.0, top: 2),
                                             child: Text(
                                               "Monthly",
                                               style: TextStyle(
@@ -4923,12 +4938,21 @@ class ExpensePageState extends State<ExpensePage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        "Calculate",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontFamily: 'AndersonB',
+                                      FaIcon(
+                                        FontAwesomeIcons.play,
+                                        size: 16,
+                                        color: Colors.grey.shade300,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10.0, top: 2),
+                                        child: Text(
+                                          "Calculate",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontFamily: 'AndersonB',
+                                          ),
                                         ),
                                       ),
                                     ]),
