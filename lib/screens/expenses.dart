@@ -53,58 +53,6 @@ Route _createRoute(value) {
   );
 }
 
-// Future addPersonalTotal(
-//     double jan,
-//     double feb,
-//     double mar,
-//     double apr,
-//     double may,
-//     double jun,
-//     double jul,
-//     double aug,
-//     double sep,
-//     double oct,
-//     double nov,
-//     double dec,
-//     double total,
-//     String? username) async {
-//   await FirebaseFirestore.instance
-//       .collection("personal expense")
-//       .doc(curruserKey)
-//       .update({
-//     "jan": jan,
-//     "feb": feb,
-//     "mar": mar,
-//     "apr": apr,
-//     "may": may,
-//     "jun": jun,
-//     "jul": jul,
-//     "aug": aug,
-//     "sep": sep,
-//     "oct": oct,
-//     "nov": nov,
-//     "dec": dec,
-//     "total": total,
-//     "username": username
-//   });
-// }
-
-/*
-double jan = 100;
-double feb = 100;
-double mar = 100;
-double apr = 100;
-double may = 100;
-double jun = 100;
-double jul = 100;
-double aug = 100;
-
-double sep = 100;
-double oct = 100;
-double nov = 100;
-double dec = 100;
-double total = 1200;
-*/
 double jant = 100;
 double febt = 100;
 double mart = 100;
@@ -120,38 +68,7 @@ double novt = 100;
 double dect = 100;
 double totalt = 00;
 
-// Future addFamily(
-//     double jan,
-//     double feb,
-//     double mar,
-//     double apr,
-//     double may,
-//     double jun,
-//     double jul,
-//     double aug,
-//     double sep,
-//     double oct,
-//     double nov,
-//     double dec,
-//     double total,
-//     String username) async {
-//   await FirebaseFirestore.instance.collection("username").doc(curruserKey).set({
-//     "jan": jan,
-//     "feb": feb,
-//     "mar": mar,
-//     "apr": apr,
-//     "may": may,
-//     "jun": jun,
-//     "jul": jul,
-//     "aug": aug,
-//     "sep": sep,
-//     "oct": oct,
-//     "nov": nov,
-//     "dec": dec,
-//     "total": total,
-//     "username": username,
-//   });
-// }
+
 
 class ExpensePage extends StatefulWidget {
   const ExpensePage({super.key});
@@ -1468,341 +1385,6 @@ class ExpensePageState extends State<ExpensePage> {
                                   }
                                 }
                               }
-                            } else if (message.sender?.indexOf('HDFCBK') !=
-                                -1) {
-                              if (_messages[i]
-                                      .body
-                                      .toString()
-                                      .indexOf('credited') !=
-                                  -1) {
-                                for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        4;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    } else if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        3;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('SBIUPI') !=
-                                -1) {
-                              // print(message.body.toString());
-                              if (message.body.toString().indexOf('credited') !=
-                                  -1) {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  print(message.body?[j]);
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                        message.body.toString().indexOf('by') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  print(message.body?[j]);
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                      // ignore: dead_code
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek *= 10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    } else if (message.body
-                                            ?.indexOf('debited') !=
-                                        -1) {
-                                      // rek *= 10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('BOIIND') !=
-                                -1) {
-                              if (message.body.toString().indexOf('Credited') !=
-                                  -1) {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('Credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
                             }
                             if (message.date?.month == DateTime.january) {
                               jan.add(rek);
@@ -2051,184 +1633,15 @@ class ExpensePageState extends State<ExpensePage> {
                           bool pp = true;
                           int dd = 1;
                           if (_messages[i].date?.year == DateTime.now().year) {
-                            if (message.sender?.indexOf('BOBTXN') != -1) {
-                              for (int j = 3; j < 15; j++) {
-                                // print(message.body.toString()[j]);
-                                if (isNumeric(message.body.toString()[j])) {
-                                  if (pp) {
-                                    rek = rek * 10 +
-                                        double.parse(
-                                            message.body.toString()[j]);
-                                  } else {
-                                    dd = dd + 1;
-                                    double temp = double.parse(
-                                        message.body.toString()[j]);
-                                    int ne = dd;
-                                    while (ne > 1) {
-                                      ne--;
-                                      temp = temp / 10;
-                                    }
-                                    rek = rek + temp;
-                                  }
-                                } else if (message.body.toString()[j] == '.') {
-                                  // if(message.body.toString()[j-1]=='s'){
-                                  //   continue;
-                                  // }else{
-                                  pp = false;
-                                  // }
-                                } else {
-                                  if (message.body.toString()[j + 1] == 't') {
-                                    // rek*=10;
-                                    //  final chars = rek.toString().split('');
-                                    // rek = double.parse(chars.reversed.join());
-                                    rek *= -1;
-                                    p.add(rek.toDouble());
-                                    break;
-                                  } else if (message.body.toString()[j + 1] ==
-                                      'C') {
-                                    // rek*=10;
-                                    // final chars = rek.toString().split('');
-                                    // rek = double.parse(chars.reversed.join());
-                                    rek *= 1;
-                                    p.add(rek.toDouble());
-                                    break;
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('HDFCBK') !=
-                                -1) {
-                              if (_messages[i]
-                                      .body
-                                      .toString()
-                                      .indexOf('credited') !=
-                                  -1) {
-                                for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        4;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    } else if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        3;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('SBIUPI') !=
-                                -1) {
+                            if (message.sender?.indexOf('SBIUPI') != -1) {
                               // print(message.body.toString());
                               if (message.body.toString().indexOf('credited') !=
                                   -1) {
                                 for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
-                                    j < message.body.toString().length;
-                                    j++) {
+                                    message.body.toString().indexOf('Rs') +
+                                        2;
+                                j < message.body.toString().length;
+                                j++) {
                                   print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
@@ -2238,7 +1651,7 @@ class ExpensePageState extends State<ExpensePage> {
                                     } else {
                                       dd = dd + 1;
                                       double temp =
-                                          double.parse(message.body![j]);
+                                      double.parse(message.body![j]);
                                       int ne = dd;
                                       while (ne > 1) {
                                         ne--;
@@ -2255,8 +1668,8 @@ class ExpensePageState extends State<ExpensePage> {
                                     // }
                                   } else {
                                     if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
+                                        .toString()
+                                        .indexOf('credited') !=
                                         -1) {
                                       // rek*=10;
                                       //  final chars = rek.toString().split('');
@@ -2266,8 +1679,8 @@ class ExpensePageState extends State<ExpensePage> {
 
                                       break;
                                     } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
+                                        .toString()
+                                        .indexOf('debited') !=
                                         -1) {
                                       // rek*=10;
                                       // final chars = rek.toString().split('');
@@ -2280,10 +1693,10 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               } else {
                                 for (int j =
-                                        message.body.toString().indexOf('by') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
+                                    message.body.toString().indexOf('by') +
+                                        3;
+                                j < message.body.toString().length;
+                                j++) {
                                   print(message.body?[j]);
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
@@ -2294,7 +1707,7 @@ class ExpensePageState extends State<ExpensePage> {
                                     } else {
                                       dd = dd + 1;
                                       double temp =
-                                          double.parse(message.body![j]);
+                                      double.parse(message.body![j]);
                                       int ne = dd;
                                       while (ne > 1) {
                                         ne--;
@@ -2304,8 +1717,8 @@ class ExpensePageState extends State<ExpensePage> {
                                     }
                                   } else {
                                     if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
+                                        .toString()
+                                        .indexOf('credited') !=
                                         -1) {
                                       // rek *= 10;
                                       // final chars = rek.toString().split('');
@@ -2314,116 +1727,12 @@ class ExpensePageState extends State<ExpensePage> {
                                       p.add(rek.toDouble());
                                       break;
                                     } else if (message.body
-                                            ?.indexOf('debited') !=
+                                        ?.indexOf('debited') !=
                                         -1) {
                                       // rek *= 10;
                                       // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
                                       rek *= -1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('BOIIND') !=
-                                -1) {
-                              if (message.body.toString().indexOf('Credited') !=
-                                  -1) {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('Credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
                                       p.add(rek.toDouble());
                                       break;
                                     }
@@ -2670,64 +1979,19 @@ class ExpensePageState extends State<ExpensePage> {
                           bool pp = true;
                           int dd = 1;
                           if (_messages[i].date?.year == DateTime.now().year) {
-                            if (message.sender?.indexOf('BOBTXN') != -1) {
-                              for (int j = 3; j < 15; j++) {
-                                // print(message.body.toString()[j]);
-                                if (isNumeric(message.body.toString()[j])) {
-                                  if (pp) {
-                                    rek = rek * 10 +
-                                        double.parse(
-                                            message.body.toString()[j]);
-                                  } else {
-                                    dd = dd + 1;
-                                    double temp = double.parse(
-                                        message.body.toString()[j]);
-                                    int ne = dd;
-                                    while (ne > 1) {
-                                      ne--;
-                                      temp = temp / 10;
-                                    }
-                                    rek = rek + temp;
-                                  }
-                                } else if (message.body.toString()[j] == '.') {
-                                  // if(message.body.toString()[j-1]=='s'){
-                                  //   continue;
-                                  // }else{
-                                  pp = false;
-                                  // }
-                                } else {
-                                  if (message.body.toString()[j + 1] == 't') {
-                                    // rek*=10;
-                                    //  final chars = rek.toString().split('');
-                                    // rek = double.parse(chars.reversed.join());
-                                    rek *= -1;
-                                    p.add(rek.toDouble());
-                                    break;
-                                  } else if (message.body.toString()[j + 1] ==
-                                      'C') {
-                                    // rek*=10;
-                                    // final chars = rek.toString().split('');
-                                    // rek = double.parse(chars.reversed.join());
-                                    rek *= 1;
-                                    p.add(rek.toDouble());
-                                    break;
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('HDFCBK') !=
-                                -1) {
+                            if (message.sender?.indexOf('HDFCBK') != -1) {
                               if (_messages[i]
-                                      .body
-                                      .toString()
-                                      .indexOf('credited') !=
+                                  .body
+                                  .toString()
+                                  .indexOf('credited') !=
                                   -1) {
                                 for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        4;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
+                                    .body
+                                    .toString()
+                                    .indexOf('Rs') +
+                                    4;
+                                j < _messages[i].body.toString().length;
+                                j++) {
                                   if (isNumeric(
                                       _messages[i].body.toString()[j])) {
                                     if (pp) {
@@ -2737,7 +2001,7 @@ class ExpensePageState extends State<ExpensePage> {
                                     } else {
                                       dd = dd + 1;
                                       double temp =
-                                          double.parse(_messages[i].body![j]);
+                                      double.parse(_messages[i].body![j]);
                                       int ne = dd;
                                       while (ne > 1) {
                                         ne--;
@@ -2754,9 +2018,9 @@ class ExpensePageState extends State<ExpensePage> {
                                     // }
                                   } else {
                                     if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
+                                        .body
+                                        .toString()
+                                        .indexOf('credited') !=
                                         -1) {
                                       // rek*=10;
                                       //  final chars = rek.toString().split('');
@@ -2766,9 +2030,9 @@ class ExpensePageState extends State<ExpensePage> {
                                       print(rek);
                                       break;
                                     } else if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('debited') !=
+                                        .body
+                                        .toString()
+                                        .indexOf('debited') !=
                                         -1) {
                                       // rek*=10;
                                       // final chars = rek.toString().split('');
@@ -2782,12 +2046,12 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               } else {
                                 for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        3;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
+                                    .body
+                                    .toString()
+                                    .indexOf('Rs') +
+                                    3;
+                                j < _messages[i].body.toString().length;
+                                j++) {
                                   if (isNumeric(
                                       _messages[i].body.toString()[j])) {
                                     if (pp) {
@@ -2797,7 +2061,7 @@ class ExpensePageState extends State<ExpensePage> {
                                     } else {
                                       dd = dd + 1;
                                       double temp =
-                                          double.parse(_messages[i].body![j]);
+                                      double.parse(_messages[i].body![j]);
                                       int ne = dd;
                                       while (ne > 1) {
                                         ne--;
@@ -2814,9 +2078,9 @@ class ExpensePageState extends State<ExpensePage> {
                                     // }
                                   } else {
                                     if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
+                                        .body
+                                        .toString()
+                                        .indexOf('credited') !=
                                         -1) {
                                       // rek*=10;
                                       //  final chars = rek.toString().split('');
@@ -2827,217 +2091,6 @@ class ExpensePageState extends State<ExpensePage> {
 
                                       break;
                                     } else {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('SBIUPI') !=
-                                -1) {
-                              // print(message.body.toString());
-                              if (message.body.toString().indexOf('credited') !=
-                                  -1) {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  print(message.body?[j]);
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                        message.body.toString().indexOf('by') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  print(message.body?[j]);
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                      // ignore: dead_code
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek *= 10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    } else if (message.body
-                                            ?.indexOf('debited') !=
-                                        -1) {
-                                      // rek *= 10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('BOIIND') !=
-                                -1) {
-                              if (message.body.toString().indexOf('Credited') !=
-                                  -1) {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('Credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
                                       // rek*=10;
                                       // final chars = rek.toString().split('');
                                       // rek = double.parse(chars.reversed.join());
@@ -3298,283 +2351,7 @@ class ExpensePageState extends State<ExpensePage> {
                           bool pp = true;
                           int dd = 1;
                           if (_messages[i].date?.year == DateTime.now().year) {
-                            if (message.sender?.indexOf('BOBTXN') != -1) {
-                              for (int j = 3; j < 15; j++) {
-                                // print(message.body.toString()[j]);
-                                if (isNumeric(message.body.toString()[j])) {
-                                  if (pp) {
-                                    rek = rek * 10 +
-                                        double.parse(
-                                            message.body.toString()[j]);
-                                  } else {
-                                    dd = dd + 1;
-                                    double temp = double.parse(
-                                        message.body.toString()[j]);
-                                    int ne = dd;
-                                    while (ne > 1) {
-                                      ne--;
-                                      temp = temp / 10;
-                                    }
-                                    rek = rek + temp;
-                                  }
-                                } else if (message.body.toString()[j] == '.') {
-                                  // if(message.body.toString()[j-1]=='s'){
-                                  //   continue;
-                                  // }else{
-                                  pp = false;
-                                  // }
-                                } else {
-                                  if (message.body.toString()[j + 1] == 't') {
-                                    // rek*=10;
-                                    //  final chars = rek.toString().split('');
-                                    // rek = double.parse(chars.reversed.join());
-                                    rek *= -1;
-                                    p.add(rek.toDouble());
-                                    break;
-                                  } else if (message.body.toString()[j + 1] ==
-                                      'C') {
-                                    // rek*=10;
-                                    // final chars = rek.toString().split('');
-                                    // rek = double.parse(chars.reversed.join());
-                                    rek *= 1;
-                                    p.add(rek.toDouble());
-                                    break;
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('HDFCBK') !=
-                                -1) {
-                              if (_messages[i]
-                                      .body
-                                      .toString()
-                                      .indexOf('credited') !=
-                                  -1) {
-                                for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        4;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    } else if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        3;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('SBIUPI') !=
-                                -1) {
-                              // print(message.body.toString());
-                              if (message.body.toString().indexOf('credited') !=
-                                  -1) {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  print(message.body?[j]);
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                        message.body.toString().indexOf('by') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  print(message.body?[j]);
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                      // ignore: dead_code
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek *= 10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    } else if (message.body
-                                            ?.indexOf('debited') !=
-                                        -1) {
-                                      // rek *= 10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('BOIIND') !=
-                                -1) {
+                              if (message.sender?.indexOf('BOIIND') != -1) {
                               if (message.body.toString().indexOf('Credited') !=
                                   -1) {
                                 for (int j =
@@ -3926,398 +2703,18 @@ class ExpensePageState extends State<ExpensePage> {
                           bool pp = true;
                           int dd = 1;
                           if (_messages[i].date?.year == DateTime.now().year) {
-                            if (message.sender?.indexOf('BOBTXN') != -1) {
-                              for (int j = 3; j < 15; j++) {
-                                // print(message.body.toString()[j]);
-                                if (isNumeric(message.body.toString()[j])) {
-                                  if (pp) {
-                                    rek = rek * 10 +
-                                        double.parse(
-                                            message.body.toString()[j]);
-                                  } else {
-                                    dd = dd + 1;
-                                    double temp = double.parse(
-                                        message.body.toString()[j]);
-                                    int ne = dd;
-                                    while (ne > 1) {
-                                      ne--;
-                                      temp = temp / 10;
-                                    }
-                                    rek = rek + temp;
-                                  }
-                                } else if (message.body.toString()[j] == '.') {
-                                  // if(message.body.toString()[j-1]=='s'){
-                                  //   continue;
-                                  // }else{
-                                  pp = false;
-                                  // }
-                                } else {
-                                  if (message.body.toString()[j + 1] == 't') {
-                                    // rek*=10;
-                                    //  final chars = rek.toString().split('');
-                                    // rek = double.parse(chars.reversed.join());
-                                    rek *= -1;
-                                    p.add(rek.toDouble());
-                                    break;
-                                  } else if (message.body.toString()[j + 1] ==
-                                      'C') {
-                                    // rek*=10;
-                                    // final chars = rek.toString().split('');
-                                    // rek = double.parse(chars.reversed.join());
-                                    rek *= 1;
-                                    p.add(rek.toDouble());
-                                    break;
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('HDFCBK') !=
-                                -1) {
-                              if (_messages[i]
-                                      .body
-                                      .toString()
-                                      .indexOf('credited') !=
-                                  -1) {
-                                for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        4;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    } else if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j = _messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('Rs') +
-                                        3;
-                                    j < _messages[i].body.toString().length;
-                                    j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                            .body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('SBIUPI') !=
-                                -1) {
-                              // print(message.body.toString());
-                              if (message.body.toString().indexOf('credited') !=
-                                  -1) {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            2;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  print(message.body?[j]);
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                        message.body.toString().indexOf('by') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  print(message.body?[j]);
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                      // ignore: dead_code
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                          double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('credited') !=
-                                        -1) {
-                                      // rek *= 10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    } else if (message.body
-                                            ?.indexOf('debited') !=
-                                        -1) {
-                                      // rek *= 10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('BOIIND') !=
-                                -1) {
-                              if (message.body.toString().indexOf('Credited') !=
-                                  -1) {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('Credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            } else if (message.sender?.indexOf('ICICIB') !=
-                                -1) {
+                            if (message.sender?.indexOf('ICICIB') != -1) {
                               print("inside ${message.body}");
                               if (message.body.toString().indexOf('credited') !=
-                                      -1 &&
+                                  -1 &&
                                   message.body.toString().indexOf('debited') ==
                                       -1) {
                                 print("inside if");
                                 for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
+                                    message.body.toString().indexOf('Rs') +
+                                        3;
+                                j < message.body.toString().length;
+                                j++) {
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
@@ -4326,7 +2723,7 @@ class ExpensePageState extends State<ExpensePage> {
                                     } else {
                                       dd = dd + 1;
                                       double temp =
-                                          double.parse(message.body![j]);
+                                      double.parse(message.body![j]);
                                       int ne = dd;
                                       while (ne > 1) {
                                         ne--;
@@ -4343,12 +2740,12 @@ class ExpensePageState extends State<ExpensePage> {
                                     // }
                                   } else {
                                     if (message.body
-                                                .toString()
-                                                .indexOf('credited') !=
-                                            -1 &&
+                                        .toString()
+                                        .indexOf('credited') !=
+                                        -1 &&
                                         message.body
-                                                .toString()
-                                                .indexOf('debited') !=
+                                            .toString()
+                                            .indexOf('debited') !=
                                             -1) {
                                       // rek*=10;
                                       //  final chars = rek.toString().split('');
@@ -4370,10 +2767,10 @@ class ExpensePageState extends State<ExpensePage> {
                                 }
                               } else {
                                 for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
+                                    message.body.toString().indexOf('Rs') +
+                                        3;
+                                j < message.body.toString().length;
+                                j++) {
                                   if (isNumeric(message.body.toString()[j])) {
                                     if (pp) {
                                       rek = rek * 10 +
@@ -4382,7 +2779,7 @@ class ExpensePageState extends State<ExpensePage> {
                                     } else {
                                       dd = dd + 1;
                                       double temp =
-                                          double.parse(message.body![j]);
+                                      double.parse(message.body![j]);
                                       int ne = dd;
                                       while (ne > 1) {
                                         ne--;
@@ -4399,12 +2796,12 @@ class ExpensePageState extends State<ExpensePage> {
                                     // }
                                   } else {
                                     if (message.body
-                                                .toString()
-                                                .indexOf('debited') !=
-                                            -1 &&
+                                        .toString()
+                                        .indexOf('debited') !=
+                                        -1 &&
                                         message.body
-                                                .toString()
-                                                .indexOf('debited') !=
+                                            .toString()
+                                            .indexOf('debited') !=
                                             -1) {
                                       // rek*=10;
                                       // final chars = rek.toString().split('');
@@ -4615,40 +3012,6 @@ class ExpensePageState extends State<ExpensePage> {
     );
   }
 
-  // void getData() async {
-  //   Map<String, dynamic>? temp1 = await FirebaseFirestore.instance
-  //       .collection("personal expense")
-  //       .doc(curruserKey)
-  //       .get()
-  //       .then((value) => value.data());
-  //   print(temp1);
-  //   if (temp1 == null) {
-  //     setState(() {
-  //       isData = false;
-  //     });
-  //   } else {
-  //     setState(() {
-  //       jan2 = temp1['jan'];
-  //       feb2 = temp1['feb'];
-  //       mar2 = temp1['mar'];
-  //       apr2 = temp1['apr'];
-  //       may2 = temp1['may'];
-  //       jun2 = temp1['jun'];
-  //       jul2 = temp1['jul'];
-  //       aug2 = temp1['aug'];
-  //       sep2 = temp1['sep'];
-  //       oct2 = temp1['oct'];
-  //       nov2 = temp1['nov'];
-  //       dec2 = temp1['dec'];
-  //       total2 = temp1['total'];
-  //       user2 = temp1['username'];
-  //       print(jan2);
-  //       print(feb2);
-  //       print(mar2);
-  //       isData = true;
-  //     });
-  //   }
-  // }
 
   void getperms() async {
     var status = await Permission.sms.status;
@@ -4785,14 +3148,51 @@ class ExpensePageState extends State<ExpensePage> {
                             child: Align(
                               alignment: Alignment.topCenter,
                               child: Center(
-                                child: Text(
-                                  (details)
-                                      ? "Get Details"
-                                      : ("Click Calculate"),
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.grey,
-                                    fontFamily: 'Neo',
+                                child: GestureDetector(
+                                  onTap:(!details)? (){
+                                    _showBank(context);
+                                    setState(() {
+                                      details = true;
+                                    });
+                                    HapticFeedback.heavyImpact();
+                                  }:(){Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Monthly(
+                                              december: december,
+                                              november: november,
+                                              october: october,
+                                              september: september,
+                                              august: august,
+                                              july: july,
+                                              june: june,
+                                              may: may,
+                                              apr: apr,
+                                              mar: mar,
+                                              feb: feb,
+                                              jan: jan,
+                                              janx: janex,
+                                              febx: febx,
+                                              marx: marx,
+                                              mayx: mayx,
+                                              aprx: aprx,
+                                              junex: junex,
+                                              julyx: julyx,
+                                              augustx: augustx,
+                                              septx: septx,
+                                              octx: octx,
+                                              novx: novx,
+                                              decx: decx)));
+                                  HapticFeedback.heavyImpact();},
+                                  child: Text(
+                                    (details)
+                                        ? "Get Details"
+                                        : ("Click Calculate"),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.grey,
+                                      fontFamily: 'Neo',
+                                    ),
                                   ),
                                 ),
                               ),
@@ -5042,207 +3442,6 @@ class ExpensePageState extends State<ExpensePage> {
                     SizedBox(
                       height: 12,
                     )
-                    /*Padding(
-                      padding: const EdgeInsets.only(
-                          top: 10, left: 20, right: 20, bottom: 20),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height / 7,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(186, 201, 255, 0.1),
-                          // color: Color.fromRGBO(186, 201, 255, 1),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        width: MediaQuery.of(context).size.width / 1.15,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 12.0, left: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, left: 5),
-                                      child: Text(
-                                        "Get your Userkey",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontFamily: 'AndersonB',
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 10.0, left: 5),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                1.75,
-                                        child: Text(
-                                          "Get userkey from settings to share with others",
-                                          style: GoogleFonts.ubuntu(
-                                              color: Colors.grey.shade800,
-                                              fontSize: 14),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 25.0, right: 5),
-                                child: Image(
-                                  image:
-                                      AssetImage("assets/images/userkey.png"),
-                                  height:
-                                      MediaQuery.of(context).size.height / 15,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                    */ /*
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "Recent Transactions:",
-                              style: TextStyle(
-                                fontSize: 17,
-                                color: Colors.white,
-                                fontFamily: 'AndersonB',
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height / 3,
-                            child: ListView.builder(
-                                itemCount: 10,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(top: 10.0),
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              10,
-                                      width: MediaQuery.of(context).size.width /
-                                          1.10,
-                                      decoration: BoxDecoration(
-                                        /*border: Border.all(width: 1.5, color: Colors.black),*/
-                                        color:
-                                            Color.fromRGBO(186, 201, 255, 0.1),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20.0,
-                                                    top: 8,
-                                                    bottom: 8),
-                                                child: Container(
-                                                  padding: EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(
-                                                    color: Color.fromRGBO(
-                                                        186, 201, 255, 0.2),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    //  border: Border.all(color: Colors.black, width: 1)
-                                                  ),
-                                                  child: Image(
-                                                      image: AssetImage(
-                                                          "assets/images/rupee.jpg"),
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height /
-                                                              40),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20,
-                                                    bottom: 8,
-                                                    top: 8),
-                                                child: Text(
-                                                  "Merchant",
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      color: Colors.white,
-                                                      fontFamily: 'Anderson',
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              "-₹ 100",
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                color: Colors.red,
-                                                fontFamily: 'AndersonB',
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                }),
-                          ),
-                        ],
-                      ),
-                    )*/
-                    /*
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Card(
-                            elevation: 2,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              height: MediaQuery.of(context).size.height / 7,
-                              width: MediaQuery.of(context).size.width / 3,
-                            ),
-                          ),
-                          Card(
-                            elevation: 2,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              height: MediaQuery.of(context).size.height / 7,
-                              width: MediaQuery.of(context).size.width / 3,
-                            ),
-                          )
-                        ],
-                      ),
-                    )*/
                   ],
                 ),
               ),
@@ -5289,857 +3488,6 @@ class ExpensePageState extends State<ExpensePage> {
         ),
       ),
     );
-  }
-
-  void calculate(List<SmsMessage> _message) {
-    print("insidde cal");
-    double rek = 0;
-    bool pp = true;
-    int dd = 1;
-    for (int i = 0; i < _message.length; i++) {
-      if (_message[i].date?.year == DateTime.now().year) {
-        var message = _message[i];
-        if (message.sender?.indexOf('BOBTXN') != -1) {
-          for (int j = 3; j < 15; j++) {
-            // print(message.body.toString()[j]);
-            if (isNumeric(message.body.toString()[j])) {
-              if (pp) {
-                rek = rek * 10 + double.parse(message.body.toString()[j]);
-              } else {
-                dd = dd + 1;
-                double temp = double.parse(message.body.toString()[j]);
-                int ne = dd;
-                while (ne > 1) {
-                  ne--;
-                  temp = temp / 10;
-                }
-                rek = rek + temp;
-              }
-            } else if (message.body.toString()[j] == '.') {
-              // if(message.body.toString()[j-1]=='s'){
-              //   continue;
-              // }else{
-              pp = false;
-              // }
-            } else {
-              if (message.body.toString()[j + 1] == 't') {
-                // rek*=10;
-                //  final chars = rek.toString().split('');
-                // rek = double.parse(chars.reversed.join());
-                rek *= -1;
-                p.add(rek.toDouble());
-                break;
-              } else if (message.body.toString()[j + 1] == 'C') {
-                // rek*=10;
-                // final chars = rek.toString().split('');
-                // rek = double.parse(chars.reversed.join());
-                rek *= 1;
-                p.add(rek.toDouble());
-                break;
-              }
-            }
-          }
-        } else if (message.sender?.indexOf('HDFCBK') != -1) {
-          if (_messages[i].body.toString().indexOf('credited') != -1) {
-            for (int j = _messages[i].body.toString().indexOf('Rs') + 4;
-                j < _messages[i].body.toString().length;
-                j++) {
-              if (isNumeric(_messages[i].body.toString()[j])) {
-                if (pp) {
-                  rek =
-                      rek * 10 + double.parse(_messages[i].body.toString()[j]);
-                } else {
-                  dd = dd + 1;
-                  double temp = double.parse(_messages[i].body![j]);
-                  int ne = dd;
-                  while (ne > 1) {
-                    ne--;
-                    temp = temp / 10;
-                  }
-                  rek = rek + temp;
-                }
-              } else if (_messages[i].body.toString()[j] == '.') {
-                // if(message.body.toString()[j-1]=='s'){
-                //   continue;
-                // }else{
-                pp = false;
-                // }
-              } else {
-                if (_messages[i].body.toString().indexOf('credited') != -1) {
-                  // rek*=10;
-                  //  final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= 1;
-                  p.add(rek.toDouble());
-                  print(rek);
-                  break;
-                } else if (_messages[i].body.toString().indexOf('debited') !=
-                    -1) {
-                  // rek*=10;
-                  // final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= -1;
-                  p.add(rek.toDouble());
-                  print(rek);
-                  break;
-                }
-              }
-            }
-          } else {
-            for (int j = _messages[i].body.toString().indexOf('Rs') + 3;
-                j < _messages[i].body.toString().length;
-                j++) {
-              if (isNumeric(_messages[i].body.toString()[j])) {
-                if (pp) {
-                  rek =
-                      rek * 10 + double.parse(_messages[i].body.toString()[j]);
-                } else {
-                  dd = dd + 1;
-                  double temp = double.parse(_messages[i].body![j]);
-                  int ne = dd;
-                  while (ne > 1) {
-                    ne--;
-                    temp = temp / 10;
-                  }
-                  rek = rek + temp;
-                }
-              } else if (_messages[i].body.toString()[j] == '.') {
-                // if(message.body.toString()[j-1]=='s'){
-                //   continue;
-                // }else{
-                pp = false;
-                // }
-              } else {
-                if (_messages[i].body.toString().indexOf('credited') != -1) {
-                  // rek*=10;
-                  //  final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= 1;
-                  // print(rek);
-                  p.add(rek.toDouble());
-
-                  break;
-                } else {
-                  // rek*=10;
-                  // final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= -1;
-                  // print(rek);
-                  p.add(rek.toDouble());
-                  break;
-                }
-              }
-            }
-          }
-        } else if (message.sender?.indexOf('SBIUPI') != -1) {
-          // print(message.body.toString());
-          if (message.body.toString().indexOf('credited') != -1) {
-            for (int j = message.body.toString().indexOf('Rs') + 2;
-                j < message.body.toString().length;
-                j++) {
-              print(message.body?[j]);
-              if (isNumeric(message.body.toString()[j])) {
-                if (pp) {
-                  rek = rek * 10 + double.parse(message.body.toString()[j]);
-                } else {
-                  dd = dd + 1;
-                  double temp = double.parse(message.body![j]);
-                  int ne = dd;
-                  while (ne > 1) {
-                    ne--;
-                    temp = temp / 10;
-                  }
-                  rek = rek + temp;
-                }
-              } else if (message.body.toString()[j] == '.') {
-                // if(message.body.toString()[j-1]=='s'){
-                //   continue;
-                // }else{
-                pp = false;
-                // }
-              } else {
-                if (message.body.toString().indexOf('credited') != -1) {
-                  // rek*=10;
-                  //  final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= 1;
-                  p.add(rek.toDouble());
-
-                  break;
-                } else if (message.body.toString().indexOf('debited') != -1) {
-                  // rek*=10;
-                  // final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= -1;
-                  p.add(rek.toDouble());
-                  break;
-                }
-              }
-            }
-          } else {
-            for (int j = message.body.toString().indexOf('by') + 3;
-                j < message.body.toString().length;
-                j++) {
-              print(message.body?[j]);
-              if (isNumeric(message.body.toString()[j])) {
-                if (pp) {
-                  rek = rek * 10 + double.parse(message.body.toString()[j]);
-                  // ignore: dead_code
-                } else {
-                  dd = dd + 1;
-                  double temp = double.parse(message.body![j]);
-                  int ne = dd;
-                  while (ne > 1) {
-                    ne--;
-                    temp = temp / 10;
-                  }
-                  rek = rek + temp;
-                }
-              } else {
-                if (message.body.toString().indexOf('credited') != -1) {
-                  // rek *= 10;
-                  // final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= 1;
-                  p.add(rek.toDouble());
-                  break;
-                } else if (message.body?.indexOf('debited') != -1) {
-                  // rek *= 10;
-                  // final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= -1;
-                  p.add(rek.toDouble());
-                  break;
-                }
-              }
-            }
-          }
-        } else if (message.sender?.indexOf('BOIIND') != -1) {
-          if (message.body.toString().indexOf('Credited') != -1) {
-            for (int j = message.body.toString().indexOf('Rs') + 3;
-                j < message.body.toString().length;
-                j++) {
-              if (isNumeric(message.body.toString()[j])) {
-                if (pp) {
-                  rek = rek * 10 + double.parse(message.body.toString()[j]);
-                } else {
-                  dd = dd + 1;
-                  double temp = double.parse(message.body.toString()[j]);
-                  int ne = dd;
-                  while (ne > 1) {
-                    ne--;
-                    temp = temp / 10;
-                  }
-                  rek = rek + temp;
-                }
-              } else if (message.body.toString()[j] == '.') {
-                // if(message.body.toString()[j-1]=='s'){
-                //   continue;
-                // }else{
-                pp = false;
-                // }
-              } else {
-                if (message.body.toString().indexOf('Credited') != -1) {
-                  // rek*=10;
-                  //  final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= 1;
-                  // print(rek);
-                  p.add(rek.toDouble());
-
-                  break;
-                } else if (message.body.toString().indexOf('debited') != -1) {
-                  // rek*=10;
-                  // final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= -1;
-                  // print(rek);
-                  p.add(rek.toDouble());
-                  break;
-                }
-              }
-            }
-          } else {
-            for (int j = message.body.toString().indexOf('Rs') + 3;
-                j < message.body.toString().length;
-                j++) {
-              if (isNumeric(message.body.toString()[j])) {
-                if (pp) {
-                  rek = rek * 10 + double.parse(message.body.toString()[j]);
-                } else {
-                  dd = dd + 1;
-                  double temp = double.parse(message.body.toString()[j]);
-                  int ne = dd;
-                  while (ne > 1) {
-                    ne--;
-                    temp = temp / 10;
-                  }
-                  rek = rek + temp;
-                }
-              } else if (message.body.toString()[j] == '.') {
-                // if(message.body.toString()[j-1]=='s'){
-                //   continue;
-                // }else{
-                pp = false;
-                // }
-              } else {
-                if (message.body.toString().indexOf('debited') != -1) {
-                  // rek*=10;
-                  // final chars = rek.toString().split('');
-                  // rek = double.parse(chars.reversed.join());
-                  rek *= -1;
-                  // print(rek);
-                  p.add(rek.toDouble());
-                  break;
-                }
-              }
-            }
-          }
-        }
-
-        if (message.date?.month == DateTime.january) {
-          jan.add(rek);
-        }
-        if (message.date?.month == DateTime.february) {
-          feb.add(rek);
-        }
-        if (message.date?.month == DateTime.march) {
-          mar.add(rek);
-        }
-        if (message.date?.month == DateTime.april) {
-          apr.add(rek);
-        }
-        if (message.date?.month == DateTime.may) {
-          may.add(rek);
-        }
-        if (message.date?.month == DateTime.june) {
-          june.add(rek);
-        }
-        if (message.date?.month == DateTime.july) {
-          july.add(rek);
-        }
-        if (message.date?.month == DateTime.august) {
-          august.add(rek);
-        }
-        if (message.date?.month == DateTime.september) {
-          september.add(rek);
-        }
-        if (message.date?.month == DateTime.october) {
-          october.add(rek);
-        }
-        if (message.date?.month == DateTime.november) {
-          november.add(rek);
-        }
-        if (message.date?.month == DateTime.december) {
-          december.add(rek);
-        }
-      }
-    }
-    // messages.forEach((message) {
-    //   if (message.date?.year ==
-    //       DateTime
-    //           .now()
-    //           .year) {
-    //     if (message.sender?.indexOf('BOBTXN') != -1) {
-    //       for (int j = 3; j < 15; j++) {
-    //         // print(message.body.toString()[j]);
-    //         if (isNumeric(message.body.toString()[j])) {
-    //           if (pp) {
-    //             rek = rek * 10 +
-    //                 double.parse(
-    //                     message.body.toString()[j]);
-    //           } else {
-    //             dd = dd + 1;
-    //             double temp = double.parse(
-    //                 message.body.toString()[j]);
-    //             int ne = dd;
-    //             while (ne > 1) {
-    //               ne--;
-    //               temp = temp / 10;
-    //             }
-    //             rek = rek + temp;
-    //           }
-    //         } else if (message.body.toString()[j] == '.') {
-    //           // if(message.body.toString()[j-1]=='s'){
-    //           //   continue;
-    //           // }else{
-    //           pp = false;
-    //           // }
-    //         } else {
-    //           if (message.body.toString()[j + 1] == 't') {
-    //             // rek*=10;
-    //             //  final chars = rek.toString().split('');
-    //             // rek = double.parse(chars.reversed.join());
-    //             rek *= -1;
-    //             p.add(rek.toDouble());
-    //             break;
-    //           } else if (message.body.toString()[j + 1] ==
-    //               'C') {
-    //             // rek*=10;
-    //             // final chars = rek.toString().split('');
-    //             // rek = double.parse(chars.reversed.join());
-    //             rek *= 1;
-    //             p.add(rek.toDouble());
-    //             break;
-    //           }
-    //         }
-    //       }
-    //     }
-    //     else if (message.sender?.indexOf('HDFCBK') != -1) {
-    //       if (message.body.toString().indexOf(
-    //           'credited') != -1) {
-    //         for (int j = message.body.toString()
-    //             .indexOf('Rs') + 4; j < message.body
-    //             .toString()
-    //             .length; j++) {
-    //           if (isNumeric(
-    //               message.body.toString()[j])) {
-    //             if (pp) {
-    //               rek = rek * 10 +
-    //                   double.parse(message.body
-    //                       .toString()[j]);
-    //             } else {
-    //               dd = dd + 1;
-    //               double temp =
-    //               double.parse(message.body![j]);
-    //               int ne = dd;
-    //               while (ne > 1) {
-    //                 ne--;
-    //                 temp = temp / 10;
-    //               }
-    //               rek = rek + temp;
-    //             }
-    //           } else if (message.body.toString()[j] ==
-    //               '.') {
-    //             // if(message.body.toString()[j-1]=='s'){
-    //             //   continue;
-    //             // }else{
-    //             pp = false;
-    //             // }
-    //           } else {
-    //             if (message.body.toString().indexOf(
-    //                 'credited') != -1) {
-    //               // rek*=10;
-    //               //  final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= 1;
-    //               p.add(rek.toDouble());
-    //               print(rek);
-    //               break;
-    //             } else if (message.body.toString().indexOf(
-    //                 'debited') != -1) {
-    //               // rek*=10;
-    //               // final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= -1;
-    //               p.add(rek.toDouble());
-    //               print(rek);
-    //               break;
-    //             }
-    //           }
-    //         }
-    //       } else {
-    //         for (int j = message.body.toString()
-    //             .indexOf('Rs') + 3; j < message.body
-    //             .toString()
-    //             .length; j++) {
-    //           if (isNumeric(
-    //               message.body.toString()[j])) {
-    //             if (pp) {
-    //               rek = rek * 10 +
-    //                   double.parse(message.body
-    //                       .toString()[j]);
-    //             } else {
-    //               dd = dd + 1;
-    //               double temp =
-    //               double.parse(message.body![j]);
-    //               int ne = dd;
-    //               while (ne > 1) {
-    //                 ne--;
-    //                 temp = temp / 10;
-    //               }
-    //               rek = rek + temp;
-    //             }
-    //           } else if (message.body.toString()[j] ==
-    //               '.') {
-    //             // if(message.body.toString()[j-1]=='s'){
-    //             //   continue;
-    //             // }else{
-    //             pp = false;
-    //             // }
-    //           } else {
-    //             if (message.body.toString().indexOf(
-    //                 'credited') != -1) {
-    //               // rek*=10;
-    //               //  final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= 1;
-    //               // print(rek);
-    //               p.add(rek.toDouble());
-    //
-    //               break;
-    //             } else if (message.body.toString().indexOf(
-    //                 'debited') != -1) {
-    //               // rek*=10;
-    //               // final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= -1;
-    //               // print(rek);
-    //               p.add(rek.toDouble());
-    //               break;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-
-    //       // print(message.body.toString());
-    //       if (message.body.toString().indexOf('credited') != -1) {
-    //         for (int j = message.body.toString().indexOf('Rs') + 2;
-    //         j < message.body
-    //             .toString()
-    //             .length;
-    //         j++) {
-    //           if (isNumeric(message.body.toString()[j])) {
-    //             if (pp) {
-    //               rek = rek * 10 + double.parse(message.body.toString()[j]);
-    //             } else {
-    //               dd = dd + 1;
-    //               double temp = double.parse(message.body![j]);
-    //               int ne = dd;
-    //               while (ne > 1) {
-    //                 ne--;
-    //                 temp = temp / 10;
-    //               }
-    //               rek = rek + temp;
-    //             }
-    //           } else if (message.body.toString()[j] == '.') {
-    //             // if(message.body.toString()[j-1]=='s'){
-    //             //   continue;
-    //             // }else{
-    //             pp = false;
-    //             // }
-    //           } else {
-    //             if (message.body.toString().indexOf('credited') != -1) {
-    //               // rek*=10;
-    //               //  final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= 1;
-    //               p.add(rek.toDouble());
-    //
-    //               break;
-    //             } else if (message.body.toString().indexOf('debited') != -1) {
-    //               // rek*=10;
-    //               // final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= -1;
-    //               p.add(rek.toDouble());
-    //               break;
-    //             }
-    //           }
-    //         }
-    //       } else {
-    //         for (int j = message.body.toString().indexOf('Rs') + 2;
-    //         j < message.body
-    //             .toString()
-    //             .length;
-    //         j++) {
-    //           if (isNumeric(message.body.toString()[j])) {
-    //             if (pp) {
-    //               rek = rek * 10 + double.parse(message.body.toString()[j]);
-    //             } else {
-    //               dd = dd + 1;
-    //               double temp = double.parse(message.body![j]);
-    //               int ne = dd;
-    //               while (ne > 1) {
-    //                 ne--;
-    //                 temp = temp / 10;
-    //               }
-    //               rek = rek + temp;
-    //             }
-    //           } else if (message.body.toString()[j] == '.') {
-    //             // if(message.body.toString()[j-1]=='s'){
-    //             //   continue;
-    //             // }else{
-    //             pp = false;
-    //             // }
-    //           } else {
-    //             if (message.body.toString().indexOf('credited') != -1) {
-    //               // rek*=10;
-    //               //  final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= 1;
-    //               p.add(rek.toDouble());
-    //
-    //               break;
-    //             } else if (message.body.toString().indexOf('debited') != -1) {
-    //               // rek*=10;
-    //               // final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= -1;
-    //               p.add(rek.toDouble());
-    //               break;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //     else if (message.sender?.indexOf('BOIIND') != -1) {
-    //       if (message.body.toString().indexOf('Credited') != -1) {
-    //         for (int j = message.body.toString().indexOf('Rs') + 3;
-    //         j < message.body
-    //             .toString()
-    //             .length;
-    //         j++) {
-    //           if (isNumeric(message.body.toString()[j])) {
-    //             if (pp) {
-    //               rek = rek * 10 + double.parse(message.body.toString()[j]);
-    //             } else {
-    //               dd = dd + 1;
-    //               double temp = double.parse(message.body.toString()[j]);
-    //               int ne = dd;
-    //               while (ne > 1) {
-    //                 ne--;
-    //                 temp = temp / 10;
-    //               }
-    //               rek = rek + temp;
-    //             }
-    //           } else if (message.body.toString()[j] == '.') {
-    //             // if(message.body.toString()[j-1]=='s'){
-    //             //   continue;
-    //             // }else{
-    //             pp = false;
-    //             // }
-    //           } else {
-    //             if (message.body.toString().indexOf('Credited') != -1) {
-    //               // rek*=10;
-    //               //  final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= 1;
-    //               // print(rek);
-    //               p.add(rek.toDouble());
-    //
-    //               break;
-    //             } else if (message.body.toString().indexOf('debited') != -1) {
-    //               // rek*=10;
-    //               // final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= -1;
-    //               // print(rek);
-    //               p.add(rek.toDouble());
-    //               break;
-    //             }
-    //           }
-    //         }
-    //       } else {
-    //         for (int j = message.body.toString().indexOf('Rs') + 3;
-    //         j < message.body
-    //             .toString()
-    //             .length;
-    //         j++) {
-    //           if (isNumeric(message.body.toString()[j])) {
-    //             if (pp) {
-    //               rek = rek * 10 + double.parse(message.body.toString()[j]);
-    //             } else {
-    //               dd = dd + 1;
-    //               double temp = double.parse(message.body.toString()[j]);
-    //               int ne = dd;
-    //               while (ne > 1) {
-    //                 ne--;
-    //                 temp = temp / 10;
-    //               }
-    //               rek = rek + temp;
-    //             }
-    //           } else if (message.body.toString()[j] == '.') {
-    //             // if(message.body.toString()[j-1]=='s'){
-    //             //   continue;
-    //             // }else{
-    //             pp = false;
-    //             // }
-    //           } else {
-    //             if (message.body.toString().indexOf('debited') != -1) {
-    //               // rek*=10;
-    //               // final chars = rek.toString().split('');
-    //               // rek = double.parse(chars.reversed.join());
-    //               rek *= -1;
-    //               // print(rek);
-    //               p.add(rek.toDouble());
-    //               break;
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //     if (message.date?.month == DateTime.january) {
-    //       print("rek $rek");
-    //       print(jan.length);
-    //       jan.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.february) {
-    //       feb.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.march) {
-    //       mar.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.april) {
-    //       apr.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.may) {
-    //       may.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.june) {
-    //       june.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.july) {
-    //       july.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.august) {
-    //       august.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.september) {
-    //       september.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.october) {
-    //       october.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.november) {
-    //       november.add(rek);
-    //     }
-    //     if (message.date?.month == DateTime.december) {
-    //       december.add(rek);
-    //     }
-    //   }
-    // });
-    janex = 0;
-    febx = 0;
-    marx = 0;
-    aprx = 0;
-    junex = 0;
-    julyx = 0;
-    mayx = 0;
-    augustx = 0;
-    octx = 0;
-    septx = 0;
-    novx = 0;
-    decx = 0;
-    expens = 0;
-    for (int i = 0; i < jan.length; i++) {
-      if (double.parse(jan[i].toString()).isNegative) {
-        expens = expens + double.parse(jan[i].toString());
-        janex = janex + double.parse(jan[i].toString());
-        print("jan ${double.parse(jan[i].toString())}");
-      }
-    }
-    for (int i = 0; i < feb.length; i++) {
-      if (double.parse(feb[i].toString()).isNegative) {
-        expens = expens + double.parse(feb[i].toString());
-        febx = febx + double.parse(feb[i].toString());
-      }
-    }
-
-    for (int i = 0; i < mar.length; i++) {
-      if (double.parse(mar[i].toString()).isNegative) {
-        expens = expens + double.parse(mar[i].toString());
-        marx = marx + double.parse(mar[i].toString());
-      }
-    }
-
-    for (int i = 0; i < apr.length; i++) {
-      if (double.parse(apr[i].toString()).isNegative) {
-        expens = expens + double.parse(apr[i].toString());
-        aprx = aprx + double.parse(apr[i].toString());
-      }
-    }
-
-    for (int i = 0; i < june.length; i++) {
-      if (double.parse(june[i].toString()).isNegative) {
-        expens = expens + double.parse(june[i].toString());
-        junex = junex + double.parse(june[i].toString());
-      }
-    }
-
-    for (int i = 0; i < july.length; i++) {
-      if (double.parse(july[i].toString()).isNegative) {
-        expens = expens + double.parse(july[i].toString());
-        julyx = julyx + double.parse(july[i].toString());
-      }
-    }
-
-    for (int i = 0; i < may.length; i++) {
-      if (double.parse(may[i].toString()).isNegative) {
-        expens = expens + double.parse(may[i].toString());
-        mayx = mayx + double.parse(may[i].toString());
-      }
-    }
-
-    for (int i = 0; i < august.length; i++) {
-      if (double.parse(august[i].toString()).isNegative) {
-        expens = expens + double.parse(august[i].toString());
-        augustx = augustx + double.parse(august[i].toString());
-      }
-    }
-
-    for (int i = 0; i < september.length; i++) {
-      if (double.parse(september[i].toString()).isNegative) {
-        expens = expens + double.parse(september[i].toString());
-        septx = septx + double.parse(september[i].toString());
-      }
-    }
-
-    for (int i = 0; i < october.length; i++) {
-      if (double.parse(october[i].toString()).isNegative) {
-        expens = expens + double.parse(october[i].toString());
-        octx = octx + double.parse(october[i].toString());
-      }
-    }
-
-    for (int i = 0; i < november.length; i++) {
-      if (double.parse(november[i].toString()).isNegative) {
-        expens = expens + double.parse(november[i].toString());
-        novx = novx + double.parse(november[i].toString());
-      }
-    }
-
-    for (int i = 0; i < december.length; i++) {
-      if (double.parse(december[i].toString()).isNegative) {
-        expens = expens + double.parse(december[i].toString());
-        decx = decx + double.parse(december[i].toString());
-      }
-    }
-
-    income = income.roundToDouble();
-    expens = -expens.roundToDouble();
-
-    selected = 1;
-    Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        selected = 2;
-      });
-    });
-    // janex = 0;
-    // febx = 0;
-    // marx = 0;
-    // aprx = 0;
-    // junex = 0;
-    // julyx = 0;
-    // mayx = 0;
-    // augustx = 0;
-    // octx = 0;
-    // septx = 0;
-    // novx = 0;
-    // decx = 0;
-    //   jan = [];
-    //   feb = [];
-    //   mar = [];
-    //   apr = [];
-    //   may = [];
-    //   june = [];
-    //   july = [];
-    //   august = [];
-    //   september = [];
-    //   october = [];
-    //   november = [];
-    //   december = [];
   }
 
   bool isNumeric(String s) {
