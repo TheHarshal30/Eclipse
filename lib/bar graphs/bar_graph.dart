@@ -52,7 +52,7 @@ class MyBarGraph extends StatelessWidget {
     return BarChart(BarChartData(
             barTouchData: BarTouchData(
                 touchTooltipData:
-                    BarTouchTooltipData(tooltipBgColor: Colors.white)),
+                    BarTouchTooltipData()),
             maxY: 100,
             minY: 0,
             borderData: FlBorderData(show: false),

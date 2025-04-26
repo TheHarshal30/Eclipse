@@ -188,8 +188,8 @@ class _MyAppState extends State<MyApp> {
         child: MaterialApp(
             theme: ThemeData(useMaterial3: false),
             debugShowCheckedModeBanner: false,
-            title: "Eclipse",
-            home: HomeScreen()));
+            title: "FinTrack",
+            home: ClubPage()));
   }
 }
 

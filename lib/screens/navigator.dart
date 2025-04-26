@@ -82,9 +82,9 @@ class _NavPageState extends State<NavPage> {
     HomePage2(),
     // InvestMFPage(),
     ExpensePage(),
-    NewsPage(
-      index: 2,
-    ),
+    // NewsPage(
+    //   index: 2,
+    // ),
     // TaxPage(),
   ];
   void _showDialog(BuildContext context) {
@@ -229,36 +229,36 @@ class _NavPageState extends State<NavPage> {
                         padding: const EdgeInsets.only(top: 30.0, left: 20),
                         child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: () async {
-                                Uri url = Uri(
-                                    scheme: "https",
-                                    host: "eclipsefin.netlify.app");
-
-                                if (!await launchUrl(
-                                  url,
-                                  mode: LaunchMode.externalApplication,
-                                )) {
-                                  throw Exception('Could not launch $url');
-                                }
-                                HapticFeedback.heavyImpact();
-                              },
-                              child: Row(children: [
-                                Icon(
-                                  Icons.info_outline_rounded,
-                                  size: 18,
-                                  color: Colors.white,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10.0),
-                                  child: Text("About us",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white,
-                                          fontFamily: 'AndersonB')),
-                                ),
-                              ]),
-                            ),
+                            // GestureDetector(
+                            //   onTap: () async {
+                            //     Uri url = Uri(
+                            //         scheme: "https",
+                            //         host: "eclipsefin.netlify.app");
+                            //
+                            //     if (!await launchUrl(
+                            //       url,
+                            //       mode: LaunchMode.externalApplication,
+                            //     )) {
+                            //       throw Exception('Could not launch $url');
+                            //     }
+                            //     HapticFeedback.heavyImpact();
+                            //   },
+                            //   child: Row(children: [
+                            //     Icon(
+                            //       Icons.info_outline_rounded,
+                            //       size: 18,
+                            //       color: Colors.white,
+                            //     ),
+                            //     // Padding(
+                            //     //   padding: const EdgeInsets.only(left: 10.0),
+                            //     //   child: Text("About us",
+                            //     //       style: TextStyle(
+                            //     //           fontSize: 16,
+                            //     //           color: Colors.white,
+                            //     //           fontFamily: 'AndersonB')),
+                            //     // ),
+                            //   ]),
+                            // ),
                           ],
                         ),
                       ),
@@ -297,73 +297,73 @@ class _NavPageState extends State<NavPage> {
                           ]),
                         ),
                       ),
-                      FutureBuilder(
-                        future: FirebaseFirestore.instance
-                            .collection("updates")
-                            .doc("version")
-                            .get(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            Map<String, dynamic>? temp = snapshot.data!.data();
-                            return GestureDetector(
-                              onTap: () {
-                                if (temp?["version"].toString() !=
-                                    version.toString()) {
-                                  print(temp?["verison"].toString());
-                                  print(version);
-                                  Fluttertoast.showToast(
-                                      msg: "New updates available on website!",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.black,
-                                      textColor: Colors.white,
-                                      fontSize: 14.0);
-                                } else {
-                                  Fluttertoast.showToast(
-                                      msg: "App is up-to-date!",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.black,
-                                      textColor: Colors.white,
-                                      fontSize: 14.0);
-                                }
-                                HapticFeedback.heavyImpact();
-                              },
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 30.0, left: 20),
-                                child: Column(
-                                  children: [
-                                    Row(children: [
-                                      Icon(
-                                        Icons.refresh_rounded,
-                                        size: 18,
-                                        color: Colors.white,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10.0),
-                                        child: Text(
-                                          "Check for updates",
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.white,
-                                              fontFamily: 'AndersonB'),
-                                        ),
-                                      ),
-                                    ]),
-                                  ],
-                                ),
-                              ),
-                            );
-                          } else {
-                            return Text("yo");
-                            print("no");
-                          }
-                        },
-                      ),
+                      // FutureBuilder(
+                      //   future: FirebaseFirestore.instance
+                      //       .collection("updates")
+                      //       .doc("version")
+                      //       .get(),
+                      //   builder: (context, snapshot) {
+                      //     if (snapshot.hasData) {
+                      //       Map<String, dynamic>? temp = snapshot.data!.data();
+                      //       return GestureDetector(
+                      //         onTap: () {
+                      //           if (temp?["version"].toString() !=
+                      //               version.toString()) {
+                      //             print(temp?["verison"].toString());
+                      //             print(version);
+                      //             Fluttertoast.showToast(
+                      //                 msg: "New updates available on website!",
+                      //                 toastLength: Toast.LENGTH_SHORT,
+                      //                 gravity: ToastGravity.BOTTOM,
+                      //                 timeInSecForIosWeb: 1,
+                      //                 backgroundColor: Colors.black,
+                      //                 textColor: Colors.white,
+                      //                 fontSize: 14.0);
+                      //           } else {
+                      //             Fluttertoast.showToast(
+                      //                 msg: "App is up-to-date!",
+                      //                 toastLength: Toast.LENGTH_SHORT,
+                      //                 gravity: ToastGravity.BOTTOM,
+                      //                 timeInSecForIosWeb: 1,
+                      //                 backgroundColor: Colors.black,
+                      //                 textColor: Colors.white,
+                      //                 fontSize: 14.0);
+                      //           }
+                      //           HapticFeedback.heavyImpact();
+                      //         },
+                      //         child: Padding(
+                      //           padding:
+                      //               const EdgeInsets.only(top: 30.0, left: 20),
+                      //           child: Column(
+                      //             children: [
+                      //               Row(children: [
+                      //                 Icon(
+                      //                   Icons.refresh_rounded,
+                      //                   size: 18,
+                      //                   color: Colors.white,
+                      //                 ),
+                      //                 Padding(
+                      //                   padding:
+                      //                       const EdgeInsets.only(left: 10.0),
+                      //                   child: Text(
+                      //                     "Check for updates",
+                      //                     style: TextStyle(
+                      //                         fontSize: 16,
+                      //                         color: Colors.white,
+                      //                         fontFamily: 'AndersonB'),
+                      //                   ),
+                      //                 ),
+                      //               ]),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       );
+                      //     } else {
+                      //       return Text("yo");
+                      //       print("no");
+                      //     }
+                      //   },
+                      // ),
                       GestureDetector(
                         onTap: () {
                           _showDialog(context);
@@ -419,15 +419,15 @@ class _NavPageState extends State<NavPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // Text(
+                        //   "Made with ❤️",
+                        //   style: TextStyle(
+                        //       fontSize: 18,
+                        //       color: Colors.white,
+                        //       fontFamily: 'AndersonB'),
+                        // ),
                         Text(
-                          "Made with ❤️",
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontFamily: 'AndersonB'),
-                        ),
-                        Text(
-                          "Version 1.0.1",
+                          "Version 1.0.0",
                           style: GoogleFonts.ubuntu(
                               fontSize: 14, color: Colors.grey),
                         ),
@@ -492,7 +492,7 @@ class _NavPageState extends State<NavPage> {
                   ),
                 ] else if (widget.pageIndex == 1) ...[
                   Text(
-                    "Eclipse Tracking",
+                    "FinTrack Tracking",
                     style: TextStyle(
                       fontSize: 18,
                       color: Color.fromRGBO(186, 201, 255, 1),
@@ -500,16 +500,16 @@ class _NavPageState extends State<NavPage> {
                     ),
                   )
                 ],
-                if (widget.pageIndex == 2) ...[
-                  Text(
-                    "News",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Color.fromRGBO(186, 201, 255, 1),
-                      fontFamily: 'AndersonB',
-                    ),
-                  ),
-                ]
+                // if (widget.pageIndex == 2) ...[
+                //   Text(
+                //     "News",
+                //     style: TextStyle(
+                //       fontSize: 20,
+                //       color: Color.fromRGBO(186, 201, 255, 1),
+                //       fontFamily: 'AndersonB',
+                //     ),
+                //   ),
+                // ]
                 // ] else if (widget.pageIndex == 4) ...[
                 //   Text(
                 //     "Eclipse Taxes",
@@ -645,28 +645,28 @@ class _NavPageState extends State<NavPage> {
                     child:
                         Icon(Icons.account_balance_wallet_outlined, size: 25)),
                 label: "Expenses"),
-            BottomNavigationBarItem(
-                icon: Container(
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: (widget.pageIndex == 2)
-                            ? RadialGradient(
-                                radius: 1,
-                                colors: [
-                                  Color.fromRGBO(102, 19, 255, 0.7),
-                                  const Color.fromRGBO(117, 114, 255, 0),
-                                  const Color.fromRGBO(132, 112, 255, 0),
-                                ],
-                              )
-                            : RadialGradient(colors: [
-                                Color.fromRGBO(102, 19, 255, 0),
-                                const Color.fromRGBO(117, 114, 255, 0),
-                                const Color.fromRGBO(132, 112, 255, 0)
-                              ])),
-                    padding:
-                        EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
-                    child: Icon(Icons.newspaper_outlined, size: 25)),
-                label: "News"),
+            // BottomNavigationBarItem(
+            //     icon: Container(
+            //         decoration: BoxDecoration(
+            //             shape: BoxShape.circle,
+            //             gradient: (widget.pageIndex == 2)
+            //                 ? RadialGradient(
+            //                     radius: 1,
+            //                     colors: [
+            //                       Color.fromRGBO(102, 19, 255, 0.7),
+            //                       const Color.fromRGBO(117, 114, 255, 0),
+            //                       const Color.fromRGBO(132, 112, 255, 0),
+            //                     ],
+            //                   )
+            //                 : RadialGradient(colors: [
+            //                     Color.fromRGBO(102, 19, 255, 0),
+            //                     const Color.fromRGBO(117, 114, 255, 0),
+            //                     const Color.fromRGBO(132, 112, 255, 0)
+            //                   ])),
+            //         padding:
+            //             EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
+            //         child: Icon(Icons.newspaper_outlined, size: 25)),
+            //     label: "News"),
             // BottomNavigationBarItem(
             //     icon: Container(
             //         decoration: BoxDecoration(

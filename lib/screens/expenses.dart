@@ -1930,1078 +1930,1078 @@ class ExpensePageState extends State<ExpensePage> {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () async {
-                      HapticFeedback.heavyImpact();
-                      // bank = 3
-                      Navigator.of(context).pop();
-                      _showDialog(context);
-                      _messages = [];
-                      state = 1;
-                      getsmsvmbk();
-                      getsmsvm2bk();
-                      getsmsadbk();
-                      getsmsJDbk();
-                      getsmsBPbk();
-                      getsmsvkbk();
-                      getsmsaxbk();
-                      getsmsjmbk();
-                      getsmsjxbk();
-                      janex = 0;
-                      febx = 0;
-                      marx = 0;
-                      aprx = 0;
-                      junex = 0;
-                      julyx = 0;
-                      mayx = 0;
-                      augustx = 0;
-                      octx = 0;
-                      septx = 0;
-                      novx = 0;
-                      decx = 0;
-                      expens = 0;
-                      jan = [];
-                      feb = [];
-                      mar = [];
-                      apr = [];
-                      may = [];
-                      june = [];
-                      july = [];
-                      august = [];
-                      september = [];
-                      october = [];
-                      november = [];
-                      december = [];
-                      await getsmsjgbk().then((value) {
-                        for (int i = 0; i < _messages.length; i++) {
-                          var message = _messages[i];
-                          double rek = 0;
-                          bool pp = true;
-                          int dd = 1;
-                          if (_messages[i].date?.year == DateTime.now().year) {
-                            if (message.sender?.indexOf('HDFCBK') != -1) {
-                              if (_messages[i]
-                                  .body
-                                  .toString()
-                                  .indexOf('credited') !=
-                                  -1) {
-                                for (int j = _messages[i]
-                                    .body
-                                    .toString()
-                                    .indexOf('Rs') +
-                                    4;
-                                j < _messages[i].body.toString().length;
-                                j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                      double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                        .body
-                                        .toString()
-                                        .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    } else if (_messages[i]
-                                        .body
-                                        .toString()
-                                        .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      p.add(rek.toDouble());
-                                      print(rek);
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j = _messages[i]
-                                    .body
-                                    .toString()
-                                    .indexOf('Rs') +
-                                    3;
-                                j < _messages[i].body.toString().length;
-                                j++) {
-                                  if (isNumeric(
-                                      _messages[i].body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              _messages[i].body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                      double.parse(_messages[i].body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (_messages[i].body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (_messages[i]
-                                        .body
-                                        .toString()
-                                        .indexOf('credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                            if (message.date?.month == DateTime.january) {
-                              jan.add(rek);
-                            }
-                            if (message.date?.month == DateTime.february) {
-                              feb.add(rek);
-                            }
-                            if (message.date?.month == DateTime.march) {
-                              mar.add(rek);
-                            }
-                            if (message.date?.month == DateTime.april) {
-                              apr.add(rek);
-                            }
-                            if (message.date?.month == DateTime.may) {
-                              may.add(rek);
-                            }
-                            if (message.date?.month == DateTime.june) {
-                              june.add(rek);
-                            }
-                            if (message.date?.month == DateTime.july) {
-                              july.add(rek);
-                            }
-                            if (message.date?.month == DateTime.august) {
-                              august.add(rek);
-                            }
-                            if (message.date?.month == DateTime.september) {
-                              september.add(rek);
-                            }
-                            if (message.date?.month == DateTime.october) {
-                              october.add(rek);
-                            }
-                            if (message.date?.month == DateTime.november) {
-                              november.add(rek);
-                            }
-                            if (message.date?.month == DateTime.december) {
-                              december.add(rek);
-                            }
-                          }
-                        }
-                        for (int i = 0; i < jan.length; i++) {
-                          if (double.parse(jan[i].toString()).isNegative) {
-                            expens = expens + double.parse(jan[i].toString());
-                            janex = janex + double.parse(jan[i].toString());
-                          }
-                        }
-                        for (int i = 0; i < feb.length; i++) {
-                          if (double.parse(feb[i].toString()).isNegative) {
-                            expens = expens + double.parse(feb[i].toString());
-                            febx = febx + double.parse(feb[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < mar.length; i++) {
-                          if (double.parse(mar[i].toString()).isNegative) {
-                            expens = expens + double.parse(mar[i].toString());
-                            marx = marx + double.parse(mar[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < apr.length; i++) {
-                          if (double.parse(apr[i].toString()).isNegative) {
-                            expens = expens + double.parse(apr[i].toString());
-                            aprx = aprx + double.parse(apr[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < june.length; i++) {
-                          if (double.parse(june[i].toString()).isNegative) {
-                            expens = expens + double.parse(june[i].toString());
-                            junex = junex + double.parse(june[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < july.length; i++) {
-                          if (double.parse(july[i].toString()).isNegative) {
-                            expens = expens + double.parse(july[i].toString());
-                            julyx = julyx + double.parse(july[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < may.length; i++) {
-                          if (double.parse(may[i].toString()).isNegative) {
-                            expens = expens + double.parse(may[i].toString());
-                            mayx = mayx + double.parse(may[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < august.length; i++) {
-                          if (double.parse(august[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(august[i].toString());
-                            augustx =
-                                augustx + double.parse(august[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < september.length; i++) {
-                          if (double.parse(september[i].toString())
-                              .isNegative) {
-                            expens =
-                                expens + double.parse(september[i].toString());
-                            septx =
-                                septx + double.parse(september[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < october.length; i++) {
-                          if (double.parse(october[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(october[i].toString());
-                            octx = octx + double.parse(october[i].toString());
-                          }
-                        }
-                        for (int i = 0; i < november.length; i++) {
-                          if (double.parse(november[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(november[i].toString());
-                            novx = novx + double.parse(november[i].toString());
-                          }
-                        }
-                        for (int i = 0; i < december.length; i++) {
-                          if (double.parse(december[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(december[i].toString());
-                            decx = decx + double.parse(december[i].toString());
-                          }
-                        }
-                        income = income.roundToDouble();
-                        expens = -expens.roundToDouble();
-                        print("jan total $janex");
-                        setState(() {
-                          streamController.add(1);
-                          state = 2;
-                          jant = -janex;
-                          febt = -febx;
-                          mart = -marx;
-                          aprt = -aprx;
-                          mayt = -mayx;
-                          junt = -junex;
-                          jult = -julyx;
-                          augt = -augustx;
-                          sept = -septx;
-                          octt = -octx;
-                          novt = -novx;
-                          dect = -decx;
-                          totalt = expens;
-                        });
-                      });
-                      HapticFeedback.heavyImpact();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(186, 201, 255, 0.05),
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        height: MediaQuery.of(context).size.height / 12,
-                        child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 5, horizontal: 5),
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(186, 201, 255, 0.1),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Image(
-                                    image: AssetImage("assets/images/hdfc.png"),
-                                    height:
-                                        MediaQuery.of(context).size.height / 22,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Text(
-                                  "HDFC",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontFamily: 'AndersonB',
-                                  ),
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      HapticFeedback.heavyImpact();
-                      // bank=4;
-                      Navigator.of(context).pop();
-                      _showDialog(context);
-                      state = 1;
-                      _messages = [];
-                      getsmsjgsbpboi();
-                      getsmsjgscpboi();
-                      getsmsjgsqpboi();
-                      getsmsjgsboi();
-                      getsmsjgboi();
-                      getsmsjsboi();
-                      getsmjgsboi();
-                      getmsjgboi();
-                      getsmsbrboi();
-                      getsmsjmboi();
-                      getsmsaxboi();
-                      getsmsJDboi();
-                      getsmsboi();
-                      getsmsvksboi();
-                      getsmsadsboi();
-                      getsmsvmsboi();
-                      getsmsvm2sboi();
-                      getsmsvmboi();
-                      janex = 0;
-                      febx = 0;
-                      marx = 0;
-                      aprx = 0;
-                      junex = 0;
-                      julyx = 0;
-                      mayx = 0;
-                      augustx = 0;
-                      octx = 0;
-                      septx = 0;
-                      novx = 0;
-                      decx = 0;
-                      expens = 0;
-                      jan = [];
-                      feb = [];
-                      mar = [];
-                      apr = [];
-                      may = [];
-                      june = [];
-                      july = [];
-                      august = [];
-                      september = [];
-                      october = [];
-                      november = [];
-                      december = [];
-                      getsmsvm2boi().then((value) {
-                        for (int i = 0; i < _messages.length; i++) {
-                          var message = _messages[i];
-                          double rek = 0;
-                          bool pp = true;
-                          int dd = 1;
-                          if (_messages[i].date?.year == DateTime.now().year) {
-                              if (message.sender?.indexOf('BOIIND') != -1) {
-                              if (message.body.toString().indexOf('Credited') !=
-                                  -1) {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('Credited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-
-                                      break;
-                                    } else if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                        message.body.toString().indexOf('Rs') +
-                                            3;
-                                    j < message.body.toString().length;
-                                    j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp = double.parse(
-                                          message.body.toString()[j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.body.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                        -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      // print(rek);
-                                      p.add(rek.toDouble());
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                            if (message.date?.month == DateTime.january) {
-                              jan.add(rek);
-                            }
-                            if (message.date?.month == DateTime.february) {
-                              feb.add(rek);
-                            }
-                            if (message.date?.month == DateTime.march) {
-                              mar.add(rek);
-                            }
-                            if (message.date?.month == DateTime.april) {
-                              apr.add(rek);
-                            }
-                            if (message.date?.month == DateTime.may) {
-                              may.add(rek);
-                            }
-                            if (message.date?.month == DateTime.june) {
-                              june.add(rek);
-                            }
-                            if (message.date?.month == DateTime.july) {
-                              july.add(rek);
-                            }
-                            if (message.date?.month == DateTime.august) {
-                              august.add(rek);
-                            }
-                            if (message.date?.month == DateTime.september) {
-                              september.add(rek);
-                            }
-                            if (message.date?.month == DateTime.october) {
-                              october.add(rek);
-                            }
-                            if (message.date?.month == DateTime.november) {
-                              november.add(rek);
-                            }
-                            if (message.date?.month == DateTime.december) {
-                              december.add(rek);
-                            }
-                          }
-                        }
-                        for (int i = 0; i < jan.length; i++) {
-                          if (double.parse(jan[i].toString()).isNegative) {
-                            expens = expens + double.parse(jan[i].toString());
-                            janex = janex + double.parse(jan[i].toString());
-                          }
-                        }
-                        for (int i = 0; i < feb.length; i++) {
-                          if (double.parse(feb[i].toString()).isNegative) {
-                            expens = expens + double.parse(feb[i].toString());
-                            febx = febx + double.parse(feb[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < mar.length; i++) {
-                          if (double.parse(mar[i].toString()).isNegative) {
-                            expens = expens + double.parse(mar[i].toString());
-                            marx = marx + double.parse(mar[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < apr.length; i++) {
-                          if (double.parse(apr[i].toString()).isNegative) {
-                            expens = expens + double.parse(apr[i].toString());
-                            aprx = aprx + double.parse(apr[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < june.length; i++) {
-                          if (double.parse(june[i].toString()).isNegative) {
-                            expens = expens + double.parse(june[i].toString());
-                            junex = junex + double.parse(june[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < july.length; i++) {
-                          if (double.parse(july[i].toString()).isNegative) {
-                            expens = expens + double.parse(july[i].toString());
-                            julyx = julyx + double.parse(july[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < may.length; i++) {
-                          if (double.parse(may[i].toString()).isNegative) {
-                            expens = expens + double.parse(may[i].toString());
-                            mayx = mayx + double.parse(may[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < august.length; i++) {
-                          if (double.parse(august[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(august[i].toString());
-                            augustx =
-                                augustx + double.parse(august[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < september.length; i++) {
-                          if (double.parse(september[i].toString())
-                              .isNegative) {
-                            expens =
-                                expens + double.parse(september[i].toString());
-                            septx =
-                                septx + double.parse(september[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < october.length; i++) {
-                          if (double.parse(october[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(october[i].toString());
-                            octx = octx + double.parse(october[i].toString());
-                          }
-                        }
-                        for (int i = 0; i < november.length; i++) {
-                          if (double.parse(november[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(november[i].toString());
-                            novx = novx + double.parse(november[i].toString());
-                          }
-                        }
-                        for (int i = 0; i < december.length; i++) {
-                          if (double.parse(december[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(december[i].toString());
-                            decx = decx + double.parse(december[i].toString());
-                          }
-                        }
-                        income = income.roundToDouble();
-                        expens = -expens.roundToDouble();
-                        print("jan total $janex");
-                        setState(() {
-                          streamController.add(1);
-                          state = 2;
-                          jant = -janex;
-                          febt = -febx;
-                          mart = -marx;
-                          aprt = -aprx;
-                          mayt = -mayx;
-                          junt = -junex;
-                          jult = -julyx;
-                          augt = -augustx;
-                          sept = -septx;
-                          octt = -octx;
-                          novt = -novx;
-                          dect = -decx;
-                          totalt = expens;
-                        });
-                      });
-                      HapticFeedback.heavyImpact();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color.fromRGBO(186, 201, 255, 0.05),
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        height: MediaQuery.of(context).size.height / 12,
-                        child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10.0),
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 5, horizontal: 5),
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(186, 201, 255, 0.1),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Image(
-                                    image: AssetImage("assets/images/boi.jpg"),
-                                    height:
-                                        MediaQuery.of(context).size.height / 25,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Text(
-                                  "Bank of India",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontFamily: 'AndersonB',
-                                  ),
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // bank=4;
-                      HapticFeedback.heavyImpact();
-                      Navigator.of(context).pop();
-                      _showDialog(context);
-                      state = 1;
-                      _messages = [];
-                      trialBPs();
-                      trialJDs();
-                      trialads();
-                      trialaxs();
-                      trialba();
-                      trialbrs();
-                      trialbv();
-                      trialbw();
-                      trialbx();
-                      trialbz();
-                      trialcp();
-                      trialgs();
-                      trialms();
-                      trialqp();
-                      trialvk();
-                      trialvks();
-                      trialvm2s();
-
-                      janex = 0;
-                      febx = 0;
-                      marx = 0;
-                      aprx = 0;
-                      junex = 0;
-                      julyx = 0;
-                      mayx = 0;
-                      augustx = 0;
-                      octx = 0;
-                      septx = 0;
-                      novx = 0;
-                      decx = 0;
-                      expens = 0;
-                      jan = [];
-                      feb = [];
-                      mar = [];
-                      apr = [];
-                      may = [];
-                      june = [];
-                      july = [];
-                      august = [];
-                      september = [];
-                      october = [];
-                      november = [];
-                      december = [];
-                      trialvms().then((value) {
-                        for (int i = 0; i < _messages.length; i++) {
-                          var message = _messages[i];
-                          double rek = 0;
-                          bool pp = true;
-                          int dd = 1;
-                          if (_messages[i].date?.year == DateTime.now().year) {
-                            if (message.sender?.indexOf('ICICIB') != -1) {
-                              print("inside ${message.body}");
-                              if (message.body.toString().indexOf('credited') !=
-                                  -1 &&
-                                  message.body.toString().indexOf('debited') ==
-                                      -1) {
-                                print("inside if");
-                                for (int j =
-                                    message.body.toString().indexOf('Rs') +
-                                        3;
-                                j < message.body.toString().length;
-                                j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                      double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                        .toString()
-                                        .indexOf('credited') !=
-                                        -1 &&
-                                        message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                            -1) {
-                                      // rek*=10;
-                                      //  final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      print(rek);
-                                      p.add(rek);
-                                      break;
-                                    } else {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= 1;
-                                      print(rek);
-                                      p.add(rek);
-                                      break;
-                                    }
-                                  }
-                                }
-                              } else {
-                                for (int j =
-                                    message.body.toString().indexOf('Rs') +
-                                        3;
-                                j < message.body.toString().length;
-                                j++) {
-                                  if (isNumeric(message.body.toString()[j])) {
-                                    if (pp) {
-                                      rek = rek * 10 +
-                                          double.parse(
-                                              message.body.toString()[j]);
-                                    } else {
-                                      dd = dd + 1;
-                                      double temp =
-                                      double.parse(message.body![j]);
-                                      int ne = dd;
-                                      while (ne > 1) {
-                                        ne--;
-                                        temp = temp / 10;
-                                      }
-                                      rek = rek + temp;
-                                    }
-                                  } else if (message.body.toString()[j] ==
-                                      '.') {
-                                    // if(message.toString()[j-1]=='s'){
-                                    //   continue;
-                                    // }else{
-                                    pp = false;
-                                    // }
-                                  } else {
-                                    if (message.body
-                                        .toString()
-                                        .indexOf('debited') !=
-                                        -1 &&
-                                        message.body
-                                            .toString()
-                                            .indexOf('debited') !=
-                                            -1) {
-                                      // rek*=10;
-                                      // final chars = rek.toString().split('');
-                                      // rek = double.parse(chars.reversed.join());
-                                      rek *= -1;
-                                      print(rek);
-                                      p.add(rek);
-                                      break;
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                            if (message.date?.month == DateTime.january) {
-                              jan.add(rek);
-                            }
-                            if (message.date?.month == DateTime.february) {
-                              feb.add(rek);
-                            }
-                            if (message.date?.month == DateTime.march) {
-                              mar.add(rek);
-                            }
-                            if (message.date?.month == DateTime.april) {
-                              apr.add(rek);
-                            }
-                            if (message.date?.month == DateTime.may) {
-                              may.add(rek);
-                            }
-                            if (message.date?.month == DateTime.june) {
-                              june.add(rek);
-                            }
-                            if (message.date?.month == DateTime.july) {
-                              july.add(rek);
-                            }
-                            if (message.date?.month == DateTime.august) {
-                              august.add(rek);
-                            }
-                            if (message.date?.month == DateTime.september) {
-                              september.add(rek);
-                            }
-                            if (message.date?.month == DateTime.october) {
-                              october.add(rek);
-                            }
-                            if (message.date?.month == DateTime.november) {
-                              november.add(rek);
-                            }
-                            if (message.date?.month == DateTime.december) {
-                              december.add(rek);
-                            }
-                          }
-                        }
-                        for (int i = 0; i < jan.length; i++) {
-                          if (double.parse(jan[i].toString()).isNegative) {
-                            expens = expens + double.parse(jan[i].toString());
-                            janex = janex + double.parse(jan[i].toString());
-                          }
-                        }
-                        for (int i = 0; i < feb.length; i++) {
-                          if (double.parse(feb[i].toString()).isNegative) {
-                            expens = expens + double.parse(feb[i].toString());
-                            febx = febx + double.parse(feb[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < mar.length; i++) {
-                          if (double.parse(mar[i].toString()).isNegative) {
-                            expens = expens + double.parse(mar[i].toString());
-                            marx = marx + double.parse(mar[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < apr.length; i++) {
-                          if (double.parse(apr[i].toString()).isNegative) {
-                            expens = expens + double.parse(apr[i].toString());
-                            aprx = aprx + double.parse(apr[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < june.length; i++) {
-                          if (double.parse(june[i].toString()).isNegative) {
-                            expens = expens + double.parse(june[i].toString());
-                            junex = junex + double.parse(june[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < july.length; i++) {
-                          if (double.parse(july[i].toString()).isNegative) {
-                            expens = expens + double.parse(july[i].toString());
-                            julyx = julyx + double.parse(july[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < may.length; i++) {
-                          if (double.parse(may[i].toString()).isNegative) {
-                            expens = expens + double.parse(may[i].toString());
-                            mayx = mayx + double.parse(may[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < august.length; i++) {
-                          if (double.parse(august[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(august[i].toString());
-                            augustx =
-                                augustx + double.parse(august[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < september.length; i++) {
-                          if (double.parse(september[i].toString())
-                              .isNegative) {
-                            expens =
-                                expens + double.parse(september[i].toString());
-                            septx =
-                                septx + double.parse(september[i].toString());
-                          }
-                        }
-
-                        for (int i = 0; i < october.length; i++) {
-                          if (double.parse(october[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(october[i].toString());
-                            octx = octx + double.parse(october[i].toString());
-                          }
-                        }
-                        for (int i = 0; i < november.length; i++) {
-                          if (double.parse(november[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(november[i].toString());
-                            novx = novx + double.parse(november[i].toString());
-                          }
-                        }
-                        for (int i = 0; i < december.length; i++) {
-                          if (double.parse(december[i].toString()).isNegative) {
-                            expens =
-                                expens + double.parse(december[i].toString());
-                            decx = decx + double.parse(december[i].toString());
-                          }
-                        }
-                        income = income.roundToDouble();
-                        expens = -expens.roundToDouble();
-                        print("may total $mayx");
-                        setState(() {
-                          streamController.add(1);
-                          state = 2;
-                          jant = -janex;
-                          febt = -febx;
-                          mart = -marx;
-                          aprt = -aprx;
-                          mayt = -mayx;
-                          junt = -junex;
-                          jult = -julyx;
-                          augt = -augustx;
-                          sept = -septx;
-                          octt = -octx;
-                          novt = -novx;
-                          dect = -decx;
-                          totalt = expens;
-                        });
-                      });
-                      HapticFeedback.heavyImpact();
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(186, 201, 255, 0.05),
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      height: MediaQuery.of(context).size.height / 12,
-                      child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 5),
-                                decoration: BoxDecoration(
-                                  color: Color.fromRGBO(186, 201, 255, 0.1),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Image(
-                                  image: AssetImage("assets/images/icici.jpg"),
-                                  height:
-                                      MediaQuery.of(context).size.height / 25,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                "ICICI",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontFamily: 'AndersonB',
-                                ),
-                              ),
-                            ),
-                          ]),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () async {
+                  //     HapticFeedback.heavyImpact();
+                  //     // bank = 3
+                  //     Navigator.of(context).pop();
+                  //     _showDialog(context);
+                  //     _messages = [];
+                  //     state = 1;
+                  //     getsmsvmbk();
+                  //     getsmsvm2bk();
+                  //     getsmsadbk();
+                  //     getsmsJDbk();
+                  //     getsmsBPbk();
+                  //     getsmsvkbk();
+                  //     getsmsaxbk();
+                  //     getsmsjmbk();
+                  //     getsmsjxbk();
+                  //     janex = 0;
+                  //     febx = 0;
+                  //     marx = 0;
+                  //     aprx = 0;
+                  //     junex = 0;
+                  //     julyx = 0;
+                  //     mayx = 0;
+                  //     augustx = 0;
+                  //     octx = 0;
+                  //     septx = 0;
+                  //     novx = 0;
+                  //     decx = 0;
+                  //     expens = 0;
+                  //     jan = [];
+                  //     feb = [];
+                  //     mar = [];
+                  //     apr = [];
+                  //     may = [];
+                  //     june = [];
+                  //     july = [];
+                  //     august = [];
+                  //     september = [];
+                  //     october = [];
+                  //     november = [];
+                  //     december = [];
+                  //     await getsmsjgbk().then((value) {
+                  //       for (int i = 0; i < _messages.length; i++) {
+                  //         var message = _messages[i];
+                  //         double rek = 0;
+                  //         bool pp = true;
+                  //         int dd = 1;
+                  //         if (_messages[i].date?.year == DateTime.now().year) {
+                  //           if (message.sender?.indexOf('HDFCBK') != -1) {
+                  //             if (_messages[i]
+                  //                 .body
+                  //                 .toString()
+                  //                 .indexOf('credited') !=
+                  //                 -1) {
+                  //               for (int j = _messages[i]
+                  //                   .body
+                  //                   .toString()
+                  //                   .indexOf('Rs') +
+                  //                   4;
+                  //               j < _messages[i].body.toString().length;
+                  //               j++) {
+                  //                 if (isNumeric(
+                  //                     _messages[i].body.toString()[j])) {
+                  //                   if (pp) {
+                  //                     rek = rek * 10 +
+                  //                         double.parse(
+                  //                             _messages[i].body.toString()[j]);
+                  //                   } else {
+                  //                     dd = dd + 1;
+                  //                     double temp =
+                  //                     double.parse(_messages[i].body![j]);
+                  //                     int ne = dd;
+                  //                     while (ne > 1) {
+                  //                       ne--;
+                  //                       temp = temp / 10;
+                  //                     }
+                  //                     rek = rek + temp;
+                  //                   }
+                  //                 } else if (_messages[i].body.toString()[j] ==
+                  //                     '.') {
+                  //                   // if(message.body.toString()[j-1]=='s'){
+                  //                   //   continue;
+                  //                   // }else{
+                  //                   pp = false;
+                  //                   // }
+                  //                 } else {
+                  //                   if (_messages[i]
+                  //                       .body
+                  //                       .toString()
+                  //                       .indexOf('credited') !=
+                  //                       -1) {
+                  //                     // rek*=10;
+                  //                     //  final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= 1;
+                  //                     p.add(rek.toDouble());
+                  //                     print(rek);
+                  //                     break;
+                  //                   } else if (_messages[i]
+                  //                       .body
+                  //                       .toString()
+                  //                       .indexOf('debited') !=
+                  //                       -1) {
+                  //                     // rek*=10;
+                  //                     // final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= -1;
+                  //                     p.add(rek.toDouble());
+                  //                     print(rek);
+                  //                     break;
+                  //                   }
+                  //                 }
+                  //               }
+                  //             } else {
+                  //               for (int j = _messages[i]
+                  //                   .body
+                  //                   .toString()
+                  //                   .indexOf('Rs') +
+                  //                   3;
+                  //               j < _messages[i].body.toString().length;
+                  //               j++) {
+                  //                 if (isNumeric(
+                  //                     _messages[i].body.toString()[j])) {
+                  //                   if (pp) {
+                  //                     rek = rek * 10 +
+                  //                         double.parse(
+                  //                             _messages[i].body.toString()[j]);
+                  //                   } else {
+                  //                     dd = dd + 1;
+                  //                     double temp =
+                  //                     double.parse(_messages[i].body![j]);
+                  //                     int ne = dd;
+                  //                     while (ne > 1) {
+                  //                       ne--;
+                  //                       temp = temp / 10;
+                  //                     }
+                  //                     rek = rek + temp;
+                  //                   }
+                  //                 } else if (_messages[i].body.toString()[j] ==
+                  //                     '.') {
+                  //                   // if(message.body.toString()[j-1]=='s'){
+                  //                   //   continue;
+                  //                   // }else{
+                  //                   pp = false;
+                  //                   // }
+                  //                 } else {
+                  //                   if (_messages[i]
+                  //                       .body
+                  //                       .toString()
+                  //                       .indexOf('credited') !=
+                  //                       -1) {
+                  //                     // rek*=10;
+                  //                     //  final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= 1;
+                  //                     // print(rek);
+                  //                     p.add(rek.toDouble());
+                  //
+                  //                     break;
+                  //                   } else {
+                  //                     // rek*=10;
+                  //                     // final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= -1;
+                  //                     // print(rek);
+                  //                     p.add(rek.toDouble());
+                  //                     break;
+                  //                   }
+                  //                 }
+                  //               }
+                  //             }
+                  //           }
+                  //           if (message.date?.month == DateTime.january) {
+                  //             jan.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.february) {
+                  //             feb.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.march) {
+                  //             mar.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.april) {
+                  //             apr.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.may) {
+                  //             may.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.june) {
+                  //             june.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.july) {
+                  //             july.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.august) {
+                  //             august.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.september) {
+                  //             september.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.october) {
+                  //             october.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.november) {
+                  //             november.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.december) {
+                  //             december.add(rek);
+                  //           }
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < jan.length; i++) {
+                  //         if (double.parse(jan[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(jan[i].toString());
+                  //           janex = janex + double.parse(jan[i].toString());
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < feb.length; i++) {
+                  //         if (double.parse(feb[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(feb[i].toString());
+                  //           febx = febx + double.parse(feb[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < mar.length; i++) {
+                  //         if (double.parse(mar[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(mar[i].toString());
+                  //           marx = marx + double.parse(mar[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < apr.length; i++) {
+                  //         if (double.parse(apr[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(apr[i].toString());
+                  //           aprx = aprx + double.parse(apr[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < june.length; i++) {
+                  //         if (double.parse(june[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(june[i].toString());
+                  //           junex = junex + double.parse(june[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < july.length; i++) {
+                  //         if (double.parse(july[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(july[i].toString());
+                  //           julyx = julyx + double.parse(july[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < may.length; i++) {
+                  //         if (double.parse(may[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(may[i].toString());
+                  //           mayx = mayx + double.parse(may[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < august.length; i++) {
+                  //         if (double.parse(august[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(august[i].toString());
+                  //           augustx =
+                  //               augustx + double.parse(august[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < september.length; i++) {
+                  //         if (double.parse(september[i].toString())
+                  //             .isNegative) {
+                  //           expens =
+                  //               expens + double.parse(september[i].toString());
+                  //           septx =
+                  //               septx + double.parse(september[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < october.length; i++) {
+                  //         if (double.parse(october[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(october[i].toString());
+                  //           octx = octx + double.parse(october[i].toString());
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < november.length; i++) {
+                  //         if (double.parse(november[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(november[i].toString());
+                  //           novx = novx + double.parse(november[i].toString());
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < december.length; i++) {
+                  //         if (double.parse(december[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(december[i].toString());
+                  //           decx = decx + double.parse(december[i].toString());
+                  //         }
+                  //       }
+                  //       income = income.roundToDouble();
+                  //       expens = -expens.roundToDouble();
+                  //       print("jan total $janex");
+                  //       setState(() {
+                  //         streamController.add(1);
+                  //         state = 2;
+                  //         jant = -janex;
+                  //         febt = -febx;
+                  //         mart = -marx;
+                  //         aprt = -aprx;
+                  //         mayt = -mayx;
+                  //         junt = -junex;
+                  //         jult = -julyx;
+                  //         augt = -augustx;
+                  //         sept = -septx;
+                  //         octt = -octx;
+                  //         novt = -novx;
+                  //         dect = -decx;
+                  //         totalt = expens;
+                  //       });
+                  //     });
+                  //     HapticFeedback.heavyImpact();
+                  //   },
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(bottom: 8.0),
+                  //     child: Container(
+                  //       decoration: BoxDecoration(
+                  //           color: Color.fromRGBO(186, 201, 255, 0.05),
+                  //           borderRadius: BorderRadius.all(Radius.circular(5))),
+                  //       height: MediaQuery.of(context).size.height / 12,
+                  //       child: Row(
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children: [
+                  //             Padding(
+                  //               padding: const EdgeInsets.only(left: 8.0),
+                  //               child: Container(
+                  //                 padding: EdgeInsets.symmetric(
+                  //                     vertical: 5, horizontal: 5),
+                  //                 decoration: BoxDecoration(
+                  //                   color: Color.fromRGBO(186, 201, 255, 0.1),
+                  //                   borderRadius: BorderRadius.circular(5),
+                  //                 ),
+                  //                 child: Image(
+                  //                   image: AssetImage("assets/images/hdfc.png"),
+                  //                   height:
+                  //                       MediaQuery.of(context).size.height / 22,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             Padding(
+                  //               padding: const EdgeInsets.only(left: 10.0),
+                  //               child: Text(
+                  //                 "HDFC",
+                  //                 style: TextStyle(
+                  //                   fontSize: 18,
+                  //                   color: Colors.white,
+                  //                   fontFamily: 'AndersonB',
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ]),
+                  //     ),
+                  //   ),
+                  // ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     HapticFeedback.heavyImpact();
+                  //     // bank=4;
+                  //     Navigator.of(context).pop();
+                  //     _showDialog(context);
+                  //     state = 1;
+                  //     _messages = [];
+                  //     getsmsjgsbpboi();
+                  //     getsmsjgscpboi();
+                  //     getsmsjgsqpboi();
+                  //     getsmsjgsboi();
+                  //     getsmsjgboi();
+                  //     getsmsjsboi();
+                  //     getsmjgsboi();
+                  //     getmsjgboi();
+                  //     getsmsbrboi();
+                  //     getsmsjmboi();
+                  //     getsmsaxboi();
+                  //     getsmsJDboi();
+                  //     getsmsboi();
+                  //     getsmsvksboi();
+                  //     getsmsadsboi();
+                  //     getsmsvmsboi();
+                  //     getsmsvm2sboi();
+                  //     getsmsvmboi();
+                  //     janex = 0;
+                  //     febx = 0;
+                  //     marx = 0;
+                  //     aprx = 0;
+                  //     junex = 0;
+                  //     julyx = 0;
+                  //     mayx = 0;
+                  //     augustx = 0;
+                  //     octx = 0;
+                  //     septx = 0;
+                  //     novx = 0;
+                  //     decx = 0;
+                  //     expens = 0;
+                  //     jan = [];
+                  //     feb = [];
+                  //     mar = [];
+                  //     apr = [];
+                  //     may = [];
+                  //     june = [];
+                  //     july = [];
+                  //     august = [];
+                  //     september = [];
+                  //     october = [];
+                  //     november = [];
+                  //     december = [];
+                  //     getsmsvm2boi().then((value) {
+                  //       for (int i = 0; i < _messages.length; i++) {
+                  //         var message = _messages[i];
+                  //         double rek = 0;
+                  //         bool pp = true;
+                  //         int dd = 1;
+                  //         if (_messages[i].date?.year == DateTime.now().year) {
+                  //             if (message.sender?.indexOf('BOIIND') != -1) {
+                  //             if (message.body.toString().indexOf('Credited') !=
+                  //                 -1) {
+                  //               for (int j =
+                  //                       message.body.toString().indexOf('Rs') +
+                  //                           3;
+                  //                   j < message.body.toString().length;
+                  //                   j++) {
+                  //                 if (isNumeric(message.body.toString()[j])) {
+                  //                   if (pp) {
+                  //                     rek = rek * 10 +
+                  //                         double.parse(
+                  //                             message.body.toString()[j]);
+                  //                   } else {
+                  //                     dd = dd + 1;
+                  //                     double temp = double.parse(
+                  //                         message.body.toString()[j]);
+                  //                     int ne = dd;
+                  //                     while (ne > 1) {
+                  //                       ne--;
+                  //                       temp = temp / 10;
+                  //                     }
+                  //                     rek = rek + temp;
+                  //                   }
+                  //                 } else if (message.body.toString()[j] ==
+                  //                     '.') {
+                  //                   // if(message.body.toString()[j-1]=='s'){
+                  //                   //   continue;
+                  //                   // }else{
+                  //                   pp = false;
+                  //                   // }
+                  //                 } else {
+                  //                   if (message.body
+                  //                           .toString()
+                  //                           .indexOf('Credited') !=
+                  //                       -1) {
+                  //                     // rek*=10;
+                  //                     //  final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= 1;
+                  //                     // print(rek);
+                  //                     p.add(rek.toDouble());
+                  //
+                  //                     break;
+                  //                   } else if (message.body
+                  //                           .toString()
+                  //                           .indexOf('debited') !=
+                  //                       -1) {
+                  //                     // rek*=10;
+                  //                     // final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= -1;
+                  //                     // print(rek);
+                  //                     p.add(rek.toDouble());
+                  //                     break;
+                  //                   }
+                  //                 }
+                  //               }
+                  //             } else {
+                  //               for (int j =
+                  //                       message.body.toString().indexOf('Rs') +
+                  //                           3;
+                  //                   j < message.body.toString().length;
+                  //                   j++) {
+                  //                 if (isNumeric(message.body.toString()[j])) {
+                  //                   if (pp) {
+                  //                     rek = rek * 10 +
+                  //                         double.parse(
+                  //                             message.body.toString()[j]);
+                  //                   } else {
+                  //                     dd = dd + 1;
+                  //                     double temp = double.parse(
+                  //                         message.body.toString()[j]);
+                  //                     int ne = dd;
+                  //                     while (ne > 1) {
+                  //                       ne--;
+                  //                       temp = temp / 10;
+                  //                     }
+                  //                     rek = rek + temp;
+                  //                   }
+                  //                 } else if (message.body.toString()[j] ==
+                  //                     '.') {
+                  //                   // if(message.body.toString()[j-1]=='s'){
+                  //                   //   continue;
+                  //                   // }else{
+                  //                   pp = false;
+                  //                   // }
+                  //                 } else {
+                  //                   if (message.body
+                  //                           .toString()
+                  //                           .indexOf('debited') !=
+                  //                       -1) {
+                  //                     // rek*=10;
+                  //                     // final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= -1;
+                  //                     // print(rek);
+                  //                     p.add(rek.toDouble());
+                  //                     break;
+                  //                   }
+                  //                 }
+                  //               }
+                  //             }
+                  //           }
+                  //           if (message.date?.month == DateTime.january) {
+                  //             jan.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.february) {
+                  //             feb.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.march) {
+                  //             mar.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.april) {
+                  //             apr.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.may) {
+                  //             may.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.june) {
+                  //             june.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.july) {
+                  //             july.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.august) {
+                  //             august.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.september) {
+                  //             september.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.october) {
+                  //             october.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.november) {
+                  //             november.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.december) {
+                  //             december.add(rek);
+                  //           }
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < jan.length; i++) {
+                  //         if (double.parse(jan[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(jan[i].toString());
+                  //           janex = janex + double.parse(jan[i].toString());
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < feb.length; i++) {
+                  //         if (double.parse(feb[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(feb[i].toString());
+                  //           febx = febx + double.parse(feb[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < mar.length; i++) {
+                  //         if (double.parse(mar[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(mar[i].toString());
+                  //           marx = marx + double.parse(mar[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < apr.length; i++) {
+                  //         if (double.parse(apr[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(apr[i].toString());
+                  //           aprx = aprx + double.parse(apr[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < june.length; i++) {
+                  //         if (double.parse(june[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(june[i].toString());
+                  //           junex = junex + double.parse(june[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < july.length; i++) {
+                  //         if (double.parse(july[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(july[i].toString());
+                  //           julyx = julyx + double.parse(july[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < may.length; i++) {
+                  //         if (double.parse(may[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(may[i].toString());
+                  //           mayx = mayx + double.parse(may[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < august.length; i++) {
+                  //         if (double.parse(august[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(august[i].toString());
+                  //           augustx =
+                  //               augustx + double.parse(august[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < september.length; i++) {
+                  //         if (double.parse(september[i].toString())
+                  //             .isNegative) {
+                  //           expens =
+                  //               expens + double.parse(september[i].toString());
+                  //           septx =
+                  //               septx + double.parse(september[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < october.length; i++) {
+                  //         if (double.parse(october[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(october[i].toString());
+                  //           octx = octx + double.parse(october[i].toString());
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < november.length; i++) {
+                  //         if (double.parse(november[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(november[i].toString());
+                  //           novx = novx + double.parse(november[i].toString());
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < december.length; i++) {
+                  //         if (double.parse(december[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(december[i].toString());
+                  //           decx = decx + double.parse(december[i].toString());
+                  //         }
+                  //       }
+                  //       income = income.roundToDouble();
+                  //       expens = -expens.roundToDouble();
+                  //       print("jan total $janex");
+                  //       setState(() {
+                  //         streamController.add(1);
+                  //         state = 2;
+                  //         jant = -janex;
+                  //         febt = -febx;
+                  //         mart = -marx;
+                  //         aprt = -aprx;
+                  //         mayt = -mayx;
+                  //         junt = -junex;
+                  //         jult = -julyx;
+                  //         augt = -augustx;
+                  //         sept = -septx;
+                  //         octt = -octx;
+                  //         novt = -novx;
+                  //         dect = -decx;
+                  //         totalt = expens;
+                  //       });
+                  //     });
+                  //     HapticFeedback.heavyImpact();
+                  //   },
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(bottom: 8.0),
+                  //     child: Container(
+                  //       decoration: BoxDecoration(
+                  //           color: Color.fromRGBO(186, 201, 255, 0.05),
+                  //           borderRadius: BorderRadius.all(Radius.circular(5))),
+                  //       height: MediaQuery.of(context).size.height / 12,
+                  //       child: Row(
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children: [
+                  //             Padding(
+                  //               padding: const EdgeInsets.only(left: 10.0),
+                  //               child: Container(
+                  //                 padding: EdgeInsets.symmetric(
+                  //                     vertical: 5, horizontal: 5),
+                  //                 decoration: BoxDecoration(
+                  //                   color: Color.fromRGBO(186, 201, 255, 0.1),
+                  //                   borderRadius: BorderRadius.circular(5),
+                  //                 ),
+                  //                 child: Image(
+                  //                   image: AssetImage("assets/images/boi.jpg"),
+                  //                   height:
+                  //                       MediaQuery.of(context).size.height / 25,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             Padding(
+                  //               padding: const EdgeInsets.only(left: 8.0),
+                  //               child: Text(
+                  //                 "Bank of India",
+                  //                 style: TextStyle(
+                  //                   fontSize: 18,
+                  //                   color: Colors.white,
+                  //                   fontFamily: 'AndersonB',
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ]),
+                  //     ),
+                  //   ),
+                  // ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     // bank=4;
+                  //     HapticFeedback.heavyImpact();
+                  //     Navigator.of(context).pop();
+                  //     _showDialog(context);
+                  //     state = 1;
+                  //     _messages = [];
+                  //     trialBPs();
+                  //     trialJDs();
+                  //     trialads();
+                  //     trialaxs();
+                  //     trialba();
+                  //     trialbrs();
+                  //     trialbv();
+                  //     trialbw();
+                  //     trialbx();
+                  //     trialbz();
+                  //     trialcp();
+                  //     trialgs();
+                  //     trialms();
+                  //     trialqp();
+                  //     trialvk();
+                  //     trialvks();
+                  //     trialvm2s();
+                  //
+                  //     janex = 0;
+                  //     febx = 0;
+                  //     marx = 0;
+                  //     aprx = 0;
+                  //     junex = 0;
+                  //     julyx = 0;
+                  //     mayx = 0;
+                  //     augustx = 0;
+                  //     octx = 0;
+                  //     septx = 0;
+                  //     novx = 0;
+                  //     decx = 0;
+                  //     expens = 0;
+                  //     jan = [];
+                  //     feb = [];
+                  //     mar = [];
+                  //     apr = [];
+                  //     may = [];
+                  //     june = [];
+                  //     july = [];
+                  //     august = [];
+                  //     september = [];
+                  //     october = [];
+                  //     november = [];
+                  //     december = [];
+                  //     trialvms().then((value) {
+                  //       for (int i = 0; i < _messages.length; i++) {
+                  //         var message = _messages[i];
+                  //         double rek = 0;
+                  //         bool pp = true;
+                  //         int dd = 1;
+                  //         if (_messages[i].date?.year == DateTime.now().year) {
+                  //           if (message.sender?.indexOf('ICICIB') != -1) {
+                  //             print("inside ${message.body}");
+                  //             if (message.body.toString().indexOf('credited') !=
+                  //                 -1 &&
+                  //                 message.body.toString().indexOf('debited') ==
+                  //                     -1) {
+                  //               print("inside if");
+                  //               for (int j =
+                  //                   message.body.toString().indexOf('Rs') +
+                  //                       3;
+                  //               j < message.body.toString().length;
+                  //               j++) {
+                  //                 if (isNumeric(message.body.toString()[j])) {
+                  //                   if (pp) {
+                  //                     rek = rek * 10 +
+                  //                         double.parse(
+                  //                             message.body.toString()[j]);
+                  //                   } else {
+                  //                     dd = dd + 1;
+                  //                     double temp =
+                  //                     double.parse(message.body![j]);
+                  //                     int ne = dd;
+                  //                     while (ne > 1) {
+                  //                       ne--;
+                  //                       temp = temp / 10;
+                  //                     }
+                  //                     rek = rek + temp;
+                  //                   }
+                  //                 } else if (message.body.toString()[j] ==
+                  //                     '.') {
+                  //                   // if(message.toString()[j-1]=='s'){
+                  //                   //   continue;
+                  //                   // }else{
+                  //                   pp = false;
+                  //                   // }
+                  //                 } else {
+                  //                   if (message.body
+                  //                       .toString()
+                  //                       .indexOf('credited') !=
+                  //                       -1 &&
+                  //                       message.body
+                  //                           .toString()
+                  //                           .indexOf('debited') !=
+                  //                           -1) {
+                  //                     // rek*=10;
+                  //                     //  final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= -1;
+                  //                     print(rek);
+                  //                     p.add(rek);
+                  //                     break;
+                  //                   } else {
+                  //                     // rek*=10;
+                  //                     // final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= 1;
+                  //                     print(rek);
+                  //                     p.add(rek);
+                  //                     break;
+                  //                   }
+                  //                 }
+                  //               }
+                  //             } else {
+                  //               for (int j =
+                  //                   message.body.toString().indexOf('Rs') +
+                  //                       3;
+                  //               j < message.body.toString().length;
+                  //               j++) {
+                  //                 if (isNumeric(message.body.toString()[j])) {
+                  //                   if (pp) {
+                  //                     rek = rek * 10 +
+                  //                         double.parse(
+                  //                             message.body.toString()[j]);
+                  //                   } else {
+                  //                     dd = dd + 1;
+                  //                     double temp =
+                  //                     double.parse(message.body![j]);
+                  //                     int ne = dd;
+                  //                     while (ne > 1) {
+                  //                       ne--;
+                  //                       temp = temp / 10;
+                  //                     }
+                  //                     rek = rek + temp;
+                  //                   }
+                  //                 } else if (message.body.toString()[j] ==
+                  //                     '.') {
+                  //                   // if(message.toString()[j-1]=='s'){
+                  //                   //   continue;
+                  //                   // }else{
+                  //                   pp = false;
+                  //                   // }
+                  //                 } else {
+                  //                   if (message.body
+                  //                       .toString()
+                  //                       .indexOf('debited') !=
+                  //                       -1 &&
+                  //                       message.body
+                  //                           .toString()
+                  //                           .indexOf('debited') !=
+                  //                           -1) {
+                  //                     // rek*=10;
+                  //                     // final chars = rek.toString().split('');
+                  //                     // rek = double.parse(chars.reversed.join());
+                  //                     rek *= -1;
+                  //                     print(rek);
+                  //                     p.add(rek);
+                  //                     break;
+                  //                   }
+                  //                 }
+                  //               }
+                  //             }
+                  //           }
+                  //           if (message.date?.month == DateTime.january) {
+                  //             jan.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.february) {
+                  //             feb.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.march) {
+                  //             mar.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.april) {
+                  //             apr.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.may) {
+                  //             may.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.june) {
+                  //             june.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.july) {
+                  //             july.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.august) {
+                  //             august.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.september) {
+                  //             september.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.october) {
+                  //             october.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.november) {
+                  //             november.add(rek);
+                  //           }
+                  //           if (message.date?.month == DateTime.december) {
+                  //             december.add(rek);
+                  //           }
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < jan.length; i++) {
+                  //         if (double.parse(jan[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(jan[i].toString());
+                  //           janex = janex + double.parse(jan[i].toString());
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < feb.length; i++) {
+                  //         if (double.parse(feb[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(feb[i].toString());
+                  //           febx = febx + double.parse(feb[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < mar.length; i++) {
+                  //         if (double.parse(mar[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(mar[i].toString());
+                  //           marx = marx + double.parse(mar[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < apr.length; i++) {
+                  //         if (double.parse(apr[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(apr[i].toString());
+                  //           aprx = aprx + double.parse(apr[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < june.length; i++) {
+                  //         if (double.parse(june[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(june[i].toString());
+                  //           junex = junex + double.parse(june[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < july.length; i++) {
+                  //         if (double.parse(july[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(july[i].toString());
+                  //           julyx = julyx + double.parse(july[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < may.length; i++) {
+                  //         if (double.parse(may[i].toString()).isNegative) {
+                  //           expens = expens + double.parse(may[i].toString());
+                  //           mayx = mayx + double.parse(may[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < august.length; i++) {
+                  //         if (double.parse(august[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(august[i].toString());
+                  //           augustx =
+                  //               augustx + double.parse(august[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < september.length; i++) {
+                  //         if (double.parse(september[i].toString())
+                  //             .isNegative) {
+                  //           expens =
+                  //               expens + double.parse(september[i].toString());
+                  //           septx =
+                  //               septx + double.parse(september[i].toString());
+                  //         }
+                  //       }
+                  //
+                  //       for (int i = 0; i < october.length; i++) {
+                  //         if (double.parse(october[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(october[i].toString());
+                  //           octx = octx + double.parse(october[i].toString());
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < november.length; i++) {
+                  //         if (double.parse(november[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(november[i].toString());
+                  //           novx = novx + double.parse(november[i].toString());
+                  //         }
+                  //       }
+                  //       for (int i = 0; i < december.length; i++) {
+                  //         if (double.parse(december[i].toString()).isNegative) {
+                  //           expens =
+                  //               expens + double.parse(december[i].toString());
+                  //           decx = decx + double.parse(december[i].toString());
+                  //         }
+                  //       }
+                  //       income = income.roundToDouble();
+                  //       expens = -expens.roundToDouble();
+                  //       print("may total $mayx");
+                  //       setState(() {
+                  //         streamController.add(1);
+                  //         state = 2;
+                  //         jant = -janex;
+                  //         febt = -febx;
+                  //         mart = -marx;
+                  //         aprt = -aprx;
+                  //         mayt = -mayx;
+                  //         junt = -junex;
+                  //         jult = -julyx;
+                  //         augt = -augustx;
+                  //         sept = -septx;
+                  //         octt = -octx;
+                  //         novt = -novx;
+                  //         dect = -decx;
+                  //         totalt = expens;
+                  //       });
+                  //     });
+                  //     HapticFeedback.heavyImpact();
+                  //   },
+                  //   child: Container(
+                  //     decoration: BoxDecoration(
+                  //         color: Color.fromRGBO(186, 201, 255, 0.05),
+                  //         borderRadius: BorderRadius.all(Radius.circular(5))),
+                  //     height: MediaQuery.of(context).size.height / 12,
+                  //     child: Row(
+                  //         crossAxisAlignment: CrossAxisAlignment.center,
+                  //         children: [
+                  //           Padding(
+                  //             padding: const EdgeInsets.only(left: 10.0),
+                  //             child: Container(
+                  //               padding: EdgeInsets.symmetric(
+                  //                   vertical: 5, horizontal: 5),
+                  //               decoration: BoxDecoration(
+                  //                 color: Color.fromRGBO(186, 201, 255, 0.1),
+                  //                 borderRadius: BorderRadius.circular(5),
+                  //               ),
+                  //               child: Image(
+                  //                 image: AssetImage("assets/images/icici.jpg"),
+                  //                 height:
+                  //                     MediaQuery.of(context).size.height / 25,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //           Padding(
+                  //             padding: const EdgeInsets.only(left: 8.0),
+                  //             child: Text(
+                  //               "ICICI",
+                  //               style: TextStyle(
+                  //                 fontSize: 18,
+                  //                 color: Colors.white,
+                  //                 fontFamily: 'AndersonB',
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ]),
+                  //   ),
+                  // ),
                 ],
               );
             },

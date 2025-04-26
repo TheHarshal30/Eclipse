@@ -56,7 +56,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               Text(
-                "ECLIPSE",
+                "FINTRACK",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.bangers(fontSize: 60, color: Colors.white),
               ),

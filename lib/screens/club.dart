@@ -79,7 +79,7 @@ class _ClubPageState extends State<ClubPage> {
                       Padding(
                         padding: const EdgeInsets.only(left: 40.0, top: 70),
                         child: Text(
-                          "WELCOME TO ECLIPSE",
+                          "WELCOME TO FINTRACK",
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.grey,

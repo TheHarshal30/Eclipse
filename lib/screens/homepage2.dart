@@ -291,7 +291,7 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("Welcome to Eclipse",
+                          Text("Welcome to FinTrack",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -772,116 +772,116 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
             //     ),
             //   ),
             // ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
-              child: Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: Color.fromRGBO(186, 201, 255, 0.1),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.25,
-                      child: Text(
-                        "upcoming updates!",
-                        style: GoogleFonts.ubuntu(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 1.25,
-                        child: Text(
-                          "eclipse AI",
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 18,
-                            color: Colors.blueGrey,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width / 2,
-                          child: Text(
-                            "eclipse ai will help you analyze current news and provide detalied strategy on how to act in markets",
-                            style: GoogleFonts.ubuntu(
-                              fontSize: 13,
-                              color: Colors.white60,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 4,
-                          child: Lottie.asset(
-                            "assets/images/ai.json",
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 1.5,
-                        child: Text(
-                          "for more info visit our socials!",
-                          style: GoogleFonts.ubuntu(
-                            fontSize: 13,
-                            color: Colors.white60,
-                          ),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context, _createRoute(EclipseAI()));
-                        HapticFeedback.heavyImpact();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "see more",
-                              style: GoogleFonts.ubuntu(
-                                  fontSize: 12, color: Colors.grey),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5.0),
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0, bottom: 20),
-              child: Text("MORE ON ECLIPSE 🤖",
-                  style: GoogleFonts.exo2(
-                    letterSpacing: 2,
-                    color: Colors.grey.shade600,
-                    textStyle: TextStyle(
-                      fontSize: 16,
-                    ),
-                  )),
-            ),
+            // Padding(
+            //   padding:
+            //       const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30),
+            //   child: Container(
+            //     padding: EdgeInsets.all(20),
+            //     decoration: BoxDecoration(
+            //         color: Color.fromRGBO(186, 201, 255, 0.1),
+            //         borderRadius: BorderRadius.circular(10)),
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Container(
+            //           width: MediaQuery.of(context).size.width / 1.25,
+            //           child: Text(
+            //             "upcoming updates!",
+            //             style: GoogleFonts.ubuntu(
+            //               fontSize: 12,
+            //               color: Colors.grey,
+            //             ),
+            //           ),
+            //         ),
+            //         Padding(
+            //           padding: const EdgeInsets.symmetric(vertical: 10.0),
+            //           child: Container(
+            //             width: MediaQuery.of(context).size.width / 1.25,
+            //             child: Text(
+            //               "eclipse AI",
+            //               style: GoogleFonts.ubuntu(
+            //                 fontSize: 18,
+            //                 color: Colors.blueGrey,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Container(
+            //               width: MediaQuery.of(context).size.width / 2,
+            //               child: Text(
+            //                 "eclipse ai will help you analyze current news and provide detalied strategy on how to act in markets",
+            //                 style: GoogleFonts.ubuntu(
+            //                   fontSize: 13,
+            //                   color: Colors.white60,
+            //                 ),
+            //               ),
+            //             ),
+            //             Container(
+            //               width: MediaQuery.of(context).size.width / 4,
+            //               child: Lottie.asset(
+            //                 "assets/images/ai.json",
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //         Padding(
+            //           padding: const EdgeInsets.only(top: 8.0),
+            //           child: Container(
+            //             width: MediaQuery.of(context).size.width / 1.5,
+            //             child: Text(
+            //               "for more info visit our socials!",
+            //               style: GoogleFonts.ubuntu(
+            //                 fontSize: 13,
+            //                 color: Colors.white60,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //         GestureDetector(
+            //           onTap: () {
+            //             Navigator.push(context, _createRoute(EclipseAI()));
+            //             HapticFeedback.heavyImpact();
+            //           },
+            //           child: Padding(
+            //             padding: const EdgeInsets.only(top: 20.0),
+            //             child: Row(
+            //               children: [
+            //                 Text(
+            //                   "see more",
+            //                   style: GoogleFonts.ubuntu(
+            //                       fontSize: 12, color: Colors.grey),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(left: 5.0),
+            //                   child: Icon(
+            //                     Icons.arrow_forward,
+            //                     color: Colors.grey,
+            //                     size: 12,
+            //                   ),
+            //                 )
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+            //   child: Text("MORE ON ECLIPSE 🤖",
+            //       style: GoogleFonts.exo2(
+            //         letterSpacing: 2,
+            //         color: Colors.grey.shade600,
+            //         textStyle: TextStyle(
+            //           fontSize: 16,
+            //         ),
+            //       )),
+            // ),
             // Padding(
             //   padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
             //   child: Container(
@@ -918,500 +918,500 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
             //     ),
             //   ),
             // ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: Row(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height / 3,
-                      width: MediaQuery.of(context).size.width / 1.15,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 40.0),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 20.0),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width / 1.5,
-                                  child: Text(
-                                    "hey there,\nread something new today",
-                                    style: GoogleFonts.ubuntu(
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width / 2.3,
-                                child: Text(
-                                  "read latest news and stay on top of trends",
-                                  style: GoogleFonts.ubuntu(
-                                      fontSize: 12, color: Colors.grey),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "view more",
-                                      style: GoogleFonts.ubuntu(
-                                          fontSize: 12, color: Colors.grey),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 10.0),
-                                      child: Icon(
-                                        Icons.arrow_forward,
-                                        color: Colors.grey,
-                                        size: 12,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ]),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            _createRoute(NavPage(pageIndex: 2)),
-                            (Route<dynamic> route) => false);
-                        HapticFeedback.heavyImpact();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height / 1.8,
-                          width: MediaQuery.of(context).size.width / 1.5,
-                          decoration: BoxDecoration(
-                            // color: Color.fromRGBO(186, 201, 255, 0.1),
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                const Color.fromRGBO(161, 128, 255, 0.25),
-                                const Color.fromRGBO(117, 114, 255, 0.1),
-                                const Color.fromRGBO(132, 112, 255, 0.01),
-                              ],
-                            ),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20.0, bottom: 20),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image(
-                                    image:
-                                        AssetImage("assets/images/ecomar.png"),
-                                    height:
-                                        MediaQuery.of(context).size.height / 5,
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 10.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                2,
-                                        child: Text(
-                                          "get latest updates through news to plan your finances",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white,
-                                              fontFamily: 'Anderson',
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 2,
-                                      child: Text(
-                                        "Read latest news and stay on top of trends",
-                                        style: GoogleFonts.ubuntu(
-                                            fontSize: 12, color: Colors.grey),
-                                      ),
-                                    ),
-                                    Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 2,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 40.0,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              "read more",
-                                              style: GoogleFonts.ubuntu(
-                                                  fontSize: 14,
-                                                  color: Colors.grey),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0),
-                                              child: Icon(
-                                                Icons.arrow_forward,
-                                                color: Colors.grey,
-                                                size: 12,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ])
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            _createRoute(NavPage(pageIndex: 2)),
-                            (Route<dynamic> route) => false);
-                        HapticFeedback.heavyImpact();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height / 1.8,
-                          width: MediaQuery.of(context).size.width / 1.5,
-                          decoration: BoxDecoration(
-                            // color: Color.fromRGBO(186, 201, 255, 0.1),
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                const Color.fromRGBO(161, 128, 255, 0.25),
-                                const Color.fromRGBO(117, 114, 255, 0.1),
-                                const Color.fromRGBO(132, 112, 255, 0.01),
-                              ],
-                            ),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20.0, bottom: 20),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image(
-                                    image:
-                                        AssetImage("assets/images/newnews.png"),
-                                    height:
-                                        MediaQuery.of(context).size.height / 5,
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 10.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                2,
-                                        child: Text(
-                                          "see what's happening in the market",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white,
-                                              fontFamily: 'Anderson',
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 2,
-                                      child: Text(
-                                        "Read latest news and stay on top of trends",
-                                        style: GoogleFonts.ubuntu(
-                                            fontSize: 12, color: Colors.grey),
-                                      ),
-                                    ),
-                                    Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 2,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 40.0,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              "read market news",
-                                              style: GoogleFonts.ubuntu(
-                                                  fontSize: 14,
-                                                  color: Colors.grey),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0),
-                                              child: Icon(
-                                                Icons.arrow_forward,
-                                                color: Colors.grey,
-                                                size: 12,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ])
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            _createRoute(NavPage(pageIndex: 2)),
-                            (Route<dynamic> route) => false);
-                        HapticFeedback.heavyImpact();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height / 1.8,
-                          width: MediaQuery.of(context).size.width / 1.5,
-                          decoration: BoxDecoration(
-                            // color: Color.fromRGBO(186, 201, 255, 0.1),
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                const Color.fromRGBO(161, 128, 255, 0.25),
-                                const Color.fromRGBO(117, 114, 255, 0.1),
-                                const Color.fromRGBO(132, 112, 255, 0.01),
-                              ],
-                            ),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20.0, bottom: 20),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image(
-                                    image: AssetImage(
-                                        "assets/images/newnews1.png"),
-                                    height:
-                                        MediaQuery.of(context).size.height / 5,
-                                  ),
-                                ),
-                              ),
-                              Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 10.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                2,
-                                        child: Text(
-                                          "read about latest trends in science and technology",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white,
-                                              fontFamily: 'Anderson',
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 2,
-                                      child: Text(
-                                        "Read latest news and stay on top of trends",
-                                        style: GoogleFonts.ubuntu(
-                                            fontSize: 12, color: Colors.grey),
-                                      ),
-                                    ),
-                                    Container(
-                                      width:
-                                          MediaQuery.of(context).size.width / 2,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 40.0,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              "read tech news",
-                                              style: GoogleFonts.ubuntu(
-                                                  fontSize: 14,
-                                                  color: Colors.grey),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0),
-                                              child: Icon(
-                                                Icons.arrow_forward,
-                                                color: Colors.grey,
-                                                size: 12,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ])
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     Navigator.of(context).pushAndRemoveUntil(
-                    //         _createRoute(NavPage(pageIndex: 2)),
-                    //         (Route<dynamic> route) => false);
-                    //   },
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(left: 20.0),
-                    //     child: Container(
-                    //       height: MediaQuery.of(context).size.height / 5,
-                    //       width: MediaQuery.of(context).size.width / 1.25,
-                    //       decoration: BoxDecoration(
-                    //         color: Color.fromRGBO(186, 201, 255, 0.1),
-                    //         borderRadius: BorderRadius.circular(10),
-                    //       ),
-                    //       child: Row(
-                    //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //         children: [
-                    //           Padding(
-                    //             padding: const EdgeInsets.only(left: 8.0),
-                    //             child: ClipRRect(
-                    //               borderRadius: BorderRadius.circular(5),
-                    //               child: Image(
-                    //                 image: AssetImage("assets/images/techn.png"),
-                    //                 height:
-                    //                     MediaQuery.of(context).size.height / 7.5,
-                    //               ),
-                    //             ),
-                    //           ),
-                    //           Column(
-                    //               mainAxisAlignment: MainAxisAlignment.center,
-                    //               children: [
-                    //                 Padding(
-                    //                   padding:
-                    //                       const EdgeInsets.only(bottom: 20.0),
-                    //                   child: Container(
-                    //                     width: MediaQuery.of(context).size.width /
-                    //                         2.5,
-                    //                     child: Text(
-                    //                       "Technology News",
-                    //                       style: TextStyle(
-                    //                           fontSize: 20,
-                    //                           color: Colors.white,
-                    //                           fontFamily: 'Anderson',
-                    //                           fontWeight: FontWeight.w700),
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //                 Container(
-                    //                   width:
-                    //                       MediaQuery.of(context).size.width / 2.5,
-                    //                   child: Text(
-                    //                     "Read latest news and stay on top of trends",
-                    //                     style: GoogleFonts.ubuntu(
-                    //                         fontSize: 14, color: Colors.grey),
-                    //                   ),
-                    //                 ),
-                    //               ])
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     Navigator.of(context).pushAndRemoveUntil(
-                    //         _createRoute(NavPage(pageIndex: 3)),
-                    //         (Route<dynamic> route) => false);
-                    //   },
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(left: 20.0),
-                    //     child: Container(
-                    //       height: MediaQuery.of(context).size.height / 5,
-                    //       width: MediaQuery.of(context).size.width / 1.25,
-                    //       decoration: BoxDecoration(
-                    //         color: Color.fromRGBO(186, 201, 255, 0.1),
-                    //         borderRadius: BorderRadius.circular(5),
-                    //       ),
-                    //       child: Row(
-                    //         children: [
-                    //           Image(
-                    //             image: AssetImage("assets/images/news.png"),
-                    //             height: MediaQuery.of(context).size.height / 5,
-                    //           ),
-                    //           Column(
-                    //               mainAxisAlignment: MainAxisAlignment.center,
-                    //               children: [
-                    //                 Padding(
-                    //                   padding:
-                    //                       const EdgeInsets.only(bottom: 20.0),
-                    //                   child: Container(
-                    //                     width: MediaQuery.of(context).size.width /
-                    //                         2.5,
-                    //                     child: Text(
-                    //                       "Latest News",
-                    //                       style: TextStyle(
-                    //                           fontSize: 20,
-                    //                           color: Colors.white,
-                    //                           fontFamily: 'Anderson',
-                    //                           fontWeight: FontWeight.w700),
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //                 Container(
-                    //                   width:
-                    //                       MediaQuery.of(context).size.width / 2.5,
-                    //                   child: Text(
-                    //                     "Read latest news and stay on top of trends",
-                    //                     style: GoogleFonts.ubuntu(
-                    //                         fontSize: 14, color: Colors.grey),
-                    //                   ),
-                    //                 ),
-                    //               ])
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   ),
-                    // )
-                  ],
-                ),
-              ),
-            ),
+            // SingleChildScrollView(
+            //   scrollDirection: Axis.horizontal,
+            //   physics: BouncingScrollPhysics(),
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(right: 20.0),
+            //     child: Row(
+            //       children: [
+            //         Container(
+            //           height: MediaQuery.of(context).size.height / 3,
+            //           width: MediaQuery.of(context).size.width / 1.15,
+            //           child: Padding(
+            //             padding: const EdgeInsets.only(left: 40.0),
+            //             child: Column(
+            //                 mainAxisAlignment: MainAxisAlignment.center,
+            //                 crossAxisAlignment: CrossAxisAlignment.start,
+            //                 children: [
+            //                   Padding(
+            //                     padding: const EdgeInsets.only(bottom: 20.0),
+            //                     child: Container(
+            //                       width:
+            //                           MediaQuery.of(context).size.width / 1.5,
+            //                       child: Text(
+            //                         "hey there,\nread something new today",
+            //                         style: GoogleFonts.ubuntu(
+            //                             fontSize: 20,
+            //                             color: Colors.white,
+            //                             fontWeight: FontWeight.w500),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Container(
+            //                     width: MediaQuery.of(context).size.width / 2.3,
+            //                     child: Text(
+            //                       "read latest news and stay on top of trends",
+            //                       style: GoogleFonts.ubuntu(
+            //                           fontSize: 12, color: Colors.grey),
+            //                     ),
+            //                   ),
+            //                   Padding(
+            //                     padding: const EdgeInsets.only(top: 20.0),
+            //                     child: Row(
+            //                       children: [
+            //                         Text(
+            //                           "view more",
+            //                           style: GoogleFonts.ubuntu(
+            //                               fontSize: 12, color: Colors.grey),
+            //                         ),
+            //                         Padding(
+            //                           padding:
+            //                               const EdgeInsets.only(left: 10.0),
+            //                           child: Icon(
+            //                             Icons.arrow_forward,
+            //                             color: Colors.grey,
+            //                             size: 12,
+            //                           ),
+            //                         )
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ]),
+            //           ),
+            //         ),
+            //         GestureDetector(
+            //           onTap: () {
+            //             Navigator.of(context).pushAndRemoveUntil(
+            //                 _createRoute(NavPage(pageIndex: 2)),
+            //                 (Route<dynamic> route) => false);
+            //             HapticFeedback.heavyImpact();
+            //           },
+            //           child: Padding(
+            //             padding: const EdgeInsets.only(left: 20.0),
+            //             child: Container(
+            //               height: MediaQuery.of(context).size.height / 1.8,
+            //               width: MediaQuery.of(context).size.width / 1.5,
+            //               decoration: BoxDecoration(
+            //                 // color: Color.fromRGBO(186, 201, 255, 0.1),
+            //                 gradient: LinearGradient(
+            //                   begin: Alignment.topCenter,
+            //                   end: Alignment.bottomCenter,
+            //                   colors: [
+            //                     const Color.fromRGBO(161, 128, 255, 0.25),
+            //                     const Color.fromRGBO(117, 114, 255, 0.1),
+            //                     const Color.fromRGBO(132, 112, 255, 0.01),
+            //                   ],
+            //                 ),
+            //                 borderRadius: BorderRadius.circular(5),
+            //               ),
+            //               child: Column(
+            //                 children: [
+            //                   Padding(
+            //                     padding: const EdgeInsets.only(
+            //                         top: 20.0, bottom: 20),
+            //                     child: ClipRRect(
+            //                       borderRadius: BorderRadius.circular(10),
+            //                       child: Image(
+            //                         image:
+            //                             AssetImage("assets/images/ecomar.png"),
+            //                         height:
+            //                             MediaQuery.of(context).size.height / 5,
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Column(
+            //                       mainAxisAlignment: MainAxisAlignment.center,
+            //                       children: [
+            //                         Padding(
+            //                           padding:
+            //                               const EdgeInsets.only(bottom: 10.0),
+            //                           child: Container(
+            //                             width:
+            //                                 MediaQuery.of(context).size.width /
+            //                                     2,
+            //                             child: Text(
+            //                               "get latest updates through news to plan your finances",
+            //                               style: TextStyle(
+            //                                   fontSize: 20,
+            //                                   color: Colors.white,
+            //                                   fontFamily: 'Anderson',
+            //                                   fontWeight: FontWeight.w700),
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         Container(
+            //                           width:
+            //                               MediaQuery.of(context).size.width / 2,
+            //                           child: Text(
+            //                             "Read latest news and stay on top of trends",
+            //                             style: GoogleFonts.ubuntu(
+            //                                 fontSize: 12, color: Colors.grey),
+            //                           ),
+            //                         ),
+            //                         Container(
+            //                           width:
+            //                               MediaQuery.of(context).size.width / 2,
+            //                           child: Padding(
+            //                             padding: const EdgeInsets.only(
+            //                               top: 40.0,
+            //                             ),
+            //                             child: Row(
+            //                               children: [
+            //                                 Text(
+            //                                   "read more",
+            //                                   style: GoogleFonts.ubuntu(
+            //                                       fontSize: 14,
+            //                                       color: Colors.grey),
+            //                                 ),
+            //                                 Padding(
+            //                                   padding: const EdgeInsets.only(
+            //                                       left: 10.0),
+            //                                   child: Icon(
+            //                                     Icons.arrow_forward,
+            //                                     color: Colors.grey,
+            //                                     size: 12,
+            //                                   ),
+            //                                 )
+            //                               ],
+            //                             ),
+            //                           ),
+            //                         ),
+            //                       ])
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //         GestureDetector(
+            //           onTap: () {
+            //             Navigator.of(context).pushAndRemoveUntil(
+            //                 _createRoute(NavPage(pageIndex: 2)),
+            //                 (Route<dynamic> route) => false);
+            //             HapticFeedback.heavyImpact();
+            //           },
+            //           child: Padding(
+            //             padding: const EdgeInsets.only(left: 20.0),
+            //             child: Container(
+            //               height: MediaQuery.of(context).size.height / 1.8,
+            //               width: MediaQuery.of(context).size.width / 1.5,
+            //               decoration: BoxDecoration(
+            //                 // color: Color.fromRGBO(186, 201, 255, 0.1),
+            //                 gradient: LinearGradient(
+            //                   begin: Alignment.topCenter,
+            //                   end: Alignment.bottomCenter,
+            //                   colors: [
+            //                     const Color.fromRGBO(161, 128, 255, 0.25),
+            //                     const Color.fromRGBO(117, 114, 255, 0.1),
+            //                     const Color.fromRGBO(132, 112, 255, 0.01),
+            //                   ],
+            //                 ),
+            //                 borderRadius: BorderRadius.circular(5),
+            //               ),
+            //               child: Column(
+            //                 children: [
+            //                   Padding(
+            //                     padding: const EdgeInsets.only(
+            //                         top: 20.0, bottom: 20),
+            //                     child: ClipRRect(
+            //                       borderRadius: BorderRadius.circular(10),
+            //                       child: Image(
+            //                         image:
+            //                             AssetImage("assets/images/newnews.png"),
+            //                         height:
+            //                             MediaQuery.of(context).size.height / 5,
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Column(
+            //                       mainAxisAlignment: MainAxisAlignment.center,
+            //                       children: [
+            //                         Padding(
+            //                           padding:
+            //                               const EdgeInsets.only(bottom: 10.0),
+            //                           child: Container(
+            //                             width:
+            //                                 MediaQuery.of(context).size.width /
+            //                                     2,
+            //                             child: Text(
+            //                               "see what's happening in the market",
+            //                               style: TextStyle(
+            //                                   fontSize: 20,
+            //                                   color: Colors.white,
+            //                                   fontFamily: 'Anderson',
+            //                                   fontWeight: FontWeight.w700),
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         Container(
+            //                           width:
+            //                               MediaQuery.of(context).size.width / 2,
+            //                           child: Text(
+            //                             "Read latest news and stay on top of trends",
+            //                             style: GoogleFonts.ubuntu(
+            //                                 fontSize: 12, color: Colors.grey),
+            //                           ),
+            //                         ),
+            //                         Container(
+            //                           width:
+            //                               MediaQuery.of(context).size.width / 2,
+            //                           child: Padding(
+            //                             padding: const EdgeInsets.only(
+            //                               top: 40.0,
+            //                             ),
+            //                             child: Row(
+            //                               children: [
+            //                                 Text(
+            //                                   "read market news",
+            //                                   style: GoogleFonts.ubuntu(
+            //                                       fontSize: 14,
+            //                                       color: Colors.grey),
+            //                                 ),
+            //                                 Padding(
+            //                                   padding: const EdgeInsets.only(
+            //                                       left: 10.0),
+            //                                   child: Icon(
+            //                                     Icons.arrow_forward,
+            //                                     color: Colors.grey,
+            //                                     size: 12,
+            //                                   ),
+            //                                 )
+            //                               ],
+            //                             ),
+            //                           ),
+            //                         ),
+            //                       ])
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //         GestureDetector(
+            //           onTap: () {
+            //             Navigator.of(context).pushAndRemoveUntil(
+            //                 _createRoute(NavPage(pageIndex: 2)),
+            //                 (Route<dynamic> route) => false);
+            //             HapticFeedback.heavyImpact();
+            //           },
+            //           child: Padding(
+            //             padding: const EdgeInsets.only(left: 20.0),
+            //             child: Container(
+            //               height: MediaQuery.of(context).size.height / 1.8,
+            //               width: MediaQuery.of(context).size.width / 1.5,
+            //               decoration: BoxDecoration(
+            //                 // color: Color.fromRGBO(186, 201, 255, 0.1),
+            //                 gradient: LinearGradient(
+            //                   begin: Alignment.topCenter,
+            //                   end: Alignment.bottomCenter,
+            //                   colors: [
+            //                     const Color.fromRGBO(161, 128, 255, 0.25),
+            //                     const Color.fromRGBO(117, 114, 255, 0.1),
+            //                     const Color.fromRGBO(132, 112, 255, 0.01),
+            //                   ],
+            //                 ),
+            //                 borderRadius: BorderRadius.circular(5),
+            //               ),
+            //               child: Column(
+            //                 children: [
+            //                   Padding(
+            //                     padding: const EdgeInsets.only(
+            //                         top: 20.0, bottom: 20),
+            //                     child: ClipRRect(
+            //                       borderRadius: BorderRadius.circular(10),
+            //                       child: Image(
+            //                         image: AssetImage(
+            //                             "assets/images/newnews1.png"),
+            //                         height:
+            //                             MediaQuery.of(context).size.height / 5,
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Column(
+            //                       mainAxisAlignment: MainAxisAlignment.center,
+            //                       children: [
+            //                         Padding(
+            //                           padding:
+            //                               const EdgeInsets.only(bottom: 10.0),
+            //                           child: Container(
+            //                             width:
+            //                                 MediaQuery.of(context).size.width /
+            //                                     2,
+            //                             child: Text(
+            //                               "read about latest trends in science and technology",
+            //                               style: TextStyle(
+            //                                   fontSize: 20,
+            //                                   color: Colors.white,
+            //                                   fontFamily: 'Anderson',
+            //                                   fontWeight: FontWeight.w700),
+            //                             ),
+            //                           ),
+            //                         ),
+            //                         Container(
+            //                           width:
+            //                               MediaQuery.of(context).size.width / 2,
+            //                           child: Text(
+            //                             "Read latest news and stay on top of trends",
+            //                             style: GoogleFonts.ubuntu(
+            //                                 fontSize: 12, color: Colors.grey),
+            //                           ),
+            //                         ),
+            //                         Container(
+            //                           width:
+            //                               MediaQuery.of(context).size.width / 2,
+            //                           child: Padding(
+            //                             padding: const EdgeInsets.only(
+            //                               top: 40.0,
+            //                             ),
+            //                             child: Row(
+            //                               children: [
+            //                                 Text(
+            //                                   "read tech news",
+            //                                   style: GoogleFonts.ubuntu(
+            //                                       fontSize: 14,
+            //                                       color: Colors.grey),
+            //                                 ),
+            //                                 Padding(
+            //                                   padding: const EdgeInsets.only(
+            //                                       left: 10.0),
+            //                                   child: Icon(
+            //                                     Icons.arrow_forward,
+            //                                     color: Colors.grey,
+            //                                     size: 12,
+            //                                   ),
+            //                                 )
+            //                               ],
+            //                             ),
+            //                           ),
+            //                         ),
+            //                       ])
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //
+            //         // GestureDetector(
+            //         //   onTap: () {
+            //         //     Navigator.of(context).pushAndRemoveUntil(
+            //         //         _createRoute(NavPage(pageIndex: 2)),
+            //         //         (Route<dynamic> route) => false);
+            //         //   },
+            //         //   child: Padding(
+            //         //     padding: const EdgeInsets.only(left: 20.0),
+            //         //     child: Container(
+            //         //       height: MediaQuery.of(context).size.height / 5,
+            //         //       width: MediaQuery.of(context).size.width / 1.25,
+            //         //       decoration: BoxDecoration(
+            //         //         color: Color.fromRGBO(186, 201, 255, 0.1),
+            //         //         borderRadius: BorderRadius.circular(10),
+            //         //       ),
+            //         //       child: Row(
+            //         //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //         //         children: [
+            //         //           Padding(
+            //         //             padding: const EdgeInsets.only(left: 8.0),
+            //         //             child: ClipRRect(
+            //         //               borderRadius: BorderRadius.circular(5),
+            //         //               child: Image(
+            //         //                 image: AssetImage("assets/images/techn.png"),
+            //         //                 height:
+            //         //                     MediaQuery.of(context).size.height / 7.5,
+            //         //               ),
+            //         //             ),
+            //         //           ),
+            //         //           Column(
+            //         //               mainAxisAlignment: MainAxisAlignment.center,
+            //         //               children: [
+            //         //                 Padding(
+            //         //                   padding:
+            //         //                       const EdgeInsets.only(bottom: 20.0),
+            //         //                   child: Container(
+            //         //                     width: MediaQuery.of(context).size.width /
+            //         //                         2.5,
+            //         //                     child: Text(
+            //         //                       "Technology News",
+            //         //                       style: TextStyle(
+            //         //                           fontSize: 20,
+            //         //                           color: Colors.white,
+            //         //                           fontFamily: 'Anderson',
+            //         //                           fontWeight: FontWeight.w700),
+            //         //                     ),
+            //         //                   ),
+            //         //                 ),
+            //         //                 Container(
+            //         //                   width:
+            //         //                       MediaQuery.of(context).size.width / 2.5,
+            //         //                   child: Text(
+            //         //                     "Read latest news and stay on top of trends",
+            //         //                     style: GoogleFonts.ubuntu(
+            //         //                         fontSize: 14, color: Colors.grey),
+            //         //                   ),
+            //         //                 ),
+            //         //               ])
+            //         //         ],
+            //         //       ),
+            //         //     ),
+            //         //   ),
+            //         // ),
+            //         // GestureDetector(
+            //         //   onTap: () {
+            //         //     Navigator.of(context).pushAndRemoveUntil(
+            //         //         _createRoute(NavPage(pageIndex: 3)),
+            //         //         (Route<dynamic> route) => false);
+            //         //   },
+            //         //   child: Padding(
+            //         //     padding: const EdgeInsets.only(left: 20.0),
+            //         //     child: Container(
+            //         //       height: MediaQuery.of(context).size.height / 5,
+            //         //       width: MediaQuery.of(context).size.width / 1.25,
+            //         //       decoration: BoxDecoration(
+            //         //         color: Color.fromRGBO(186, 201, 255, 0.1),
+            //         //         borderRadius: BorderRadius.circular(5),
+            //         //       ),
+            //         //       child: Row(
+            //         //         children: [
+            //         //           Image(
+            //         //             image: AssetImage("assets/images/news.png"),
+            //         //             height: MediaQuery.of(context).size.height / 5,
+            //         //           ),
+            //         //           Column(
+            //         //               mainAxisAlignment: MainAxisAlignment.center,
+            //         //               children: [
+            //         //                 Padding(
+            //         //                   padding:
+            //         //                       const EdgeInsets.only(bottom: 20.0),
+            //         //                   child: Container(
+            //         //                     width: MediaQuery.of(context).size.width /
+            //         //                         2.5,
+            //         //                     child: Text(
+            //         //                       "Latest News",
+            //         //                       style: TextStyle(
+            //         //                           fontSize: 20,
+            //         //                           color: Colors.white,
+            //         //                           fontFamily: 'Anderson',
+            //         //                           fontWeight: FontWeight.w700),
+            //         //                     ),
+            //         //                   ),
+            //         //                 ),
+            //         //                 Container(
+            //         //                   width:
+            //         //                       MediaQuery.of(context).size.width / 2.5,
+            //         //                   child: Text(
+            //         //                     "Read latest news and stay on top of trends",
+            //         //                     style: GoogleFonts.ubuntu(
+            //         //                         fontSize: 14, color: Colors.grey),
+            //         //                   ),
+            //         //                 ),
+            //         //               ])
+            //         //         ],
+            //         //       ),
+            //         //     ),
+            //         //   ),
+            //         // )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             // Padding(
             //   padding: const EdgeInsets.only(left: 0.0),
             //   child: Container(
@@ -1494,183 +1494,183 @@ class _HomePage2State extends State<HomePage2> with TickerProviderStateMixin {
             //     ),
             //   ),
             // ),
-            Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: Column(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height / 8,
-                    child: PageView(
-                      scrollDirection: Axis.horizontal,
-                      controller: _controller,
-                      children: [
-                        GestureDetector(
-                          onTap: (() {
-                            Navigator.of(context).push(_createRoute(Swipe()));
-                            HapticFeedback.heavyImpact();
-                          }),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 25, right: 25),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height / 9,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(186, 201, 255, 1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              width: MediaQuery.of(context).size.width / 1.25,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, left: 8),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Eclipse Education",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black,
-                                              fontFamily: 'AndersonB',
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  2,
-                                              child: Text(
-                                                "Blogs and aricles by personal finance experts",
-                                                style: GoogleFonts.ubuntu(
-                                                    color: Colors.grey.shade800,
-                                                    fontSize: 12),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Image(
-                                      image:
-                                          AssetImage("assets/images/edu.png"),
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              7,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () async {
-                            Uri url = Uri(
-                                scheme: "https",
-                                host: "insidelibrary.weebly.com");
-
-                            if (!await launchUrl(
-                              url,
-                              mode: LaunchMode.externalApplication,
-                            )) {
-                              throw Exception('Could not launch $url');
-                            }
-                            HapticFeedback.heavyImpact();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 25, right: 15),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height / 9,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(186, 201, 255, 1),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              width: MediaQuery.of(context).size.width / 1.25,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, left: 8),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Write for Eclipse",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.black,
-                                              fontFamily: 'AndersonB',
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
-                                            child: Container(
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  1.9,
-                                              child: Text(
-                                                "We invite you to join our platform as writers",
-                                                style: GoogleFonts.ubuntu(
-                                                    color: Colors.grey.shade800,
-                                                    fontSize: 12),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Image(
-                                      image:
-                                          AssetImage("assets/images/edu.png"),
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              7,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0, bottom: 20),
-                    child: SmoothPageIndicator(
-                      controller: _controller,
-                      count: 2,
-                      effect: ExpandingDotsEffect(
-                        dotColor: Colors.grey,
-                        activeDotColor:
-                            const Color.fromRGBO(117, 114, 255, 0.8),
-                        dotHeight: 4,
-                        dotWidth: 8,
-                        expansionFactor: 4,
-                        spacing: 4.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 15.0),
+            //   child: Column(
+            //     children: [
+            //       Container(
+            //         height: MediaQuery.of(context).size.height / 8,
+            //         child: PageView(
+            //           scrollDirection: Axis.horizontal,
+            //           controller: _controller,
+            //           children: [
+            //             GestureDetector(
+            //               onTap: (() {
+            //                 Navigator.of(context).push(_createRoute(Swipe()));
+            //                 HapticFeedback.heavyImpact();
+            //               }),
+            //               child: Padding(
+            //                 padding: const EdgeInsets.only(left: 25, right: 25),
+            //                 child: Container(
+            //                   height: MediaQuery.of(context).size.height / 9,
+            //                   decoration: BoxDecoration(
+            //                     color: Color.fromRGBO(186, 201, 255, 1),
+            //                     borderRadius: BorderRadius.circular(10),
+            //                   ),
+            //                   width: MediaQuery.of(context).size.width / 1.25,
+            //                   child: Padding(
+            //                     padding: const EdgeInsets.all(8.0),
+            //                     child: Row(
+            //                       mainAxisAlignment:
+            //                           MainAxisAlignment.spaceBetween,
+            //                       crossAxisAlignment: CrossAxisAlignment.start,
+            //                       children: [
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(
+            //                               top: 8.0, left: 8),
+            //                           child: Column(
+            //                             crossAxisAlignment:
+            //                                 CrossAxisAlignment.start,
+            //                             children: [
+            //                               Text(
+            //                                 "Eclipse Education",
+            //                                 style: TextStyle(
+            //                                   fontSize: 18,
+            //                                   color: Colors.black,
+            //                                   fontFamily: 'AndersonB',
+            //                                 ),
+            //                               ),
+            //                               Padding(
+            //                                 padding:
+            //                                     const EdgeInsets.only(top: 8.0),
+            //                                 child: Container(
+            //                                   width: MediaQuery.of(context)
+            //                                           .size
+            //                                           .width /
+            //                                       2,
+            //                                   child: Text(
+            //                                     "Blogs and aricles by personal finance experts",
+            //                                     style: GoogleFonts.ubuntu(
+            //                                         color: Colors.grey.shade800,
+            //                                         fontSize: 12),
+            //                                   ),
+            //                                 ),
+            //                               ),
+            //                             ],
+            //                           ),
+            //                         ),
+            //                         Image(
+            //                           image:
+            //                               AssetImage("assets/images/edu.png"),
+            //                           height:
+            //                               MediaQuery.of(context).size.height /
+            //                                   7,
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //             GestureDetector(
+            //               onTap: () async {
+            //                 Uri url = Uri(
+            //                     scheme: "https",
+            //                     host: "insidelibrary.weebly.com");
+            //
+            //                 if (!await launchUrl(
+            //                   url,
+            //                   mode: LaunchMode.externalApplication,
+            //                 )) {
+            //                   throw Exception('Could not launch $url');
+            //                 }
+            //                 HapticFeedback.heavyImpact();
+            //               },
+            //               child: Padding(
+            //                 padding: const EdgeInsets.only(left: 25, right: 15),
+            //                 child: Container(
+            //                   height: MediaQuery.of(context).size.height / 9,
+            //                   decoration: BoxDecoration(
+            //                     color: Color.fromRGBO(186, 201, 255, 1),
+            //                     borderRadius: BorderRadius.circular(10),
+            //                   ),
+            //                   width: MediaQuery.of(context).size.width / 1.25,
+            //                   child: Padding(
+            //                     padding: const EdgeInsets.all(8.0),
+            //                     child: Row(
+            //                       mainAxisAlignment:
+            //                           MainAxisAlignment.spaceBetween,
+            //                       crossAxisAlignment: CrossAxisAlignment.start,
+            //                       children: [
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(
+            //                               top: 8.0, left: 8),
+            //                           child: Column(
+            //                             crossAxisAlignment:
+            //                                 CrossAxisAlignment.start,
+            //                             children: [
+            //                               Text(
+            //                                 "Write for Eclipse",
+            //                                 style: TextStyle(
+            //                                   fontSize: 18,
+            //                                   color: Colors.black,
+            //                                   fontFamily: 'AndersonB',
+            //                                 ),
+            //                               ),
+            //                               Padding(
+            //                                 padding:
+            //                                     const EdgeInsets.only(top: 8.0),
+            //                                 child: Container(
+            //                                   width: MediaQuery.of(context)
+            //                                           .size
+            //                                           .width /
+            //                                       1.9,
+            //                                   child: Text(
+            //                                     "We invite you to join our platform as writers",
+            //                                     style: GoogleFonts.ubuntu(
+            //                                         color: Colors.grey.shade800,
+            //                                         fontSize: 12),
+            //                                   ),
+            //                                 ),
+            //                               ),
+            //                             ],
+            //                           ),
+            //                         ),
+            //                         Image(
+            //                           image:
+            //                               AssetImage("assets/images/edu.png"),
+            //                           height:
+            //                               MediaQuery.of(context).size.height /
+            //                                   7,
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //       Padding(
+            //         padding: const EdgeInsets.only(top: 15.0, bottom: 20),
+            //         child: SmoothPageIndicator(
+            //           controller: _controller,
+            //           count: 2,
+            //           effect: ExpandingDotsEffect(
+            //             dotColor: Colors.grey,
+            //             activeDotColor:
+            //                 const Color.fromRGBO(117, 114, 255, 0.8),
+            //             dotHeight: 4,
+            //             dotWidth: 8,
+            //             expansionFactor: 4,
+            //             spacing: 4.0,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
 
             /*
             Padding(

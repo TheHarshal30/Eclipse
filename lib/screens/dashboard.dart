@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pie_chart/pie_chart.dart' as pie;
 import 'dart:math' as math;
 
+String? friendID;
 double total2 = 0;
 String user2 = "";
 double jan1 = 0;
@@ -115,43 +116,44 @@ class _DashboardState extends State<Dashboard> {
   bool isData = false;
 
   void data() async {
-    String friendID = await FirebaseCalls().getFriendID(curruserKey.toString());
-    dashboardData =
-        await FirebaseCalls().getDashBoardData(friendID, curruserKey.toString())
-            as Map<String, double>;
-    jan1 = (dashboardData['friendJan']!);
-    feb1 = (dashboardData['friendFeb']!);
-    mar1 = (dashboardData['friendMar']!);
-    apr1 = (dashboardData['friendApr']!);
-    may1 = (dashboardData['friendMay']!);
-    jun1 = (dashboardData['friendJun']!);
-    jul1 = (dashboardData['friendJul']!);
-    aug1 = (dashboardData['friendAug']!);
-    sep1 = (dashboardData['friendSep']!);
-    oct1 = (dashboardData['friendOct']!);
-    nov1 = (dashboardData['friendNov']!);
-    dec1 = (dashboardData['friendDec']!);
-    total1 = (dashboardData['friendTotal']!);
-    user1 = friendName;
-    jan2 = (dashboardData['userJan']!);
-    feb2 = (dashboardData['userFeb']!);
-    mar2 = (dashboardData['userMar']!);
-    apr2 = (dashboardData['userApr']!);
-    may2 = (dashboardData['userMay']!);
-    jun2 = (dashboardData['userJun']!);
-    jul2 = (dashboardData['userJul']!);
-    aug2 = (dashboardData['userAug']!);
-    sep2 = (dashboardData['userSep']!);
-    oct2 = (dashboardData['userOct']!);
-    nov2 = (dashboardData['userNov']!);
-    dec2 = (dashboardData['userDec']!);
-    total2 = (dashboardData['userTotal']!);
-    user2 = userName;
+    friendID = await FirebaseCalls().getFriendID(curruserKey.toString());
+   print("ahahah $friendID");
+    if (friendID != null) {
+      dashboardData = await FirebaseCalls().getDashBoardData(
+          friendID!, curruserKey.toString()) as Map<String, double>;
+      jan1 = (dashboardData['friendJan']!);
+      feb1 = (dashboardData['friendFeb']!);
+      mar1 = (dashboardData['friendMar']!);
+      apr1 = (dashboardData['friendApr']!);
+      may1 = (dashboardData['friendMay']!);
+      jun1 = (dashboardData['friendJun']!);
+      jul1 = (dashboardData['friendJul']!);
+      aug1 = (dashboardData['friendAug']!);
+      sep1 = (dashboardData['friendSep']!);
+      oct1 = (dashboardData['friendOct']!);
+      nov1 = (dashboardData['friendNov']!);
+      dec1 = (dashboardData['friendDec']!);
+      total1 = (dashboardData['friendTotal']!);
+      user1 = friendName;
+      jan2 = (dashboardData['userJan']!);
+      feb2 = (dashboardData['userFeb']!);
+      mar2 = (dashboardData['userMar']!);
+      apr2 = (dashboardData['userApr']!);
+      may2 = (dashboardData['userMay']!);
+      jun2 = (dashboardData['userJun']!);
+      jul2 = (dashboardData['userJul']!);
+      aug2 = (dashboardData['userAug']!);
+      sep2 = (dashboardData['userSep']!);
+      oct2 = (dashboardData['userOct']!);
+      nov2 = (dashboardData['userNov']!);
+      dec2 = (dashboardData['userDec']!);
+      total2 = (dashboardData['userTotal']!);
+      user2 = userName;
 
-    setState(() {
-      isData = true;
-    });
-
+      setState(() {
+        isData = true;
+      });
+    }
     print(dashboardData);
   }
 
@@ -385,64 +387,66 @@ class _DashboardState extends State<Dashboard> {
       dec1
     ];
     return Scaffold(
-        backgroundColor: Colors.black,
-        body: SafeArea(
-            child: SingleChildScrollView(
-                physics: NeverScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20.0, top: 20, right: 20),
-                      child: Container(
-                          padding:
-                              EdgeInsets.only(left: 10, right: 10, top: 10),
-                          width: MediaQuery.of(context).size.width / 1.11,
-                          height: MediaQuery.of(context).size.height / 5.5,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  const Color.fromRGBO(161, 128, 255, 0.25),
-                                  const Color.fromRGBO(117, 114, 255, 0.1),
-                                  const Color.fromRGBO(132, 112, 255, 0.01),
-                                ],
-                              ),
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(width: 0.2)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Statistics",
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  color: Colors.white,
-                                  fontFamily: 'AndersonB',
-                                ),
-                              ),
-                              Text("Compare your expenses with a friend",
-                                  style: GoogleFonts.exo(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.white))
-                            ],
-                          )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: Container(
-                          height: MediaQuery.of(context).size.height / 7,
-                          width: MediaQuery.of(context).size.width / 1.15,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color.fromRGBO(186, 201, 255, 0.1)),
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.only(left: 20.0, right: 0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
+          child: (friendID!=null)? Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 20, right: 20),
+                child: Container(
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                    width: MediaQuery.of(context).size.width / 1.11,
+                    height: MediaQuery.of(context).size.height / 5.5,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            const Color.fromRGBO(161, 128, 255, 0.25),
+                            const Color.fromRGBO(117, 114, 255, 0.1),
+                            const Color.fromRGBO(132, 112, 255, 0.01),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(width: 0.2)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Statistics",
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontFamily: 'AndersonB',
+                          ),
+                        ),
+                        Text("Compare your expenses with a friend",
+                            style: GoogleFonts.exo(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white))
+                      ],
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 40.0),
+                child: Container(
+                    height: MediaQuery.of(context).size.height / 7,
+                    width: MediaQuery.of(context).size.width / 1.15,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color.fromRGBO(186, 201, 255, 0.1)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20.0, right: 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(top: 20.0),
@@ -450,190 +454,167 @@ class _DashboardState extends State<Dashboard> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 20.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Total Expense",
-                                              style: GoogleFonts.exo(
-                                                  fontSize: 15,
-                                                  color: Colors.white60),
-                                            ),
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 5.0),
-                                                  child: Text("₹ ",
-                                                      style: GoogleFonts.exo(
-                                                          fontSize: 18,
-                                                          color: Colors.white)),
-                                                ),
-                                                Text(total1.toString(),
-                                                    style: GoogleFonts.exo(
-                                                        fontSize: 30,
-                                                        color: Colors.white)),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                      Text(
+                                        "Total Expense",
+                                        style: GoogleFonts.exo(
+                                            fontSize: 15,
+                                            color: Colors.white60),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 20.0, top: 40),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
                                       Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Icon(Icons.circle,
-                                              size: 5, color: Colors.green),
-                                          Text(" connected user",
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 5.0),
+                                            child: Text("₹ ",
+                                                style: GoogleFonts.exo(
+                                                    fontSize: 18,
+                                                    color: Colors.white)),
+                                          ),
+                                          Text(total1.toString(),
                                               style: GoogleFonts.exo(
-                                                  fontSize: 12,
-                                                  color: Colors.white60)),
+                                                  fontSize: 30,
+                                                  color: Colors.white)),
                                         ],
                                       ),
-                                      Text(user1.toString(),
-                                          style: GoogleFonts.exo(
-                                              fontSize: 15,
-                                              color: Colors.white60)),
                                     ],
                                   ),
                                 ),
                               ],
                             ),
-                          )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 50.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
+                          ),
                           Padding(
                             padding:
-                                const EdgeInsets.only(left: 0.0, bottom: 0),
-                            child: Container(
-                              child: Text(
-                                "Monthly Breakdown",
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  color: Colors.white,
-                                  fontFamily: 'AndersonB',
+                                const EdgeInsets.only(right: 20.0, top: 40),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(Icons.circle,
+                                        size: 5, color: Colors.green),
+                                    Text(" connected user",
+                                        style: GoogleFonts.exo(
+                                            fontSize: 12,
+                                            color: Colors.white60)),
+                                  ],
                                 ),
-                              ),
-                            ),
-                          ),
-// Text('${months[index % 12]}'),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 20.0, horizontal: 30),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height / 2.5,
-                              child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                physics: BouncingScrollPhysics(),
-                                itemCount: 12,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(top: 10.0),
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              10,
-                                      width: MediaQuery.of(context).size.width /
-                                          1.10,
-                                      decoration: BoxDecoration(
-                                        /*border: Border.all(width: 1.5, color: Colors.black),*/
-                                        color:
-                                            Color.fromRGBO(186, 201, 255, 0.1),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20.0,
-                                                    top: 8,
-                                                    bottom: 8),
-                                                child: Container(
-                                                  padding: EdgeInsets.all(8),
-                                                  decoration: BoxDecoration(
-                                                    color: Color.fromRGBO(
-                                                        186, 201, 255, 0.2),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                    //  border: Border.all(color: Colors.black, width: 1)
-                                                  ),
-                                                  child: Image(
-                                                      image: AssetImage(
-                                                          "assets/images/rupee.jpg"),
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height /
-                                                              40),
-                                                ),
-                                              ),
-                                              Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 20,
-                                                          bottom: 8,
-                                                          top: 8),
-                                                  child: Text(
-                                                      '${months[index % 12]}',
-                                                      style: TextStyle(
-                                                          fontSize: 18,
-                                                          color: Colors.white,
-                                                          fontFamily:
-                                                              'Anderson',
-                                                          fontWeight:
-                                                              FontWeight.w700)))
-                                            ],
-                                          ),
-                                          Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                "₹ ${expenses[index % 12]} ",
-                                                // 'check',
-                                                style: TextStyle(
-                                                  fontSize: 18,
-                                                  color: Colors
-                                                      .lightGreen.shade700,
-                                                  fontFamily: 'AndersonB',
-                                                ),
-                                              ))
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
+                                Text(user1.toString(),
+                                    style: GoogleFonts.exo(
+                                        fontSize: 15, color: Colors.white60)),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                    )
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 50.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0.0, bottom: 0),
+                      child: Container(
+                        child: Text(
+                          "Monthly Breakdown",
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontFamily: 'AndersonB',
+                          ),
+                        ),
+                      ),
+                    ),
+// Text('${months[index % 12]}'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20.0, horizontal: 30),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height / 2.5,
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          physics: BouncingScrollPhysics(),
+                          itemCount: 12,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: Container(
+                                height: MediaQuery.of(context).size.height / 10,
+                                width: MediaQuery.of(context).size.width / 1.10,
+                                decoration: BoxDecoration(
+                                  /*border: Border.all(width: 1.5, color: Colors.black),*/
+                                  color: Color.fromRGBO(186, 201, 255, 0.1),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 20.0, top: 8, bottom: 8),
+                                          child: Container(
+                                            padding: EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color: Color.fromRGBO(
+                                                  186, 201, 255, 0.2),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              //  border: Border.all(color: Colors.black, width: 1)
+                                            ),
+                                            child: Image(
+                                                image: AssetImage(
+                                                    "assets/images/rupee.jpg"),
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    40),
+                                          ),
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 20, bottom: 8, top: 8),
+                                            child: Text('${months[index % 12]}',
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.white,
+                                                    fontFamily: 'Anderson',
+                                                    fontWeight:
+                                                        FontWeight.w700)))
+                                      ],
+                                    ),
+                                    Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "₹ ${expenses[index % 12]} ",
+                                          // 'check',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.lightGreen.shade700,
+                                            fontFamily: 'AndersonB',
+                                          ),
+                                        ))
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   ],
-                ))));
+                ),
+              )
+            ],
+          ):Container(height: MediaQuery.of(context).size.height,child: Center(child: Text("Add your friend's ID from setting",style: GoogleFonts.exo2(color: Colors.white),),)),
+        ),
+      ),
+    );
   }
 }
 

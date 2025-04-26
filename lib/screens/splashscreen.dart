@@ -93,7 +93,7 @@ class _SplashState extends State<Splash> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Text(
-                "ECLIPSE",
+                "FINTRACK",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.bangers(fontSize: 60, color: Colors.black),
               ),

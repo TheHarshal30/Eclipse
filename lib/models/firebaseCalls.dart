@@ -91,7 +91,7 @@ class FirebaseCalls {
   }
 
   connectFriend(String friendID, String userID) async {
-    await family.doc(userID).update({
+    await family.doc(userID).set({
       'userkey': friendID,
     });
   }
@@ -135,9 +135,16 @@ class FirebaseCalls {
   }
 
   getFriendID(String userID) async {
-    final DocumentSnapshot<Map<String, dynamic>> result =
-        await family.doc(userID).get();
-    return result["userkey"];
+    try{
+
+      final DocumentSnapshot<Map<String, dynamic>> result =
+      await family.doc(userID).get();
+      print("hhahhahah ${result["userkey"]}");
+      return result["userkey"];
+    }
+    catch(e){
+        print(e);
+    }
   }
 
   addPersonalExpense(

@@ -58,7 +58,7 @@
     <!-- PermissionType.systemAlertWindow -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
    <application
-        android:label="Eclipse"
+        android:label="FinTrack"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
